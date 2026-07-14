@@ -10,9 +10,7 @@
 </p>
 
 <p align="center">
-  Growing Developer | Aspiring Security Specialist<br />
-  김현석(Hyeonseok Kim)의 개인 포트폴리오 사이트입니다.<br />
-  Cover · Profile · Works 구성을 PPT처럼 한 화면 단위로 보여 줍니다.
+  김현석(Hyeonseok Kim)의 개인 포트폴리오 사이트입니다.
 </p>
 
 <p align="center">
