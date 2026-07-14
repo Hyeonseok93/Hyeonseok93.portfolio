@@ -1,19 +1,12 @@
 # Hyeonseok's Portfolio
 
 <p align="center">
-  <a href="https://hyeonseok93-portfolio.vercel.app/" style="text-decoration:none;">
-    <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" height="40" />
-  </a>
-  &#8194;
-  <a href="https://github.com/Hyeonseok93" style="text-decoration:none;">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" height="40" />
-  </a>
-  <br />
+  <a href="https://hyeonseok93-portfolio.vercel.app/" style="text-decoration:none;"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme_badges/dark/vercel.png" /><img src="assets/readme_badges/light/vercel.png" alt="Vercel" height="40" /></picture></a><br />
   <a href="https://hyeonseok93-portfolio.vercel.app/">https://hyeonseok93-portfolio.vercel.app/</a>
 </p>
 
 <p align="center">
-  <img src="assets/favicon.png" alt="Bulldog favicon" width="220" />
+  <picture><img src="assets/confidently.gif" alt="Bulldog Confident" width="420" /></picture>
 </p>
 
 <p align="center">
@@ -54,9 +47,11 @@ Hyeonseok93.portfolio/
 │   └── components.js   # <site-nav> · <site-footer> · <tech-badge>
 └── assets/
     ├── favicon.png
+    ├── confidently.gif
     ├── profile.png
     ├── fonts/          # Figtree · Outfit (로컬)
-    └── stacks/         # 기술 스택 아이콘
+    ├── stacks/         # 기술 스택 아이콘
+    └── readme_badges/  # README 플랫폼 뱃지 (dark/light)
 ```
 
 <br />
