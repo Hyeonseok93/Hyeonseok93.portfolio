@@ -22,11 +22,26 @@
 ## 🛠 Built With
 
 <p align="center">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" height="28" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" height="28" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" height="28" />
-  <img src="https://img.shields.io/badge/Web_Components-2A2F36?style=for-the-badge&logo=webcomponentsdotorg&logoColor=white" alt="Web Components" height="28" />
-  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" height="28" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/html5.png" />
+    <img src="assets/badges/light/html5.png" alt="HTML5" height="28" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/css3.png" />
+    <img src="assets/badges/light/css3.png" alt="CSS3" height="28" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/javascript.png" />
+    <img src="assets/badges/light/javascript.png" alt="JavaScript" height="28" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/webcomponents.png" />
+    <img src="assets/badges/light/webcomponents.png" alt="Web Components" height="28" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/vercel.png" />
+    <img src="assets/badges/light/vercel.png" alt="Vercel" height="28" />
+  </picture>
 </p>
 
 <br />
@@ -49,6 +64,7 @@ Hyeonseok93.portfolio/
     ├── profile.png
     ├── fonts/          # Figtree · Outfit (로컬)
     ├── stacks/         # 기술 스택 아이콘
+    ├── badges/         # Built With 뱃지 (dark/light)
     └── readme_badges/  # README 플랫폼 뱃지 (dark/light)
 ```
 
