@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyeonseok's Papers</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/papers.css" />
+  <script src="js/components.js" defer></script>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+
+    <div class="frame">
+      <site-nav back-href="works.html" back-label="← Works"></site-nav>
+
+      <main class="board">
+        <header class="identity">
+          <h1 class="name">Papers</h1>
+          <div class="accent" aria-hidden="true"></div>
+          <p class="lede">하나의 착안에서 두 논문이 갈라진다.</p>
+        </header>
+
+        <section class="deck" aria-label="연구 흐름">
+          <div class="deck__body">
+          <ol class="beats">
+            <li class="beat">
+              <div class="beat__head">
+                <span class="beat__n">01</span>
+                <span class="beat__label">문제</span>
+              </div>
+              <p class="beat__line">규칙이 먼저다.</p>
+              <p class="beat__sub">탐지든 퍼징이든, 시작은 같다.<br />ICS 프로토콜 문법을 먼저 알아야 한다.</p>
+            </li>
+            <li class="beat">
+              <div class="beat__head">
+                <span class="beat__n">02</span>
+                <span class="beat__label">막힘</span>
+              </div>
+              <p class="beat__line">스펙을 알 수 없다.</p>
+              <p class="beat__sub">규칙은 때로 비공개다.<br />모르면 손댈 수가 없다.</p>
+            </li>
+            <li class="beat beat--peak">
+              <div class="beat__head">
+                <span class="beat__n">03</span>
+                <span class="beat__label">착안</span>
+              </div>
+              <p class="beat__line">패턴 = 문법</p>
+              <p class="beat__sub">프로토콜의 통신 규칙도 언어의 문법과 비슷하다.<br />그렇다면 언어 배우듯 배우면 된다.</p>
+            </li>
+            <li class="beat">
+              <div class="beat__head">
+                <span class="beat__n">04</span>
+                <span class="beat__label">방법</span>
+              </div>
+              <p class="beat__line">BERT 계열 MLM</p>
+              <p class="beat__sub">언어 배우던 BERT를 그대로 가져와서,<br />프로토콜도 같은 방식으로 배우면 된다.</p>
+            </li>
+          </ol>
+
+          <div class="split">
+            <span class="split__stem" aria-hidden="true"></span>
+            <div class="split__core">
+              <p class="split__text">BERT로 배운 프로토콜 문법에서 탐지와 퍼징, 두 갈래로 나뉜다.</p>
+            </div>
+            <span class="split__arms" aria-hidden="true"></span>
+          </div>
+
+          <div class="fork">
+            <a class="leaf" href="detect.html">
+              <span class="leaf__tag">Detect</span>
+              <h3 class="leaf__title">RoBERTa Quadrant Mapping 기반 ICS 이상 탐지</h3>
+              <p class="leaf__desc">프로토콜 통신 규칙을 배워, 문법이 틀린 트래픽을 가려낸다.</p>
+            </a>
+            <a class="leaf" href="fuzz.html">
+              <span class="leaf__tag">Fuzz</span>
+              <h3 class="leaf__title">RoBERTa 기반 ICS 프로토콜 퍼징 입력 생성 및 제어</h3>
+              <p class="leaf__desc">프로토콜 통신 규칙을 배워, 정상이지만 조금씩 이상한 데이터를 만들어 효과적으로 테스트한다.</p>
+            </a>
+          </div>
+          </div>
+        </section>
+      </main>
+
+      <site-footer left="Papers · 04" next-href="detect.html" next-label="Detect →"></site-footer>
+    </div>
+  </div>
+</body>
+</html>

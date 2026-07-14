@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detect · Papers</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/detail.css" />
+  <script src="js/components.js" defer></script>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+    <div class="frame">
+      <site-nav back-href="papers.html" back-label="← Papers"></site-nav>
+      <main class="board">
+        <header class="identity">
+          <p class="eyebrow">Paper 05 · Detect</p>
+          <h1 class="name">RoBERTa Quadrant Mapping<br />기반 ICS 이상 탐지</h1>
+          <div class="accent" aria-hidden="true"></div>
+          <p class="lede">정상 문법을 배워, 벗어난 패킷을 가려낸다.</p>
+        </header>
+
+        <section class="pipeline" aria-label="Detect 흐름">
+          <div class="step">
+            <p class="step__n">01</p>
+            <h2 class="step__t">프로토콜 패킷</h2>
+            <div class="bytes" aria-hidden="true">
+              <div class="byte-row"><span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span></div>
+              <div class="byte-row"><span>01</span><span>03</span><span>B1</span><span>2A</span><span>00</span><span>08</span></div>
+              <div class="byte-row"><span>01</span><span>06</span><span>00</span><span>10</span><span>FF</span><span>3E</span></div>
+            </div>
+            <p class="step__cap">정상 통신을 모은다</p>
+          </div>
+
+          <div class="arrow" aria-hidden="true"></div>
+
+          <div class="step step--focus">
+            <p class="step__n">02</p>
+            <h2 class="step__t">빈칸 맞추기 학습</h2>
+            <div class="mlm-panel" aria-hidden="true">
+              <div class="byte-row">
+                <span>01</span><span>03</span><span class="mask">?</span><span>7F</span><span>00</span><span>1C</span>
+              </div>
+              <p class="mlm-panel__mid">MLM → 예측</p>
+              <div class="byte-row">
+                <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
+              </div>
+            </div>
+            <p class="step__cap">정상 문법을 모델에 익힌다</p>
+          </div>
+
+          <div class="arrow" aria-hidden="true"></div>
+
+          <div class="step">
+            <p class="step__n">03</p>
+            <h2 class="step__t">이상 판단</h2>
+            <div class="judge" aria-hidden="true">
+              <div class="judge__in">
+                <p class="judge__label">입력 패킷</p>
+                <div class="byte-row">
+                  <span>01</span><span>03</span><span class="bad">FF</span><span>7F</span><span>00</span><span>1C</span>
+                </div>
+              </div>
+              <div class="judge__vs">vs</div>
+              <div class="judge__exp">
+                <p class="judge__label">모델 기대</p>
+                <div class="byte-row">
+                  <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
+                </div>
+              </div>
+            </div>
+            <div class="verdict">Anomaly</div>
+            <p class="step__cap">기대와 다르면 문법이 틀린 것</p>
+          </div>
+        </section>
+      </main>
+      <site-footer left="Detect · 05" next-href="fuzz.html" next-label="Fuzz →"></site-footer>
+    </div>
+  </div>
+</body>
+</html>

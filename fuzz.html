@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuzz · Papers</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/detail.css" />
+  <script src="js/components.js" defer></script>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+    <div class="frame">
+      <site-nav back-href="papers.html" back-label="← Papers"></site-nav>
+      <main class="board">
+        <header class="identity">
+          <p class="eyebrow">Paper 06 · Fuzz</p>
+          <h1 class="name">RoBERTa 기반 ICS 프로토콜<br />퍼징 입력 생성 및 제어</h1>
+          <div class="accent" aria-hidden="true"></div>
+          <p class="lede">정상에 가깝지만, 조금 다른 입력으로 테스트한다.</p>
+        </header>
+
+        <section class="pipeline" aria-label="Fuzz 흐름">
+          <div class="step">
+            <p class="step__n">01</p>
+            <h2 class="step__t">정상 통신 학습</h2>
+            <div class="bytes" aria-hidden="true">
+              <div class="byte-row"><span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span></div>
+              <div class="byte-row"><span>01</span><span>03</span><span>B1</span><span>2A</span><span>00</span><span>08</span></div>
+            </div>
+            <div class="mlm-panel mlm-panel--sm" aria-hidden="true">
+              <div class="byte-row">
+                <span>01</span><span>03</span><span class="mask">?</span><span>7F</span><span>00</span><span>1C</span>
+              </div>
+              <p class="mlm-panel__mid">MLM</p>
+              <div class="byte-row">
+                <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
+              </div>
+            </div>
+            <p class="step__cap">같은 모델로 문법을 익힌다</p>
+          </div>
+
+          <div class="arrow" aria-hidden="true"></div>
+
+          <div class="step step--focus">
+            <p class="step__n">02</p>
+            <h2 class="step__t">입력 생성</h2>
+            <div class="gen" aria-hidden="true">
+              <div class="gen__base">
+                <p class="judge__label">정상 기반</p>
+                <div class="byte-row"><span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span></div>
+              </div>
+              <p class="gen__to">mutate</p>
+              <div class="gen__cands">
+                <div class="byte-row"><span>01</span><span>03</span><span class="mut">A3</span><span>7F</span><span>00</span><span>1C</span></div>
+                <div class="byte-row"><span>01</span><span>03</span><span class="mut">A1</span><span>7F</span><span>00</span><span>1C</span></div>
+                <div class="byte-row"><span>01</span><span>03</span><span class="mut">B0</span><span>7F</span><span>00</span><span>1C</span></div>
+              </div>
+            </div>
+            <p class="step__cap">문법은 유지하데, 값만 조금 바꾸다</p>
+          </div>
+
+          <div class="arrow" aria-hidden="true"></div>
+
+          <div class="step">
+            <p class="step__n">03</p>
+            <h2 class="step__t">제어 · 선별</h2>
+            <div class="filter" aria-hidden="true">
+              <div class="filter__item filter__item--keep">
+                <div class="byte-row"><span>01</span><span>03</span><span class="mut">A3</span><span>7F</span><span>00</span><span>1C</span></div>
+                <span class="filter__mark">keep</span>
+              </div>
+              <div class="filter__item filter__item--drop">
+                <div class="byte-row"><span>01</span><span>03</span><span class="bad">FF</span><span>7F</span><span>00</span><span>1C</span></div>
+                <span class="filter__mark">drop</span>
+              </div>
+            </div>
+            <div class="verdict verdict--fuzz">Effective fuzz seed</div>
+            <p class="step__cap">너무 깨진 것은 버리고, 흥미로운 것만 남긴다</p>
+          </div>
+        </section>
+      </main>
+      <site-footer left="Fuzz · 06" next-href="papers.html" next-label="← Papers"></site-footer>
+    </div>
+  </div>
+</body>
+</html>
