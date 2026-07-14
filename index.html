@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyeonseok's Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+  <script src="js/components.js" defer></script>
+  <style>
+    :root {
+      --bg: #0a0b0d;
+      --ink: #ece9e3;
+      --muted: #9a958c;
+      --copper: #d4894a;
+      --line: rgba(236, 233, 227, 0.12);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Figtree", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stage {
+      position: relative;
+      min-height: 100dvh;
+      width: 100%;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .stage__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 90% 70% at 78% 42%, rgba(212, 137, 74, 0.22), transparent 55%),
+        radial-gradient(ellipse 60% 50% at 12% 85%, rgba(90, 110, 130, 0.18), transparent 50%),
+        radial-gradient(ellipse 80% 60% at 40% 0%, rgba(42, 45, 51, 0.9), transparent 55%),
+        linear-gradient(165deg, #121417 0%, #0a0b0d 45%, #0d0f12 100%);
+    }
+
+    .stage__mesh {
+      position: absolute;
+      inset: -10%;
+      z-index: 1;
+      background-image:
+        linear-gradient(rgba(236, 233, 227, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 233, 227, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 70% 60% at 70% 45%, black 20%, transparent 75%);
+      animation: mesh-drift 28s linear infinite;
+      pointer-events: none;
+    }
+
+    .stage__grain {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.35;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .stage__orb {
+      position: absolute;
+      z-index: 1;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+      animation: orb-float 14s var(--ease) infinite alternate;
+    }
+
+    .stage__orb--a {
+      width: min(48vw, 520px);
+      height: min(48vw, 520px);
+      top: 8%;
+      right: -8%;
+      background: rgba(212, 137, 74, 0.28);
+    }
+
+    .stage__orb--b {
+      width: min(36vw, 380px);
+      height: min(36vw, 380px);
+      bottom: -5%;
+      left: 5%;
+      background: rgba(70, 90, 110, 0.35);
+      animation-delay: -4s;
+      animation-duration: 18s;
+    }
+
+    .watermark {
+      position: absolute;
+      z-index: 1;
+      right: clamp(1rem, 4vw, 3rem);
+      bottom: clamp(2rem, 6vh, 4rem);
+      font-family: "Outfit", sans-serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(236, 233, 227, 0.07);
+      user-select: none;
+      pointer-events: none;
+      opacity: 0;
+      animation: rise 1.4s var(--ease) 0.15s forwards;
+    }
+
+    .frame {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 100dvh;
+      padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 4vw, 3.5rem);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: clamp(2rem, 6vw, 5rem);
+      width: 100%;
+      max-width: none;
+      padding: clamp(2rem, 8vh, 5rem) 0;
+    }
+
+    .hero__copy {
+      max-width: min(96vw, 72rem);
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      gap: 0 0.08em;
+      font-family: "Outfit", sans-serif;
+      font-weight: 600;
+      font-size: clamp(4.2rem, 12.5vw, 10rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: none;
+      font-stretch: normal;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: rise 1s var(--ease) 0.35s forwards;
+    }
+
+    .brand em {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--copper);
+    }
+
+    .brand__suffix {
+      font-size: 0.52em;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      line-height: 1;
+      color: var(--muted);
+    }
+
+    .rule {
+      width: 0;
+      height: 2px;
+      margin: 1.5rem 0 1.15rem;
+      background: linear-gradient(90deg, var(--copper), transparent);
+      animation: draw 1s var(--ease) 0.7s forwards;
+    }
+
+    .lede {
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--ink);
+      max-width: 40ch;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 1s var(--ease) 0.55s forwards;
+    }
+
+    .cta {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.9rem;
+      min-width: 13.5rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 1s var(--ease) 0.7s forwards;
+    }
+
+    .btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 1.25rem 1.9rem;
+      font-family: "Figtree", sans-serif;
+      font-size: 1.12rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s var(--ease), background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn--copper {
+      background: #c4925a;
+      color: #140e09;
+    }
+
+    .btn--copper:hover {
+      background: var(--copper);
+    }
+
+    .btn--light {
+      background: #c9c5bd;
+      color: #121417;
+    }
+
+    .btn--light:hover {
+      background: var(--ink);
+    }
+
+    .btn--steel {
+      background: #2c3038;
+      color: #ddd9d2;
+      border: 1px solid rgba(236, 233, 227, 0.18);
+    }
+
+    .btn--steel:hover {
+      background: #23262c;
+      color: var(--ink);
+      border-color: rgba(236, 233, 227, 0.35);
+    }
+
+    .btn svg { width: 1rem; height: 1rem; }
+    footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      opacity: 0;
+      animation: rise 0.9s var(--ease) 1s forwards;
+    }
+
+    .meta {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes draw {
+      to { width: 9rem; }
+    }
+
+    @keyframes mesh-drift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-36px, -24px, 0); }
+    }
+
+    @keyframes orb-float {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(-24px, 30px, 0) scale(1.08); }
+    }
+
+    @media (max-width: 640px) {
+      body { overflow: auto; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 2rem;
+      }
+
+      .cta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .btn {
+        width: auto;
+      }
+      .watermark {
+      position: absolute;
+      z-index: 1;
+      right: clamp(1rem, 4vw, 3rem);
+      bottom: clamp(2rem, 6vh, 4rem);
+      font-family: "Outfit", sans-serif;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(236, 233, 227, 0.07);
+      user-select: none;
+      pointer-events: none;
+      opacity: 0;
+      animation: rise 1.4s var(--ease) 0.15s forwards;
+    }
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .brand, .lede, .cta, footer, .watermark, .rule {
+        opacity: 1;
+        transform: none;
+      }
+      .rule { width: 9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__mesh" aria-hidden="true"></div>
+    <div class="stage__orb stage__orb--a" aria-hidden="true"></div>
+    <div class="stage__orb stage__orb--b" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+    <div class="watermark" aria-hidden="true">1993.03.17</div>
+
+    <div class="frame">
+
+      <main class="hero">
+        <div class="hero__copy">
+          <h1 class="brand">Hyeon<em>seok</em><span class="brand__suffix">'s Portfolio</span></h1>
+          <div class="rule" aria-hidden="true"></div>
+          <p class="lede">Developer in progress · aiming for Security</p>
+        </div>
+        <div class="cta">
+          <a class="btn btn--copper" href="profile.html">Profile</a>
+          <a class="btn btn--light" href="works.html">Works</a>
+          <a class="btn btn--steel" href="https://github.com/Hyeonseok93" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </main>
+
+      <site-footer left="01" align="start"></site-footer>
+    </div>
+  </div>
+</body>
+</html>

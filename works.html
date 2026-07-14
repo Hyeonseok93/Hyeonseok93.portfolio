@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyeonseok's Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/works.css" />
+  <script src="js/components.js" defer></script>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+
+    <div class="frame">
+      <site-nav back-href="profile.html" back-label="← Profile"></site-nav>
+
+      <main class="board">
+        <header class="identity">
+          <h1 class="name">Works</h1>
+          <div class="accent" aria-hidden="true"></div>
+          <p class="lede">Papers, Rookies mini projects, and final project.</p>
+        </header>
+
+        <div class="columns">
+          <section class="col" aria-labelledby="papers-label">
+            <div class="col__label">
+              <span id="papers-label">Papers</span>
+              <em class="col__count">02</em>
+            </div>
+            <div class="stack stack--linked">
+              <a class="work work--paper" href="#papers">
+                <span class="work__tag">Paper</span>
+                <h2 class="work__title">RoBERTa Quadrant Mapping 기반 ICS 이상 탐지</h2>
+                <p class="work__desc">패킷·로그를 함께 보는 사분면 매핑 이상 탐지.</p>
+                <div class="techs" aria-label="기술 스택">
+                  <tech-badge icon="python" label="Python"></tech-badge>
+                  <tech-badge icon="pytorch" label="PyTorch"></tech-badge>
+                  <tech-badge icon="roberta" label="RoBERTa"></tech-badge>
+                </div>
+                <div class="work__meta">
+                  <span>연구 논문</span>
+                </div>
+              </a>
+              <a class="work work--paper" href="#papers">
+                <span class="work__tag">Paper</span>
+                <h2 class="work__title">RoBERTa 기반 ICS 프로토콜 퍼징 입력 생성 및 제어 기법</h2>
+                <p class="work__desc">정상 트래픽 문맥으로 퍼징 입력을 생성하는 연구.</p>
+                <div class="techs" aria-label="기술 스택">
+                  <tech-badge icon="python" label="Python"></tech-badge>
+                  <tech-badge icon="pytorch" label="PyTorch"></tech-badge>
+                  <tech-badge icon="roberta" label="RoBERTa"></tech-badge>
+                </div>
+                <div class="work__meta">
+                  <span>석사학위논문</span>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <section class="col" aria-labelledby="mini-label">
+            <div class="col__label">
+              <span id="mini-label">Mini Projects</span>
+              <em class="col__count">03</em>
+            </div>
+            <div class="stack">
+              <a class="work" href="#mini-1">
+                <span class="work__tag">Mini 01</span>
+                <div class="work__head">
+                  <h2 class="work__title">CVS Event Comparator</h2>
+                  <div class="techs" aria-label="기술 스택">
+                    <tech-badge icon="python" label="Python"></tech-badge><tech-badge icon="streamlit" label="Streamlit"></tech-badge><tech-badge icon="selenium" label="Selenium"></tech-badge>
+                  </div>
+                </div>
+                <p class="work__desc">편의점 이벤트 비교·수집 미니 프로젝트.</p>
+                <div class="work__meta">
+                  <span>Rookies Mini</span>
+                </div>
+              </a>
+              <a class="work" href="#mini-2">
+                <span class="work__tag">Mini 02</span>
+                <div class="work__head">
+                  <h2 class="work__title">MATE</h2>
+                  <div class="techs" aria-label="기술 스택">
+                    <tech-badge icon="spring" label="Spring Boot"></tech-badge><tech-badge icon="react" label="React"></tech-badge><tech-badge icon="java" label="Java"></tech-badge><tech-badge icon="mariadb" label="MariaDB"></tech-badge>
+                  </div>
+                </div>
+                <p class="work__desc">스터디·프로젝트 팀 매칭 플랫폼.</p>
+                <div class="work__meta">
+                  <span>Rookies Mini</span>
+                </div>
+              </a>
+              <a class="work" href="#mini-3">
+                <span class="work__tag">Mini 03</span>
+                <div class="work__head">
+                  <h2 class="work__title">MACTA</h2>
+                  <div class="techs" aria-label="기술 스택">
+                    <tech-badge icon="spring" label="Spring Boot"></tech-badge><tech-badge icon="react" label="React"></tech-badge><tech-badge icon="java" label="Java"></tech-badge><tech-badge icon="aws" label="AWS"></tech-badge>
+                  </div>
+                </div>
+                <p class="work__desc">실시간 경매 플랫폼.</p>
+                <div class="work__meta">
+                  <span>Rookies Mini</span>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <section class="col" aria-labelledby="final-label">
+            <div class="col__label">
+              <span id="final-label">Final Project</span>
+              <em class="col__count">02</em>
+            </div>
+            <div class="stack stack--linked stack--final">
+              <a class="work work--final" href="#final">
+                <span class="work__tag">Final</span>
+                <h2 class="work__title">Onde</h2>
+                <p class="work__desc">여행 플랫폼 (Target)</p>
+                <div class="techs" aria-label="기술 스택">
+                  <tech-badge icon="react" label="React"></tech-badge>
+                  <tech-badge icon="spring" label="Spring Boot"></tech-badge>
+                  <tech-badge icon="java" label="Java"></tech-badge>
+                  <tech-badge icon="aws" label="AWS"></tech-badge>
+                </div>
+                <div class="work__meta">
+                  <span>Rookies Final</span>
+                </div>
+              </a>
+              <a class="work work--final" href="#final">
+                <span class="work__tag">Final</span>
+                <h2 class="work__title">Argus</h2>
+                <p class="work__desc">취약점 스캔 플랫폼 (Diagnostics)</p>
+                <div class="techs" aria-label="기술 스택">
+                  <tech-badge icon="react" label="React"></tech-badge>
+                  <tech-badge icon="fastapi" label="FastAPI"></tech-badge>
+                  <tech-badge icon="python" label="Python"></tech-badge>
+                  <tech-badge icon="aws" label="AWS"></tech-badge>
+                </div>
+                <div class="work__meta">
+                  <span>Rookies Final</span>
+                </div>
+              </a>
+            </div>
+          </section>
+        </div>
+
+      </main>
+
+      <site-footer left="Works · 03" next-href="#papers" next-label="Paper →"></site-footer>
+    </div>
+  </div>
+</body>
+</html>
