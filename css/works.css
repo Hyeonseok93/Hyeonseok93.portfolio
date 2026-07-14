@@ -175,25 +175,6 @@ body { overflow: hidden; }
   letter-spacing: -0.015em;
 }
 
-.work__head {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.45rem 0.55rem;
-}
-
-.work__head .work__title {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.work__head .techs {
-  margin-top: 0;
-  margin-left: auto;
-  justify-content: flex-end;
-  flex: 0 1 auto;
-}
 
 .work__desc {
   font-size: 0.95rem;
