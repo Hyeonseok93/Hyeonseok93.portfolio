@@ -1,7 +1,7 @@
 # 🐶 Hyeonseok's Portfolio
 
 <p align="center">
-  <a href="https://hyeonseok93-portfolio.vercel.app/" style="text-decoration:none;"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/readme_badges/dark/vercel.png" /><img src="assets/readme_badges/light/vercel.png" alt="Vercel" height="40" /></picture></a><br />
+  <a href="https://hyeonseok93-portfolio.vercel.app/" style="text-decoration:none;"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/vercel-readme.png" /><img src="assets/badges/light/vercel-readme.png" alt="Vercel" height="40" /></picture></a><br />
   <a href="https://hyeonseok93-portfolio.vercel.app/">https://hyeonseok93-portfolio.vercel.app/</a>
 </p>
 
