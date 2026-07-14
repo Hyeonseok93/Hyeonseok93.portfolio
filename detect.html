@@ -17,63 +17,205 @@
       <site-nav back-href="papers.html" back-label="← Papers"></site-nav>
       <main class="board">
         <header class="identity">
-          <p class="eyebrow">Paper 05 · Detect</p>
-          <h1 class="name">RoBERTa Quadrant Mapping<br />기반 ICS 이상 탐지</h1>
+          <h1 class="name">RoBERTa Quadrant Mapping 기반 ICS 이상 탐지</h1>
           <div class="accent" aria-hidden="true"></div>
-          <p class="lede">정상 문법을 배워, 벗어난 패킷을 가려낸다.</p>
+          <p class="lede">평소 패킷·로그로 규칙을 익히고, 자리 점수를 사분면에 올려 어디가 이상한지 본다.</p>
         </header>
 
-        <section class="pipeline" aria-label="Detect 흐름">
-          <div class="step">
-            <p class="step__n">01</p>
-            <h2 class="step__t">프로토콜 패킷</h2>
-            <div class="bytes" aria-hidden="true">
-              <div class="byte-row"><span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span></div>
-              <div class="byte-row"><span>01</span><span>03</span><span>B1</span><span>2A</span><span>00</span><span>08</span></div>
-              <div class="byte-row"><span>01</span><span>06</span><span>00</span><span>10</span><span>FF</span><span>3E</span></div>
-            </div>
-            <p class="step__cap">정상 통신을 모은다</p>
-          </div>
-
-          <div class="arrow" aria-hidden="true"></div>
-
-          <div class="step step--focus">
-            <p class="step__n">02</p>
-            <h2 class="step__t">빈칸 맞추기 학습</h2>
-            <div class="mlm-panel" aria-hidden="true">
-              <div class="byte-row">
-                <span>01</span><span>03</span><span class="mask">?</span><span>7F</span><span>00</span><span>1C</span>
-              </div>
-              <p class="mlm-panel__mid">MLM → 예측</p>
-              <div class="byte-row">
-                <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
-              </div>
-            </div>
-            <p class="step__cap">정상 문법을 모델에 익힌다</p>
-          </div>
-
-          <div class="arrow" aria-hidden="true"></div>
-
-          <div class="step">
-            <p class="step__n">03</p>
-            <h2 class="step__t">이상 판단</h2>
-            <div class="judge" aria-hidden="true">
-              <div class="judge__in">
-                <p class="judge__label">입력 패킷</p>
-                <div class="byte-row">
-                  <span>01</span><span>03</span><span class="bad">FF</span><span>7F</span><span>00</span><span>1C</span>
+        <section class="flow flow--6" aria-label="Detect 6단계">
+          <div class="flow__row">
+            <article class="cell">
+              <p class="cell__n">01</p>
+              <h2 class="cell__t">정상 프로토콜 데이터를 모은다</h2>
+              <div class="cell__viz" aria-hidden="true">
+                <div class="stack">
+                  <p class="stack__label">Packet</p>
+                  <div class="byte-row"><span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span></div>
+                  <div class="byte-row"><span>01</span><span>03</span><span>B1</span><span>2A</span><span>00</span><span>08</span></div>
+                  <div class="byte-row"><span>01</span><span>06</span><span>00</span><span>10</span><span>FF</span><span>3E</span></div>
+                  <p class="stack__label">Log</p>
+                  <div class="byte-row byte-row--3"><span>Read</span><span>holding</span><span>ok</span></div>
+                  <div class="byte-row byte-row--3"><span>Write</span><span>coil</span><span>ok</span></div>
                 </div>
               </div>
-              <div class="judge__vs">vs</div>
-              <div class="judge__exp">
-                <p class="judge__label">모델 기대</p>
-                <div class="byte-row">
-                  <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
+              <p class="cell__note">공장에서 매일 오가는 정상 통신을 쭉 모은다.</p>
+            </article>
+
+            <div class="flow__arrow" aria-hidden="true"></div>
+
+            <article class="cell cell--focus">
+              <p class="cell__n">02</p>
+              <h2 class="cell__t">빈칸 맞추기</h2>
+              <div class="cell__viz" aria-hidden="true">
+                <p class="stack__label">Packet</p>
+                <div class="mlm-mini">
+                  <div class="byte-row">
+                    <span>01</span><span>03</span><span class="mask">?</span><span>7F</span><span>00</span><span>1C</span>
+                  </div>
+                  <p class="mlm-mini__mid">빈칸 맞추기</p>
+                  <div class="byte-row">
+                    <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
+                  </div>
+                </div>
+                <p class="stack__label">Log</p>
+                <div class="mlm-mini">
+                  <div class="byte-row byte-row--3"><span>Read</span><span class="mask">?</span><span>ok</span></div>
+                  <p class="mlm-mini__mid">빈칸 맞추기</p>
+                  <div class="byte-row byte-row--3"><span>Read</span><span class="ok">holding</span><span>ok</span></div>
                 </div>
               </div>
-            </div>
-            <div class="verdict">Anomaly</div>
-            <p class="step__cap">기대와 다르면 문법이 틀린 것</p>
+              <p class="cell__note">패킷과 로그로, 평소 규칙을 익힌다.</p>
+            </article>
+
+            <div class="flow__arrow" aria-hidden="true"></div>
+
+            <article class="cell">
+              <p class="cell__n">03</p>
+              <h2 class="cell__t">새 데이터가 들어온다</h2>
+              <div class="cell__viz" aria-hidden="true">
+                <p class="stack__label">Packet</p>
+                <div class="byte-row"><span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span></div>
+                <div class="byte-row"><span>01</span><span>03</span><span>FF</span><span>7F</span><span>00</span><span>1C</span></div>
+                <p class="stack__label">Log</p>
+                <div class="byte-row byte-row--3"><span>Read</span><span>holding</span><span>ok</span></div>
+                <div class="byte-row byte-row--3"><span>Read</span><span>holding</span><span>err</span></div>
+              </div>
+              <p class="cell__note">이제 검사할 패킷과 로그가 들어왔다.</p>
+            </article>
+          </div>
+
+          <div class="flow__row">
+            <article class="cell">
+              <p class="cell__n">04</p>
+              <h2 class="cell__t">각 자리마다 점수를 매긴다</h2>
+              <div class="cell__viz" aria-hidden="true">
+                <p class="stack__label">Packet</p>
+                <div class="byte-row">
+                  <span>01</span><span>03</span><span>FF</span><span>7F</span><span>00</span><span>1C</span>
+                </div>
+                <div class="score-row">
+                  <span class="lo">0.1</span>
+                  <span class="lo">0.2</span>
+                  <span class="hi">12.4</span>
+                  <span class="lo">0.1</span>
+                  <span class="lo">1.8</span>
+                  <span class="lo">0.3</span>
+                </div>
+                <p class="stack__label">Log</p>
+                <div class="byte-row byte-row--3">
+                  <span>Read</span><span>holding</span><span>err</span>
+                </div>
+                <div class="score-row score-row--3">
+                  <span class="lo">0.2</span>
+                  <span class="lo">0.4</span>
+                  <span class="hi">9.7</span>
+                </div>
+              </div>
+              <p class="cell__note">이 칸은 괜찮은지, 저 칸은 몇 점인지 하나씩 본다.</p>
+            </article>
+
+            <div class="flow__arrow" aria-hidden="true"></div>
+
+            <article class="cell cell--focus">
+              <p class="cell__n">05</p>
+              <h2 class="cell__t">패킷·로그마다 점수 하나</h2>
+              <div class="cell__viz" aria-hidden="true">
+                <div class="unit-score">
+                  <div class="pair">
+                    <span class="pair__tag">Pair</span>
+                    <div class="unit-score__row">
+                      <span class="unit-score__kind">P</span>
+                      <div class="byte-row">
+                        <span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span>
+                      </div>
+                      <span class="unit-score__arrow">→</span>
+                      <span class="unit-score__num">2.1</span>
+                    </div>
+                    <div class="unit-score__row">
+                      <span class="unit-score__kind">L</span>
+                      <div class="byte-row byte-row--3">
+                        <span>Read</span><span>holding</span><span>ok</span>
+                      </div>
+                      <span class="unit-score__arrow">→</span>
+                      <span class="unit-score__num">0.8</span>
+                    </div>
+                  </div>
+                  <div class="pair pair--hot">
+                    <span class="pair__tag">Pair</span>
+                    <div class="unit-score__row">
+                      <span class="unit-score__kind">P</span>
+                      <div class="byte-row">
+                        <span>01</span><span>03</span><span>FF</span><span>7F</span><span>00</span><span>1C</span>
+                      </div>
+                      <span class="unit-score__arrow">→</span>
+                      <span class="unit-score__num unit-score__num--hot">14.9</span>
+                    </div>
+                    <div class="unit-score__row">
+                      <span class="unit-score__kind">L</span>
+                      <div class="byte-row byte-row--3">
+                        <span>Read</span><span>holding</span><span>err</span>
+                      </div>
+                      <span class="unit-score__arrow">→</span>
+                      <span class="unit-score__num unit-score__num--hot">10.3</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="cell__note">자리 점수를 합쳐 패킷·로그 점수 하나씩 만들고, 둘이 한 쌍이 된다.</p>
+            </article>
+
+            <div class="flow__arrow" aria-hidden="true"></div>
+
+            <article class="cell cell--focus">
+              <p class="cell__n">06</p>
+              <h2 class="cell__t">점수를 사분면에 올린다</h2>
+              <div class="cell__viz cell__viz--scatter" aria-hidden="true">
+                <div class="qmap">
+                  <div class="qmap__cell">
+                    <p class="qmap__h"><strong>Q1</strong>둘 다 정상</p>
+                    <div class="qmap__dots">
+                      <i class="dot dot--lo" style="left:18%; top:42%"></i>
+                      <i class="dot dot--lo" style="left:34%; top:58%"></i>
+                      <i class="dot dot--lo" style="left:52%; top:38%"></i>
+                      <i class="dot dot--lo" style="left:28%; top:72%"></i>
+                      <i class="dot dot--lo" style="left:62%; top:64%"></i>
+                      <i class="dot dot--lo" style="left:74%; top:48%"></i>
+                      <i class="dot dot--lo" style="left:44%; top:78%"></i>
+                    </div>
+                  </div>
+                  <div class="qmap__cell">
+                    <p class="qmap__h"><strong>Q2</strong>로그 점수가 문제</p>
+                    <div class="qmap__dots">
+                      <i class="dot dot--mid" style="left:30%; top:55%"></i>
+                      <i class="dot dot--mid" style="left:58%; top:40%"></i>
+                      <i class="dot dot--mid" style="left:72%; top:68%"></i>
+                    </div>
+                  </div>
+                  <div class="qmap__cell">
+                    <p class="qmap__h"><strong>Q3</strong>패킷 점수가 문제</p>
+                    <div class="qmap__dots">
+                      <i class="dot dot--mid" style="left:24%; top:48%"></i>
+                      <i class="dot dot--mid" style="left:48%; top:70%"></i>
+                      <i class="dot dot--mid" style="left:66%; top:42%"></i>
+                    </div>
+                  </div>
+                  <div class="qmap__cell qmap__cell--hot">
+                    <p class="qmap__h"><strong>Q4</strong>둘 다 문제</p>
+                    <div class="qmap__dots">
+                      <i class="dot dot--hi" style="left:68%; top:36%"></i>
+                      <i class="dot dot--hi" style="left:41%; top:51%"></i>
+                      <i class="dot dot--hi" style="left:81%; top:62%"></i>
+                      <i class="dot dot--hi" style="left:55%; top:78%"></i>
+                      <i class="dot dot--hi" style="left:26%; top:66%"></i>
+                      <i class="dot dot--hi" style="left:73%; top:48%"></i>
+                      <i class="dot dot--hi" style="left:37%; top:33%"></i>
+                      <i class="dot dot--hi" style="left:60%; top:57%"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="cell__note">각 쌍의 패킷·로그 점수를 두 축으로 올려, 어느 칸인지 본다.</p>
+            </article>
           </div>
         </section>
       </main>
