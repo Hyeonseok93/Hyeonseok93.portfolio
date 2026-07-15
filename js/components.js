@@ -64,7 +64,7 @@
             <div${groupRow(researchOpen)}>
               <span class="nav-cluster__group-label">Research</span>
               <span class="nav-cluster__sep" aria-hidden="true">—</span>
-              ${link("paper", "papers.html", "Paper")}
+              ${link("paper", "papers.html", "Papers")}
             </div>
             <div${groupRow(rookiesOpen)}>
               <span class="nav-cluster__group-label">Rookies 5</span>
