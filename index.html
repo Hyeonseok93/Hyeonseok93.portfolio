@@ -19,22 +19,28 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { height: 100%; }
+    html, body {
+      height: 100%;
+      max-height: 100dvh;
+      overflow: hidden;
+    }
 
     body {
       font-family: "Figtree", sans-serif;
       color: var(--ink);
       background: var(--bg);
-      overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
     .stage {
       position: relative;
-      min-height: 100dvh;
+      height: 100dvh;
+      max-height: 100dvh;
       width: 100%;
       overflow: hidden;
       isolation: isolate;
+      display: flex;
+      flex-direction: column;
     }
 
     .stage__bg {
@@ -102,7 +108,7 @@
       position: absolute;
       z-index: 1;
       right: clamp(1rem, 4vw, 3rem);
-      bottom: clamp(2rem, 6vh, 4rem);
+      bottom: clamp(3.25rem, 7vh, 5rem);
       font-family: "Outfit", sans-serif;
       font-weight: 400;
       font-size: clamp(2.4rem, 7vw, 5.5rem);
@@ -121,33 +127,43 @@
       z-index: 3;
       display: grid;
       grid-template-rows: 1fr auto;
-      min-height: 100dvh;
+      flex: 1 1 auto;
+      min-height: 0;
+      height: 100%;
       padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 4vw, 3.5rem);
+      padding-bottom: clamp(1rem, 2.5vh, 1.75rem);
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: clamp(2rem, 6vw, 5rem);
+      align-content: center;
+      column-gap: clamp(1.5rem, 4vw, 4rem);
+      row-gap: clamp(1.25rem, 3vh, 2.25rem);
       width: 100%;
       max-width: none;
-      padding: clamp(2rem, 8vh, 5rem) 0;
+      min-height: 0;
+      padding: clamp(1rem, 5vh, 3.5rem) 0;
+      container-type: inline-size;
+      container-name: hero;
     }
 
     .hero__copy {
-      max-width: min(96vw, 72rem);
+      flex: 1 1 36rem;
+      min-width: min(100%, 18rem);
+      max-width: 100%;
     }
 
     .brand {
       display: flex;
       align-items: baseline;
-      flex-wrap: nowrap;
-      white-space: nowrap;
+      flex-wrap: wrap;
+      white-space: normal;
       gap: 0 0.08em;
       font-family: "Outfit", sans-serif;
       font-weight: 600;
-      font-size: clamp(4.2rem, 12.5vw, 10rem);
+      font-size: clamp(2.6rem, 8.5vw, 8.5rem);
       line-height: 1;
       letter-spacing: -0.03em;
       text-transform: none;
@@ -196,7 +212,9 @@
       flex-direction: column;
       align-items: stretch;
       gap: 0.9rem;
-      min-width: 13.5rem;
+      flex: 0 0 13.5rem;
+      width: 13.5rem;
+      max-width: 100%;
       opacity: 0;
       transform: translateY(18px);
       animation: rise 1s var(--ease) 0.7s forwards;
@@ -291,43 +309,54 @@
       to { transform: translate3d(-24px, 30px, 0) scale(1.08); }
     }
 
-    @media (max-width: 640px) {
-      body { overflow: auto; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        align-items: start;
-        gap: 2rem;
+    /* 공간이 부족하면 버튼이 제목 아래로 — 컨테이너 기준 */
+    @container hero (max-width: 980px) {
+      .hero__copy {
+        flex: 1 1 100%;
       }
 
       .cta {
-        flex-direction: row;
-        flex-wrap: wrap;
-        min-width: 0;
+        flex: 1 1 auto;
+        width: min(100%, 20rem);
+      }
+    }
+
+    @media (max-width: 1600px) {
+      .hero__copy {
+        flex-basis: 100%;
+      }
+
+      .cta {
+        flex: 0 0 auto;
+        width: min(100%, 20rem);
+      }
+
+      .brand {
+        font-size: clamp(2.6rem, 9vw, 7rem);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        gap: 1.75rem;
+        padding: clamp(1.25rem, 4vh, 2.5rem) 0;
+      }
+
+      .cta {
         width: 100%;
       }
 
       .btn {
-        width: auto;
+        padding: 1.05rem 1.4rem;
+        font-size: 1.02rem;
       }
+
       .watermark {
-      position: absolute;
-      z-index: 1;
-      right: clamp(1rem, 4vw, 3rem);
-      bottom: clamp(2rem, 6vh, 4rem);
-      font-family: "Outfit", sans-serif;
-      font-weight: 400;
-      font-size: clamp(2.4rem, 7vw, 5.5rem);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(236, 233, 227, 0.07);
-      user-select: none;
-      pointer-events: none;
-      opacity: 0;
-      animation: rise 1.4s var(--ease) 0.15s forwards;
-    }
-      footer {
+        font-size: clamp(1.8rem, 9vw, 3.2rem);
+      }
+
+      footer,
+      site-footer .footer {
         flex-direction: column;
         align-items: flex-start;
       }

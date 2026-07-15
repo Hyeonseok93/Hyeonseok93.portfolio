@@ -125,6 +125,9 @@ body { overflow: hidden; }
   gap: 0.7rem;
   flex: 1 1 auto;
   min-height: 0;
+  /* lock column bottoms to the same edge on desktop */
+  height: 100%;
+  overflow: hidden;
 }
 
 .work {
@@ -140,6 +143,59 @@ body { overflow: hidden; }
   border-left: 2px solid rgba(212, 137, 74, 0.55);
   transition: transform 0.25s var(--ease), background 0.25s ease, border-color 0.25s ease;
   min-height: 0;
+  overflow: hidden;
+}
+
+/* Mini: 3 cards share the same fixed column height as Papers/Final (2 cards) */
+#mini .stack {
+  gap: 0.55rem;
+}
+
+#mini .work {
+  gap: 0.4rem;
+  padding: 0.85rem 1.05rem 0.9rem;
+}
+
+#mini .work__tag {
+  font-size: 0.66rem;
+  padding: 0.1rem 0.38rem;
+}
+
+#mini .work__title {
+  font-size: clamp(0.95rem, 1.35vw, 1.12rem);
+  line-height: 1.25;
+}
+
+#mini .work__desc {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#mini .techs {
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  min-height: 0;
+  flex-shrink: 1;
+}
+
+#mini .tech {
+  padding: 0.24rem 0.48rem 0.24rem 0.34rem;
+  font-size: 0.62rem;
+}
+
+#mini .tech img {
+  width: 0.82rem;
+  height: 0.82rem;
+}
+
+#mini .work__meta {
+  font-size: 0.75rem;
+  padding-top: 0.25rem;
 }
 
 .work:hover,
@@ -215,7 +271,29 @@ body { overflow: hidden; }
   .board { height: auto; }
   .columns { grid-template-columns: 1fr; flex: none; }
   .col { height: auto; }
-  .work { flex: none; }
+  .stack {
+    height: auto;
+    overflow: visible;
+  }
+  .work {
+    flex: none;
+    overflow: visible;
+  }
+  #mini .work {
+    gap: 0.65rem;
+    padding: 1.25rem 1.3rem 1.3rem;
+  }
+  #mini .work__title {
+    font-size: clamp(1.08rem, 1.7vw, 1.28rem);
+    line-height: 1.35;
+  }
+  #mini .work__desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

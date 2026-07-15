@@ -61,8 +61,11 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: minmax(280px, 38vw) 1fr;
+      /* 양옆 비율 유지하며 폭에 맞게 함께 축소 */
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
       height: 100%;
+      min-height: 0;
+      overflow: hidden;
     }
 
     /* Full-bleed portrait column */
@@ -113,10 +116,28 @@
 
     .panel {
       display: grid;
-      grid-template-rows: auto 1fr auto auto;
+      grid-template-rows: auto minmax(0, 1fr) auto;
       height: 100%;
+      min-height: 0;
       min-width: 0;
-      padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3.25rem);
+      overflow: hidden;
+      padding: clamp(1rem, 2.4vh, 2rem) clamp(1.25rem, 3.2vw, 3rem);
+      padding-bottom: clamp(0.85rem, 2vh, 1.35rem);
+    }
+
+    .fit {
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .fit__inner {
+      width: 100%;
+      transform-origin: top center;
+      will-change: transform;
     }
 
     .topbar {
@@ -149,15 +170,17 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: clamp(1.4rem, 3.5vh, 2.4rem);
+      gap: clamp(1.1rem, 2.8vh, 2rem);
       min-height: 0;
-      padding: clamp(0.5rem, 2vh, 1.5rem) 0;
+      padding: clamp(0.35rem, 1.5vh, 1.1rem) 0;
+      overflow: hidden;
     }
 
     .identity {
       opacity: 0;
       transform: translateY(18px);
       animation: rise 0.9s var(--ease) 0.3s forwards;
+      flex-shrink: 0;
     }
 
     .eyebrow {
@@ -165,13 +188,13 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--copper);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.55rem;
     }
 
     .name {
       font-family: "Outfit", sans-serif;
       font-weight: 600;
-      font-size: clamp(3rem, 6.5vw, 5.2rem);
+      font-size: clamp(2.7rem, 5.6vw, 4.6rem);
       line-height: 0.98;
       letter-spacing: -0.035em;
     }
@@ -390,13 +413,14 @@
     
     /* Journey timeline 2012–2026 — single bar like sketch */
     .journey {
-      margin-top: clamp(0.75rem, 2vh, 1.25rem);
-      padding-top: 1rem;
+      margin-top: clamp(0.45rem, 1.4vh, 0.9rem);
+      padding-top: 0.8rem;
       border-top: 1px solid var(--line);
       opacity: 0;
       transform: translateY(12px);
       animation: rise 0.9s var(--ease) 0.55s forwards;
       min-width: 0;
+      flex-shrink: 0;
     }
 
     .journey__head {
@@ -437,7 +461,7 @@
     .journey-board {
       position: relative;
       width: 100%;
-      height: 8.5rem;
+      height: 7.6rem;
     }
 
     .journey-line {
@@ -664,7 +688,7 @@
       to { width: 6.5rem; }
     }
 
-    /* Tablet */
+    /* Tablet / mid widths: stack portrait above content */
     @media (max-width: 1100px) {
       body { overflow: auto; }
       html, body { height: auto; }
@@ -679,6 +703,7 @@
         grid-template-columns: 1fr;
         height: auto;
         min-height: 100dvh;
+        overflow: visible;
       }
 
       .portrait {
@@ -704,13 +729,23 @@
 
       .panel {
         height: auto;
+        overflow: visible;
         padding: clamp(1.25rem, 4vw, 2rem);
+      }
+
+      .fit,
+      .fit__inner {
+        height: auto;
+        overflow: visible;
+        transform: none !important;
+        width: 100% !important;
       }
 
       .main {
         padding: 1.25rem 0;
         gap: 1.75rem;
         justify-content: flex-start;
+        overflow: visible;
       }
 
       .grid {
@@ -756,6 +791,9 @@
         overflow-wrap: anywhere;
       }
 
+      .journey-board {
+        height: 8.5rem;
+      }
     }
 
     /* Mobile */
@@ -808,39 +846,6 @@
       }
     }
 
-    /* Short desktop height: allow scroll instead of squash */
-    @media (max-height: 820px) and (min-width: 1101px) {
-      body { overflow: auto; }
-      html, body { height: auto; }
-
-      .stage {
-        height: auto;
-        min-height: 100dvh;
-        overflow: visible;
-      }
-
-      .shell {
-        height: auto;
-        min-height: 100dvh;
-      }
-
-      .panel {
-        height: auto;
-        min-height: 100dvh;
-      }
-
-      .portrait {
-        min-height: 100%;
-        height: auto;
-        align-self: stretch;
-      }
-
-      .side-stack > section,
-      .side-stack .career {
-        flex: 1 1 auto;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation: none !important;
@@ -873,6 +878,8 @@
       <div class="panel">
         <site-nav back-href="index.html" back-label="← Cover"></site-nav>
 
+        <div class="fit" data-fit>
+          <div class="fit__inner" data-fit-inner>
         <div class="main">
           <header class="identity">
             <p class="eyebrow">Profile</p>
@@ -1025,6 +1032,8 @@
           </div>
         </section>
 
+          </div>
+        </div>
 
         <site-footer next-href="works.html" next-label="Works →" align="end"></site-footer>
       </div>
@@ -1033,23 +1042,56 @@
 
   <script>
     (function () {
+      const mq = window.matchMedia("(max-width: 1100px)");
+      const fit = document.querySelector("[data-fit]");
+      const inner = document.querySelector("[data-fit-inner]");
       const stage = document.querySelector("[data-journey-stage]");
       const viewport = document.querySelector(".journey-viewport");
-      if (!stage || !viewport) return;
-
       const baseWidth = 920;
-      const mq = window.matchMedia("(max-width: 1100px)");
+      let ticking = false;
+
+      function resetFit() {
+        if (!inner || !fit) return;
+        inner.style.transform = "none";
+        inner.style.width = "100%";
+        inner.style.marginBottom = "0";
+        fit.style.height = "";
+      }
+
+      function fitPanel() {
+        if (!fit || !inner) return;
+        if (mq.matches) {
+          resetFit();
+          return;
+        }
+
+        // measure at natural size first
+        inner.style.transform = "none";
+        inner.style.width = "100%";
+        inner.style.marginBottom = "0";
+        fit.style.height = "100%";
+
+        const available = fit.clientHeight;
+        const needed = inner.scrollHeight;
+        if (!available || !needed) return;
+
+        const scale = Math.min(1, available / needed);
+        inner.style.transformOrigin = "top center";
+        inner.style.transform = "scale(" + scale + ")";
+        // keep visual width matched to container while scaled
+        inner.style.width = (scale < 1 ? (100 / scale) + "%" : "100%");
+        // transform doesn't shrink layout box — reclaim leftover height
+        inner.style.marginBottom = (scale < 1 ? (needed * (scale - 1)) + "px" : "0");
+      }
 
       function fitJourney() {
+        if (!stage || !viewport) return;
         if (!mq.matches) {
-          // Desktop / PC: full width, no scaling
           stage.style.width = "100%";
           stage.style.transform = "none";
           viewport.style.height = "auto";
           return;
         }
-
-        // Tablet / mobile: scale whole journey as one unit
         stage.style.width = baseWidth + "px";
         const available = viewport.clientWidth;
         const scale = Math.min(1, available / baseWidth);
@@ -1057,11 +1099,25 @@
         viewport.style.height = (stage.offsetHeight * scale) + "px";
       }
 
-      fitJourney();
-      window.addEventListener("resize", fitJourney);
-      mq.addEventListener("change", fitJourney);
+      function fitAll() {
+        fitJourney();
+        fitPanel();
+      }
+
+      function onResize() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          ticking = false;
+          fitAll();
+        });
+      }
+
+      fitAll();
+      window.addEventListener("resize", onResize);
+      mq.addEventListener("change", fitAll);
       if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(fitJourney);
+        document.fonts.ready.then(fitAll);
       }
     })();
   </script>
