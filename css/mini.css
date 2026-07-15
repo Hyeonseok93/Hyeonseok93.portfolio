@@ -1,0 +1,384 @@
+/* Mini project pages */
+.identity .name { font-size: clamp(2.1rem, 4.5vw, 3.4rem); }
+.identity .lede { max-width: 48ch; }
+
+.shot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(5.5rem, 12vh, 7.5rem) 0 clamp(0.75rem, 2vh, 1.5rem);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.85s var(--ease) 0.3s forwards;
+}
+
+.shot__frame {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 1px solid rgba(236, 233, 227, 0.1);
+  background: #050607;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shot__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+}
+
+.why--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+}
+
+.why--3 .why__item:nth-child(3) { animation-delay: 0.55s; }
+
+.mini-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.35rem;
+}
+
+.mini-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.mini-links a:hover {
+  color: var(--ink);
+  border-bottom-color: rgba(212, 137, 74, 0.7);
+}
+
+@media (max-width: 1100px) {
+  body { overflow: auto; }
+  .stage { height: auto; min-height: 100dvh; overflow: visible; }
+  .frame { height: auto; min-height: 100dvh; }
+  .board { height: auto; position: relative; }
+  .identity { position: relative; }
+  .shot {
+    position: relative;
+    inset: auto;
+    display: block;
+    padding: 1.25rem 0 0;
+    min-height: 52vw;
+  }
+  .shot__frame {
+    height: auto;
+    min-height: 16rem;
+  }
+  .shot__frame img {
+    height: auto;
+    object-fit: cover;
+  }
+  .why--3 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot { opacity: 1; transform: none; animation: none; }
+}
+
+/* Detail: denser three-column story */
+.why--dense .why__t {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  padding-bottom: 0.75rem;
+}
+
+.why--dense .why__body {
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.why--dense .why__body p {
+  font-size: clamp(0.92rem, 1.25vw, 1.05rem);
+  line-height: 1.6;
+  color: rgba(236, 233, 227, 0.8);
+}
+
+.why--dense .why__body code {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.86em;
+  letter-spacing: 0.02em;
+  color: rgba(212, 137, 74, 0.95);
+}
+
+.why__flow {
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.88rem, 1.2vw, 1rem) !important;
+  letter-spacing: 0.02em;
+  color: var(--ink) !important;
+  padding: 0.55rem 0.7rem;
+  background: rgba(236, 233, 227, 0.04);
+  border-left: 2px solid rgba(212, 137, 74, 0.55);
+}
+
+.why__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.why__list li {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 0.45rem;
+  align-items: start;
+  font-size: clamp(0.86rem, 1.15vw, 0.98rem);
+  line-height: 1.55;
+  color: rgba(236, 233, 227, 0.78);
+  padding-left: 0.85rem;
+  position: relative;
+}
+
+.why__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: rgba(212, 137, 74, 0.75);
+}
+
+.why__brand {
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.why__brand::after {
+  content: " —";
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.why__copy {
+  min-width: 0;
+}
+
+.why__list strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.identity__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.1rem;
+  pointer-events: auto;
+}
+
+.identity__row .name {
+  margin: 0;
+}
+
+.identity__row .techs {
+  margin-top: 0;
+}
+
+/* Detail page: allow scroll when three columns get dense */
+.page-mini-detail {
+  overflow: auto;
+}
+
+.page-mini-detail .stage {
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+}
+
+.page-mini-detail .frame {
+  height: auto;
+  min-height: 100dvh;
+}
+
+.page-mini-detail .board {
+  height: auto;
+  position: relative;
+}
+
+.page-mini-detail .identity {
+  position: relative;
+}
+
+.page-mini-detail .deck {
+  position: relative;
+  inset: auto;
+  display: block;
+  padding: 1.35rem 0 0.5rem;
+}
+
+.page-mini-detail .why--dense .why__body p,
+.page-mini-detail .why__list li {
+  font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+  line-height: 1.62;
+}
+
+.why__table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.2rem;
+  table-layout: fixed;
+}
+
+.why__table col.why__col-brand {
+  width: 5.75rem;
+}
+
+.why__table col.why__col-method {
+  width: auto;
+}
+
+.why__table th,
+.why__table td {
+  padding: 0.55rem 0;
+  vertical-align: top;
+  text-align: left;
+  font-size: clamp(0.84rem, 1.1vw, 0.96rem);
+  line-height: 1.55;
+  border-top: 1px solid rgba(236, 233, 227, 0.1);
+}
+
+.why__table thead th {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(212, 137, 74, 0.9);
+  border-top: none;
+  border-bottom: 1px solid rgba(212, 137, 74, 0.35);
+  padding-top: 0.15rem;
+  padding-bottom: 0.45rem;
+}
+
+.why__table tbody th {
+  width: 5.75rem;
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+  padding-right: 0.85rem;
+}
+
+.why__table tbody td {
+  color: rgba(236, 233, 227, 0.78);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.why__table tbody tr:first-child th,
+.why__table tbody tr:first-child td {
+  border-top: none;
+  padding-top: 0.65rem;
+}
+
+.out-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  pointer-events: auto;
+}
+
+.out-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.7rem;
+  border: 1px solid rgba(236, 233, 227, 0.14);
+  border-radius: 999px;
+  background: rgba(236, 233, 227, 0.04);
+  color: var(--muted);
+  text-decoration: none;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.out-link:hover {
+  color: var(--ink);
+  border-color: rgba(212, 137, 74, 0.55);
+  background: rgba(212, 137, 74, 0.1);
+}
+
+.out-link__mark {
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  color: rgba(212, 137, 74, 0.95);
+}
+
+.out-link__ico {
+  width: 0.85rem;
+  height: 0.85rem;
+  display: block;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.shot__frame--pending {
+  display: grid;
+  place-items: center;
+  min-height: 18rem;
+  background:
+    linear-gradient(160deg, rgba(236, 233, 227, 0.04), rgba(236, 233, 227, 0.01));
+}
+
+.shot__pending {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 233, 227, 0.35);
+}
+
+.pending-card {
+  width: min(100%, 34rem);
+  margin: 4rem auto 0;
+  padding: 2rem 1.75rem;
+  border: 1px solid rgba(236, 233, 227, 0.12);
+  background: rgba(236, 233, 227, 0.03);
+  text-align: center;
+}
+
+.pending-card__tag {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(212, 137, 74, 0.9);
+  margin-bottom: 0.75rem;
+}
+
+.pending-card__text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--muted);
+}

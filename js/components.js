@@ -24,6 +24,8 @@
       let section = "cover";
       if (file.startsWith("profile")) section = "profile";
       else if (file.startsWith("connect")) section = "connect";
+      else if (file.startsWith("mini")) section = "mini";
+      else if (file.startsWith("final")) section = "final";
       else if (
         file.startsWith("papers") ||
         file.startsWith("detect") ||
@@ -54,8 +56,8 @@
           <a href="works.html"${worksHeadCls}>Works</a>
           <div class="nav-cluster__sub" aria-label="Works sections">
             ${link("paper", "papers.html", "Paper")}
-            ${link("mini", "works.html#mini", "Mini")}
-            ${link("final", "works.html#final", "Final")}
+            ${link("mini", "mini1.html", "Mini")}
+            ${link("final", "final1.html", "Final")}
           </div>
         </div>`,
         link("connect", "connect.html", "Connect"),
