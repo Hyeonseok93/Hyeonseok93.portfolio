@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MINI1 Detail</title>
+  <title>MINI1 - CVS Event Comparator</title>
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   <link rel="stylesheet" href="css/site.css" />
   <link rel="stylesheet" href="css/papers.css" />
@@ -16,12 +16,12 @@
     <div class="stage__bg" aria-hidden="true"></div>
     <div class="stage__grain" aria-hidden="true"></div>
     <div class="frame">
-      <site-nav back-href="mini1.html" back-label="← MINI1"></site-nav>
+      <site-nav back-href="mini1.html" back-label="← MINI1 - CVS Event Comparator"></site-nav>
 
       <main class="board">
         <header class="identity">
           <div class="identity__row">
-            <h1 class="name">MINI1 Detail</h1>
+            <h1 class="name">MINI1 - CVS Event Comparator</h1>
             <div class="out-links" aria-label="외부 링크">
               <a class="out-link" href="https://github.com/Hyeonseok93/SK-Rookies5-MINI1_CVS-EVENT-COMPARATOR" target="_blank" rel="noopener noreferrer">
                 <svg class="out-link__ico" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -37,7 +37,7 @@
           <p class="lede">편의점 4곳의 행사 상품을 모아 정제하고, 대시보드로 보여 준다.</p>
         </header>
 
-        <section class="deck" aria-label="MINI1 Detail">
+        <section class="deck" aria-label="MINI1 - CVS Event Comparator">
           <ol class="why why--3 why--dense">
             <li class="why__item">
               <p class="why__n">01</p>
@@ -58,19 +58,19 @@
                   <tbody>
                     <tr>
                       <th scope="row">CU</th>
-                      <td>데이터가 한 번에 오지 않는다. 1페이지, 2페이지처럼 나눠서 받고, 각 페이지에 실린 상품만 읽어서 모은다. 다음 페이지를 요청했을 때 상품이 더 없으면 멈춘다.</td>
+                      <td>Ajax HTML을 POST로 받아온다. 응답은 페이지네이션으로 잘려 있어서 page index를 올려 가며 요청하고, 각 페이지 HTML에서 상품 노드를 파싱해 적재한다. 빈 페이지가 나오면 수집을 종료한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">GS25</th>
-                      <td>웹 화면을 읽어 찾는 방식이 아니라, 상품 목록을 요청하면 정리된 데이터로 내려준다. 요청 전에 보안용 토큰이 필요해서, 토큰을 받은 뒤 페이지 단위로 가져온다. 행사 종류는 코드로 오기 때문에 1+1·2+1 같은 말로 바꿔 저장한다.</td>
+                      <td>화면 크롤이 아니라 JSON API로 목록을 받는다. 먼저 HTML에서 CSRF 토큰을 추출한 뒤, 그 토큰을 붙여 페이지 단위로 API를 호출한다. 행사 유형은 API 코드값으로 오므로 1+1·2+1 라벨로 매핑해 저장한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">7-Eleven</th>
-                      <td>1+1과 2+1이 처음부터 나뉘어 있다. CU처럼 페이지를 넘기며 모을 필요 없이, 각 행사 데이터를 한 번에 가져올 수 있다.</td>
+                      <td>행사 탭(1+1 / 2+1)이 파라미터로 분리되어 있다. 탭별로 Ajax POST를 보내며, page size를 크게 잡아 해당 행사 목록을 한 번에 받아 HTML에서 파싱한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">emart24</th>
-                      <td>1+1·2+1에 더해 3+1까지 있다. 행사 종류를 하나씩 고른 뒤, 그 안에서 CU처럼 페이지를 넘겨 가며 상품을 모은다. 해당 행사에서 더 이상 상품이 없으면 다음 행사로 넘어간다.</td>
+                      <td>행사 종류(1+1 / 2+1 / 3+1)를 카테고리 파라미터로 고른 뒤, 그 안에서 page 기반 페이지네이션으로 GET 요청한다. 각 페이지의 상품 카드를 파싱하고, 빈 페이지면 다음 행사 카테고리로 넘어간다.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -80,7 +80,7 @@
               <p class="why__n">02</p>
               <h2 class="why__t">정제와 분류</h2>
               <div class="why__body">
-                <p>브랜드마다 가격 표기와 문구가 달라, 수집한 CSV만으로는 바로 비교하기 어렵다. 그래서 네 갈래로 모은 원본을 하나의 카탈로그로 맞추는 정제·분류 단계를 둔다.</p>
+                <p>네 갈래로 모은 원본을 하나의 카탈로그로 맞추는 정제·분류 단계를 둔다. 대시보드와 별도 배치로 매일 돌리며, 중간에 실패하면 기존 카탈로그를 덮어쓰지 않는다.</p>
                 <p class="why__flow">4사 크롤 → 정제 → 카테고리 분류 → 행사 뉴스</p>
                 <table class="why__table">
                   <colgroup>
@@ -96,19 +96,19 @@
                   <tbody>
                     <tr>
                       <th scope="row">정제</th>
-                      <td>브랜드 CSV를 병합하고 가격은 숫자만 남긴다. 빈 값·중복·디폴트 이미지 행은 제거해, 같은 상품끼리 비교할 수 있는 형태로 만든다.</td>
+                      <td>정규화를 위해 가격은 숫자만 남기고, 필수 값이 비었거나 중복인 행, 디폴트 이미지 상품은 제거한 뒤 통합 파일로 저장한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">분류</th>
-                      <td>상품명 키워드로 식사, 음료, 간식, 생활용품 등으로 나눈다. 필터·추천·브랜드 비교가 같은 카테고리 축으로 동작한다.</td>
+                      <td>상품명 키워드로 식사류·음료·간식류·생활/위생용품·기타를 붙인다. 이후 필터·추천·브랜드 비교가 같은 카테고리 기준으로 돌아가게 한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">뉴스</th>
-                      <td>Selenium으로 공식 행사 소식을 붙인다. 뉴스 수집이 실패해도 상품 카탈로그 갱신은 그대로 진행한다.</td>
+                      <td>CU·GS25·7-Eleven·emart24 각각의 공식 이벤트/소식 게시판을 Selenium으로 열어 읽어 별도 파일에 저장한다. 이 수집이 실패해도 상품 카탈로그 갱신은 그대로 끝낸다.</td>
                     </tr>
                     <tr>
                       <th scope="row">안전장치</th>
-                      <td>브랜드 CSV가 하나라도 비어 있으면 정제·분류를 중단해, 불완전한 데이터로 카탈로그를 덮어쓰지 않는다.</td>
+                      <td>4사 중 하나라도 수집 파일에 문제가 있으면 정제·분류를 하지 않는다. 중간까지 모인 데이터로 완성본을 덮어쓰지 않기 위해서다.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -118,7 +118,7 @@
               <p class="why__n">03</p>
               <h2 class="why__t">챗봇 연동</h2>
               <div class="why__body">
-                <p>대시보드에 플로팅 챗봇을 붙였다. 질문을 받으면 먼저 카탈로그에서 쓸 상품만 고르고, 그다음 Groq Llama 3.3에 넘겨 답을 만든다. 전체 목록을 모델에 한 번에 넣지 않는다.</p>
+                <p>화면에 플로팅 챗봇을 붙여, 편의점 행사·상품 질문에 바로 답하게 했다. 질문이 들어오면 키워드로 관련 상품만 골라 Groq Llama 3.3에 보내고, 답은 스트리밍으로 받는다.</p>
                 <table class="why__table">
                   <colgroup>
                     <col class="why__col-brand" />
@@ -133,15 +133,15 @@
                   <tbody>
                     <tr>
                       <th scope="row">연결</th>
-                      <td>분류가 끝난 CSV를 읽는다. 질문 문장을 단어로 나눠 상품명·카테고리에 들어 있는 것과 맞춰 보고, 걸린 상품만 문맥으로 쓴다. 많을 때는 상위 20개까지만 넣는다. 최근 대화 몇 턴도 함께 넘겨 이어서 말할 수 있게 한다.</td>
+                      <td>분류까지 끝난 상품 목록을 읽는다. 질문을 단어로 나눠 상품명·카테고리에 포함 여부로 걸러 내고, 많을 때는 상위 20개만 모델 입력에 넣는다. 최근 대화 몇 턴도 같이 넘겨 맥락을 유지한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">역할</th>
-                      <td>상품 찾기, 1+1·2+1 같은 행사 확인, 과자·도시락 같은 카테고리 안내에 답한다. 넣은 상품 목록 밖의 가격·행사는 만들지 말고, 모르면 모른다고 말하도록 규칙을 걸어 둔다.</td>
+                      <td>상품 검색, 1+1·2+1 행사 확인, 카테고리 안내에 답한다. 넣어 준 목록 밖의 가격·행사는 지어내지 말고, 모르면 모른다고 말하도록 프롬프트로 제한한다.</td>
                     </tr>
                     <tr>
                       <th scope="row">예외</th>
-                      <td>검색에 걸리는 상품이 없으면 카탈로그에서 임의로 조금만 넣고, 그래도 없는 정보는 지어내지 않게 한다. 답은 스트리밍으로 바로 보여 준다.</td>
+                      <td>걸리는 상품이 없으면 목록에서 소량만 골라 참고 문맥으로 넣는다. 답은 토큰 단위로 바로 화면에 흘려 보여 준다.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -151,7 +151,7 @@
         </section>
       </main>
 
-      <site-footer left="Mini · 10" next-href="mini2.html" next-label="MINI2 →"></site-footer>
+      <site-footer left="Mini · 10" next-href="mini2.html" next-label="MINI2 - MATE →"></site-footer>
     </div>
   </div>
 </body>

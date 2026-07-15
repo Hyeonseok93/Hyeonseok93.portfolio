@@ -68,7 +68,8 @@ body { overflow: hidden; }
 .lede {
   color: var(--muted);
   font-size: clamp(0.95rem, 1.6vw, 1.08rem);
-  max-width: 42ch;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .columns {
@@ -269,6 +270,7 @@ body { overflow: hidden; }
   .stage { height: auto; min-height: 100dvh; overflow: visible; }
   .frame { height: auto; min-height: 100dvh; }
   .board { height: auto; }
+  .lede { white-space: normal; }
   .columns { grid-template-columns: 1fr; flex: none; }
   .col { height: auto; }
   .stack {
