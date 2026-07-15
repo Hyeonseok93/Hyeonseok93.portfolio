@@ -84,10 +84,55 @@ site-nav {
 .topbar {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1rem;
   opacity: 0;
   animation: rise 0.8s var(--ease) 0.1s forwards;
+}
+
+.topbar__spacer {
+  flex: 0 0 auto;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.15rem 1rem;
+}
+
+.nav-tabs a {
+  font-family: "Outfit", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 0.2rem 0;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.nav-tabs a:hover {
+  color: var(--ink);
+}
+
+.nav-tabs a.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--copper);
+}
+
+@media (max-width: 640px) {
+  .nav-tabs {
+    gap: 0.1rem 0.65rem;
+  }
+
+  .nav-tabs a {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
 }
 
 .footer {

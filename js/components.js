@@ -11,9 +11,41 @@
     connectedCallback() {
       if (this.dataset.ready) return;
       this.dataset.ready = "1";
+
+      const hasBack = this.hasAttribute("back-href");
       const href = this.getAttribute("back-href") || "index.html";
       const label = this.getAttribute("back-label") || "\u2190 Back";
-      this.innerHTML = `<div class="topbar"><a class="back" href="${href}">${label}</a></div>`;
+      const backHtml = hasBack
+        ? `<a class="back" href="${href}">${label}</a>`
+        : `<span class="topbar__spacer" aria-hidden="true"></span>`;
+
+      const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+      let section = "cover";
+      if (file.startsWith("profile")) section = "profile";
+      else if (file.startsWith("works")) section = "works";
+      else if (
+        file.startsWith("papers") ||
+        file.startsWith("detect") ||
+        file.startsWith("fuzz")
+      ) {
+        section = "paper";
+      }
+
+      const tabs = [
+        { id: "cover", href: "index.html", label: "Cover" },
+        { id: "profile", href: "profile.html", label: "Profile" },
+        { id: "works", href: "works.html", label: "Works" },
+        { id: "paper", href: "papers.html", label: "Paper" },
+      ]
+        .map((t) => {
+          const active = t.id === section;
+          const cls = active ? ' class="is-active"' : "";
+          const aria = active ? ' aria-current="page"' : "";
+          return `<a href="${t.href}"${cls}${aria}>${t.label}</a>`;
+        })
+        .join("");
+
+      this.innerHTML = `<div class="topbar">${backHtml}<nav class="nav-tabs" aria-label="Sections">${tabs}</nav></div>`;
     }
   }
 
