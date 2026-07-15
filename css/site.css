@@ -194,8 +194,8 @@ site-nav {
   line-height: 1.2;
 }
 
-.nav-cluster__row--shieldus.is-active .nav-cluster__group-label,
-.nav-cluster__row--shieldus.is-active .nav-cluster__sep {
+.nav-cluster__row--group.is-active .nav-cluster__group-label,
+.nav-cluster__row--group.is-active .nav-cluster__sep {
   color: var(--ink);
 }
 
@@ -207,7 +207,7 @@ site-nav {
   line-height: 1;
 }
 
-.nav-cluster__row--shieldus a {
+.nav-cluster__row--group a {
   font-size: 0.74rem;
 }
 
@@ -235,7 +235,7 @@ site-nav {
     font-size: 0.62rem;
   }
 
-  .nav-cluster__row--shieldus a {
+  .nav-cluster__row--group a {
     font-size: 0.64rem;
   }
 }

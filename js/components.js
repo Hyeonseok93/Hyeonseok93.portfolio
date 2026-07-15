@@ -47,11 +47,13 @@
       };
 
       const worksOpen = ["works", "paper", "mini", "final"].includes(section);
-      const shieldusOpen = section === "mini" || section === "final";
+      const researchOpen = section === "paper";
+      const rookiesOpen = section === "mini" || section === "final";
       const worksHeadCls = worksOpen ? ' class="nav-cluster__head is-active"' : ' class="nav-cluster__head"';
-      const shieldusCls = shieldusOpen
-        ? ' class="nav-cluster__row nav-cluster__row--shieldus is-active"'
-        : ' class="nav-cluster__row nav-cluster__row--shieldus"';
+      const groupRow = (open) =>
+        open
+          ? ' class="nav-cluster__row nav-cluster__row--group is-active"'
+          : ' class="nav-cluster__row nav-cluster__row--group"';
 
       const tabs = [
         link("cover", "index.html", "Cover"),
@@ -59,10 +61,12 @@
         `<div class="nav-cluster${worksOpen ? " is-open" : ""}">
           <a href="works.html"${worksHeadCls}>Works</a>
           <div class="nav-cluster__sub" aria-label="Works sections">
-            <div class="nav-cluster__row">
+            <div${groupRow(researchOpen)}>
+              <span class="nav-cluster__group-label">Research</span>
+              <span class="nav-cluster__sep" aria-hidden="true">—</span>
               ${link("paper", "papers.html", "Paper")}
             </div>
-            <div${shieldusCls}>
+            <div${groupRow(rookiesOpen)}>
               <span class="nav-cluster__group-label">Rookies 5</span>
               <span class="nav-cluster__sep" aria-hidden="true">—</span>
               ${link("mini", "mini1.html", "Mini")}
