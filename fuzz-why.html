@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuzz · Papers</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/papers.css" />
+  <link rel="stylesheet" href="css/detect-why.css" />
+  <script src="js/components.js" defer></script>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+    <div class="frame">
+      <site-nav back-href="fuzz.html" back-label="← Fuzz"></site-nav>
+
+      <main class="board">
+        <header class="identity">
+          <h1 class="name">이 논문이 남기는 것</h1>
+          <div class="accent" aria-hidden="true"></div>
+          <p class="lede">RoBERTa 기반 ICS 프로토콜 퍼징 입력 생성 및 제어</p>
+        </header>
+
+        <section class="deck" aria-label="Fuzz 논문의 의의">
+          <ol class="why why--2">
+            <li class="why__item">
+              <p class="why__n">01</p>
+              <h2 class="why__t">학습으로 규칙을 대체한다</h2>
+              <div class="why__body">
+                <p>산업제어 독점 프로토콜은 공개되지 않은 경우가 많다. 문서를 못 구하면, 예전까지는 사람이 패킷을 직접 뜯어보고 파싱 코드와 탐지 룰을 새로 짜야 했다.</p>
+                <p>이 연구는 그걸 학습으로 바꾼다. 평소 패킷만 모아 두면, 모델이 그 안의 규칙을 스스로 익힌다. 복잡한 스펙 분석이나 수작업 룰 없이도 시작할 수 있다.</p>
+              </div>
+            </li>
+            <li class="why__item">
+              <p class="why__n">02</p>
+              <h2 class="why__t">유효한 변조를 만들어 낸다</h2>
+              <div class="why__body">
+                <p>랜덤으로 막 변조된 데이터를 만들면 형식에 어긋난 입력이 나와, 유효한 퍼징 테스트로 이어지기 어렵다. 형식을 지키는 퍼징을 하려면 규칙을 파악하고, 그에 맞게 변조된 입력을 만들어야 한다.</p>
+                <p>이 연구는 학습한 규칙으로 유효한 변조 패킷을 만든다. 그래서 기존 방식보다 더 넓은 범위를, 더 다양하면서도 유효한 퍼징 데이터로 검사할 수 있다.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </main>
+
+      <site-footer left="Fuzz · 08" next-href="works.html#mini-1" next-label="MINI1 →"></site-footer>
+    </div>
+  </div>
+</body>
+</html>

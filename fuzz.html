@@ -14,43 +14,56 @@
     <div class="stage__bg" aria-hidden="true"></div>
     <div class="stage__grain" aria-hidden="true"></div>
     <div class="frame">
-      <site-nav back-href="detect.html" back-label="← Detect"></site-nav>
+      <site-nav back-href="detect-why.html" back-label="← Detect"></site-nav>
       <main class="board">
         <header class="identity">
           <h1 class="name">RoBERTa 기반 ICS 프로토콜 퍼징 입력 생성 및 제어</h1>
           <div class="accent" aria-hidden="true"></div>
-          <p class="lede">정상 패킷으로 연습한 뒤, 빈칸을 채워 문법에 맞으면서도 문제를 내는 입력을 뽑는다.</p>
+          <p class="lede">정상 패킷으로 규칙을 익히고, 빈칸을 채워 문법에 맞으면서도 문제를 내는 입력을 만든다.</p>
         </header>
 
         <section class="flow flow--6" aria-label="Fuzz 6단계">
           <div class="flow__row">
             <article class="cell">
               <p class="cell__n">01</p>
-              <h2 class="cell__t">패킷만 모은다</h2>
+              <h2 class="cell__t">정상 프로토콜 데이터를 모은다</h2>
               <div class="cell__viz" aria-hidden="true">
-                <span class="tag">정상 패킷</span>
                 <div class="stack">
+                  <p class="stack__label">Packet</p>
                   <div class="byte-row"><span>01</span><span>03</span><span>A2</span><span>7F</span><span>00</span><span>1C</span></div>
                   <div class="byte-row"><span>01</span><span>03</span><span>B1</span><span>2A</span><span>00</span><span>08</span></div>
                   <div class="byte-row"><span>01</span><span>06</span><span>00</span><span>10</span><span>FF</span><span>3E</span></div>
+                  <div class="byte-row"><span>01</span><span>03</span><span>0C</span><span>55</span><span>00</span><span>0A</span></div>
+                  <div class="byte-row"><span>01</span><span>04</span><span>00</span><span>01</span><span>00</span><span>02</span></div>
+                  <div class="byte-row"><span>01</span><span>06</span><span>00</span><span>20</span><span>00</span><span>64</span></div>
                 </div>
               </div>
-              <p class="cell__note">여기는 패킷만. 평소 통신을 쭉 모은다.</p>
+              <p class="cell__note">여기는 패킷만. 평소 정상 통신을 쭉 모은다.</p>
             </article>
 
             <div class="flow__arrow" aria-hidden="true"></div>
 
             <article class="cell cell--focus">
               <p class="cell__n">02</p>
-              <h2 class="cell__t">빈칸 맞추기 연습</h2>
+              <h2 class="cell__t">빈칸 맞추기</h2>
               <div class="cell__viz" aria-hidden="true">
+                <p class="stack__label">Packet</p>
                 <div class="mlm-mini">
                   <div class="byte-row">
                     <span>01</span><span>03</span><span class="mask">?</span><span>7F</span><span>00</span><span>1C</span>
                   </div>
-                  <p class="mlm-mini__mid">연습</p>
+                  <p class="mlm-mini__mid">빈칸 맞추기</p>
                   <div class="byte-row">
                     <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
+                  </div>
+                </div>
+                <div class="mlm-mini">
+                  <div class="byte-row">
+                    <span>01</span><span class="mask">?</span><span>00</span><span>10</span><span class="mask">?</span><span>3E</span>
+                  </div>
+                  <p class="mlm-mini__mid">빈칸 맞추기</p>
+                  <div class="byte-row">
+                    <span>01</span><span class="ok">06</span><span>00</span><span>10</span><span class="ok">FF</span><span>3E</span>
                   </div>
                 </div>
               </div>
@@ -61,82 +74,105 @@
 
             <article class="cell">
               <p class="cell__n">03</p>
-              <h2 class="cell__t">전부 빈칸을 던진다</h2>
+              <h2 class="cell__t">빈 칸을 모델에 넘긴다</h2>
               <div class="cell__viz" aria-hidden="true">
+                <p class="stack__label">Packet</p>
                 <div class="mlm-mini">
+                  <p class="mlm-mini__mid">generate</p>
                   <div class="byte-row">
                     <span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span>
                   </div>
-                  <p class="mlm-mini__mid">generate</p>
+                  <div class="byte-row">
+                    <span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span>
+                  </div>
+                  <div class="byte-row">
+                    <span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span>
+                  </div>
+                  <div class="byte-row">
+                    <span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span>
+                  </div>
                 </div>
               </div>
-              <p class="cell__note">이제 빈 패킷을 주고, 새로 채우게 한다.</p>
+              <p class="cell__note">빈 패킷을 모델에 주고, 학습한 규칙을 바탕으로 새로 채우게 한다.</p>
             </article>
           </div>
 
           <div class="flow__row">
             <article class="cell">
               <p class="cell__n">04</p>
-              <h2 class="cell__t">정답을 맞춰 채운다</h2>
+              <h2 class="cell__t">문맥을 보면서 채워 나간다</h2>
               <div class="cell__viz" aria-hidden="true">
-                <div class="mlm-mini">
+                <p class="stack__label">Packet</p>
+                <div class="fill-steps">
                   <div class="byte-row">
                     <span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span>
                   </div>
-                  <p class="mlm-mini__mid">fill</p>
+                  <p class="fill-steps__mid">문맥을 참고해 채움</p>
                   <div class="byte-row">
-                    <span class="ok">01</span><span class="ok">03</span><span class="mut">A3</span><span class="ok">7F</span><span class="ok">00</span><span class="ok">1C</span>
+                    <span class="ok">01</span><span class="ok">03</span><span class="mut">A3</span><span class="mask">?</span><span class="mask">?</span><span class="mask">?</span>
                   </div>
                 </div>
               </div>
-              <p class="cell__note">배운 규칙으로 칸을 채운다. 값은 살짝 달라질 수 있다.</p>
+              <p class="cell__note">이미 채운 칸을 문맥으로 삼아, 학습한 규칙으로 다음 칸을 이어서 채운다.</p>
             </article>
 
             <div class="flow__arrow" aria-hidden="true"></div>
 
             <article class="cell cell--focus">
               <p class="cell__n">05</p>
-              <h2 class="cell__t">온도로 세기를 조절</h2>
+              <h2 class="cell__t">온도로 탐색 폭을 조절</h2>
               <div class="cell__viz" aria-hidden="true">
                 <div class="temp">
                   <div class="temp__rail">
                     <div class="temp__box">
                       <strong>온도 낮음</strong>
-                      <p>안전한 값 위주<br />형식 잘 맞음</p>
-                      <div class="byte-row" style="margin-top:0.25rem">
+                      <p>안전한 후보 위주, 형식에 가깝게</p>
+                      <div class="byte-row" style="margin-top:0.3rem">
                         <span>01</span><span>03</span><span class="ok">A2</span><span>7F</span><span>00</span><span>1C</span>
                       </div>
+                      <ul class="temp__cands">
+                        <li class="temp__cand temp__cand--pick"><span>A2</span><i style="--w:72%"></i><em>72%</em></li>
+                        <li class="temp__cand"><span>A3</span><i style="--w:18%"></i><em>18%</em></li>
+                        <li class="temp__cand"><span>B0</span><i style="--w:7%"></i><em>7%</em></li>
+                      </ul>
                     </div>
                     <div class="temp__box">
                       <strong>온도 높음</strong>
-                      <p>더 과감한 변이<br />형식 깨질 수도</p>
-                      <div class="byte-row" style="margin-top:0.25rem">
-                        <span>01</span><span>03</span><span class="mut">B0</span><span>7F</span><span class="bad">FF</span><span>1C</span>
+                      <p>더 과감한 후보, 탐색 폭이 넓어짐</p>
+                      <div class="byte-row" style="margin-top:0.3rem">
+                        <span>01</span><span>03</span><span class="mut">B0</span><span>7F</span><span>00</span><span>1C</span>
                       </div>
+                      <ul class="temp__cands">
+                        <li class="temp__cand"><span>A2</span><i style="--w:24%"></i><em>24%</em></li>
+                        <li class="temp__cand temp__cand--pick"><span>B0</span><i style="--w:22%"></i><em>22%</em></li>
+                        <li class="temp__cand"><span>FF</span><i style="--w:19%"></i><em>19%</em></li>
+                        <li class="temp__cand"><span>A3</span><i style="--w:16%"></i><em>16%</em></li>
+                        <li class="temp__cand"><span>7E</span><i style="--w:11%"></i><em>11%</em></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
-              <p class="cell__note">온도를 올리면 다양해지고, 내리면 보수적으로 채운다.</p>
+              <p class="cell__note">같은 자리에서 온도가 다르면, 고를 수 있는 후보와 확률 분포가 달라진다.</p>
             </article>
 
             <div class="flow__arrow" aria-hidden="true"></div>
 
             <article class="cell">
               <p class="cell__n">06</p>
-              <h2 class="cell__t">문법 맞으면서 문제 되는 입력</h2>
+              <h2 class="cell__t">최종 퍼징 입력</h2>
               <div class="cell__viz" aria-hidden="true">
+                <p class="stack__label">Packet</p>
                 <div class="byte-row">
                   <span>01</span><span>03</span><span class="mut">A3</span><span>7F</span><span>00</span><span>1C</span>
                 </div>
-                <span class="pill">Effective seed</span>
               </div>
-              <p class="cell__note">입구는 통과하고, 안쪽에서 문제를 일으킬 만한 것만 남긴다.</p>
+              <p class="cell__note">형식 검사는 통과하고, 안쪽에서 문제를 일으킬 만한 입력만 남긴다.</p>
             </article>
           </div>
         </section>
       </main>
-      <site-footer left="Fuzz · 06" next-href="works.html#mini-1" next-label="MINI1 →"></site-footer>
+      <site-footer left="Fuzz · 07" next-href="fuzz-why.html" next-label="Fuzz Meaning →"></site-footer>
     </div>
   </div>
 </body>

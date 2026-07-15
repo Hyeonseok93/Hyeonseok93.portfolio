@@ -1,0 +1,36 @@
+/* Detect 06 paper significance */
+.identity .name { font-size: clamp(2.1rem, 4.5vw, 3.4rem); }
+.identity .lede { max-width: 52ch; }
+.deck {
+  justify-content: center;
+  align-items: stretch;
+  padding: clamp(6.25rem, 13vh, 8.5rem) 0 clamp(1.25rem, 2.5vh, 2rem);
+}
+.why { list-style: none; display: grid; margin: 0; padding: 0; width: 100%; align-self: center; flex: 1 1 auto; min-height: 0; }
+.why--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2.75rem, 7vw, 6rem); width: 100%; max-width: none; margin-inline: 0; }
+.why__item { display: flex; flex-direction: column; gap: 1rem; min-width: 0; height: 100%; padding: 0; opacity: 0; transform: translateY(12px); animation: rise 0.7s var(--ease) forwards; }
+.why__item:nth-child(1) { animation-delay: 0.35s; }
+.why__item:nth-child(2) { animation-delay: 0.45s; }
+.why__n { font-family: Outfit, sans-serif; font-size: clamp(1.05rem, 1.6vw, 1.2rem); font-weight: 600; letter-spacing: 0.12em; color: rgba(212, 137, 74, 0.95); }
+.why__t { font-family: Outfit, sans-serif; font-weight: 600; font-size: clamp(1.55rem, 2.8vw, 2.15rem); line-height: 1.22; letter-spacing: -0.025em; color: var(--ink); padding-bottom: 1rem; border-bottom: 1.5px solid rgba(212, 137, 74, 0.55); }
+.why__body { display: flex; flex-direction: column; gap: 1rem; flex: 1; }
+.why__body p { font-size: clamp(1.05rem, 1.55vw, 1.2rem); line-height: 1.7; color: rgba(236, 233, 227, 0.82); max-width: none; }
+@media (max-width: 1100px) {
+  body { overflow: auto; }
+  .stage { height: auto; min-height: 100dvh; overflow: visible; }
+  .frame { height: auto; min-height: 100dvh; }
+  .board { height: auto; position: relative; }
+  .identity { position: relative; }
+  .deck { position: relative; inset: auto; display: block; padding-top: 1.25rem; align-items: flex-start; }
+  .why--2 { grid-template-columns: 1fr; gap: 2.25rem; flex: none; }
+  .why__item { height: auto; }
+  .why__t br { display: none; }
+}
+@media (max-width: 640px) {
+  .why--2 { gap: 1.85rem; }
+  .why__t { font-size: clamp(1.35rem, 5.5vw, 1.7rem); }
+  .why__body p { font-size: 1.02rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .why__item { opacity: 1; transform: none; animation: none; }
+}
