@@ -20,30 +20,46 @@
         : `<span class="topbar__spacer" aria-hidden="true"></span>`;
 
       const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+      const hash = (location.hash || "").toLowerCase();
       let section = "cover";
       if (file.startsWith("profile")) section = "profile";
-      else if (file.startsWith("works")) section = "works";
+      else if (file.startsWith("connect")) section = "connect";
       else if (
         file.startsWith("papers") ||
         file.startsWith("detect") ||
         file.startsWith("fuzz")
       ) {
         section = "paper";
+      } else if (file.startsWith("works")) {
+        if (hash.startsWith("#mini")) section = "mini";
+        else if (hash.startsWith("#final")) section = "final";
+        else if (hash.startsWith("#paper")) section = "paper";
+        else section = "works";
       }
 
+      const link = (id, href, label) => {
+        const active = id === section;
+        const cls = active ? ' class="is-active"' : "";
+        const aria = active ? ' aria-current="page"' : "";
+        return `<a href="${href}"${cls}${aria}>${label}</a>`;
+      };
+
+      const worksOpen = ["works", "paper", "mini", "final"].includes(section);
+      const worksHeadCls = worksOpen ? ' class="nav-cluster__head is-active"' : ' class="nav-cluster__head"';
+
       const tabs = [
-        { id: "cover", href: "index.html", label: "Cover" },
-        { id: "profile", href: "profile.html", label: "Profile" },
-        { id: "works", href: "works.html", label: "Works" },
-        { id: "paper", href: "papers.html", label: "Paper" },
-      ]
-        .map((t) => {
-          const active = t.id === section;
-          const cls = active ? ' class="is-active"' : "";
-          const aria = active ? ' aria-current="page"' : "";
-          return `<a href="${t.href}"${cls}${aria}>${t.label}</a>`;
-        })
-        .join("");
+        link("cover", "index.html", "Cover"),
+        link("profile", "profile.html", "Profile"),
+        `<div class="nav-cluster${worksOpen ? " is-open" : ""}">
+          <a href="works.html"${worksHeadCls}>Works</a>
+          <div class="nav-cluster__sub" aria-label="Works sections">
+            ${link("paper", "papers.html", "Paper")}
+            ${link("mini", "works.html#mini", "Mini")}
+            ${link("final", "works.html#final", "Final")}
+          </div>
+        </div>`,
+        link("connect", "connect.html", "Connect"),
+      ].join("");
 
       this.innerHTML = `<div class="topbar">${backHtml}<nav class="nav-tabs" aria-label="Sections">${tabs}</nav></div>`;
     }
