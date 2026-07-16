@@ -410,10 +410,13 @@
 
   .showcase__visuals {
     order: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 61.78fr) minmax(0, 38.22fr);
     height: auto;
     max-height: none;
     max-width: none;
-    width: 100%;
+    width: min(100%, 80vh, 42rem);
+    margin-inline: auto;
     justify-content: center;
     align-items: flex-start;
     gap: 0.65rem;
@@ -422,10 +425,11 @@
 
   .showcase__frame {
     height: auto;
+    width: 100%;
     max-height: none;
-    flex: 1 1 0;
+    flex: none;
     min-width: 0;
-    max-width: calc(50% - 0.35rem);
+    max-width: none;
   }
 
   .showcase__frame img {
@@ -531,6 +535,34 @@
   }
 }
 
+/* MINI1 desktop: JS supplies one continuous scale until tablet mode takes over */
+@media (min-width: 1101px) {
+  body.mini1-page.is-desktop-fit {
+    overflow: hidden;
+  }
+
+  .mini1-page.is-desktop-fit .stage {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .mini1-page.is-desktop-fit .frame {
+    position: absolute;
+    min-height: 0;
+    transform-origin: top left;
+  }
+
+  .mini1-page.is-desktop-fit .board {
+    height: 100%;
+    position: relative;
+  }
+
+  .mini1-page.is-desktop-fit .identity {
+    position: absolute;
+  }
+}
+
 @media (max-width: 640px) {
   .frame {
     padding: 1rem 1rem 1.25rem;
@@ -555,9 +587,9 @@
   }
 
   .showcase__frame {
-    max-width: calc(50% - 0.3rem);
-    width: auto;
-    flex: 1 1 0;
+    max-width: none;
+    width: 100%;
+    flex: none;
   }
 
   .showcase__frame img {

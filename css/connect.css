@@ -82,22 +82,66 @@
   .connect {
     position: relative;
     inset: auto;
+    align-items: stretch;
     padding: 1.5rem 0 0.5rem;
   }
 
   .connect__links {
-    flex-wrap: wrap;
-    gap: 1.75rem 2.25rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: min(100%, 42rem);
+    margin: 0 auto;
   }
 
   .connect__item {
     flex: 0 0 auto;
-    min-width: max-content;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(236, 233, 227, 0.1);
+    border-radius: 0.35rem;
+    background: rgba(236, 233, 227, 0.025);
   }
 
   .connect__item img {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 20%;
+  }
+
+  .connect__label {
+    width: auto;
+    min-width: 0;
+    text-align: left;
+    white-space: normal;
+    font-size: clamp(0.95rem, 2.4vw, 1.08rem);
+  }
+
+  .connect__item:nth-child(odd):hover,
+  .connect__item:nth-child(even):hover {
+    transform: translateX(0.25rem);
+    filter: brightness(1.12);
+  }
+}
+
+@media (max-width: 640px) {
+  .connect {
+    padding-top: 1rem;
+  }
+
+  .connect__item {
+    gap: 0.85rem;
+    padding: 0.7rem 0.8rem;
+  }
+
+  .connect__item img {
+    width: 3.75rem;
+    height: 3.75rem;
   }
 }
 
