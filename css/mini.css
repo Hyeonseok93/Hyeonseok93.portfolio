@@ -62,8 +62,10 @@
 .showcase__visuals {
   display: flex;
   align-items: stretch;
+  align-self: stretch;
   gap: clamp(0.55rem, 1.2vw, 0.9rem);
   height: 100%;
+  min-height: 0;
   max-width: 100%;
 }
 
@@ -76,7 +78,11 @@
   background: transparent;
   overflow: hidden;
   line-height: 0;
-  flex: 0 1 auto;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .showcase__frame img {
@@ -91,8 +97,10 @@
 .showcase__copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: clamp(0.85rem, 2vh, 1.25rem);
+  justify-content: space-between;
+  gap: clamp(0.65rem, 1.5vh, 1rem);
+  height: 100%;
+  min-height: 0;
   padding-left: clamp(1rem, 2vw, 1.55rem);
   border-left: 2px solid rgba(212, 137, 74, 0.5);
 }
