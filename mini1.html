@@ -36,6 +36,27 @@
         </header>
 
         <section class="showcase showcase--brief" aria-label="MINI1 소개">
+          <div class="showcase__visuals">
+            <figure class="showcase__frame">
+              <img
+                src="assets/mini1_1.png"
+                alt="CVS Event Comparator 메인보드 — 핫딜 추천과 빠른 메뉴"
+                width="960"
+                height="1744"
+                loading="eager"
+              />
+            </figure>
+            <figure class="showcase__frame">
+              <img
+                src="assets/mini1_2.png"
+                alt="CVS Event Comparator 브랜드 비교 — 레이더·트리맵·가격 분포"
+                width="960"
+                height="2819"
+                loading="eager"
+              />
+            </figure>
+          </div>
+
           <div class="showcase__copy">
             <dl class="showcase__specs">
               <div>
@@ -72,37 +93,55 @@
 
             <div class="showcase__env">
               <p class="showcase__env-label">개발 환경</p>
-              <div class="techs techs--wrap" aria-label="기술 스택">
-                <tech-badge icon="python" label="Python"></tech-badge>
-                <tech-badge icon="streamlit" label="Streamlit"></tech-badge>
-                <tech-badge icon="pandas" label="Pandas"></tech-badge>
-                <tech-badge icon="plotly" label="Plotly"></tech-badge>
-                <tech-badge icon="selenium" label="Selenium"></tech-badge>
-                <tech-badge icon="beautifulsoup" label="BeautifulSoup"></tech-badge>
-                <tech-badge icon="groq" label="Groq"></tech-badge>
+              <div class="env-rows" aria-label="기술 스택 분류">
+                <div class="env-row">
+                  <span class="env-row__k">언어</span>
+                  <div class="techs">
+                    <tech-badge icon="python" label="Python"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">서버</span>
+                  <div class="techs">
+                    <tech-badge label="Local"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">프레임워크</span>
+                  <div class="techs">
+                    <tech-badge icon="streamlit" label="Streamlit"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">DB</span>
+                  <div class="techs">
+                    <tech-badge label="CSV"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">IDE</span>
+                  <div class="techs">
+                    <tech-badge label="Cursor"></tech-badge>
+                    <tech-badge label="VS Code"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">API</span>
+                  <div class="techs">
+                    <tech-badge icon="groq" label="Groq"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">라이브러리</span>
+                  <div class="techs techs--wrap">
+                    <tech-badge icon="pandas" label="Pandas"></tech-badge>
+                    <tech-badge icon="plotly" label="Plotly"></tech-badge>
+                    <tech-badge icon="selenium" label="Selenium"></tech-badge>
+                    <tech-badge icon="beautifulsoup" label="BeautifulSoup"></tech-badge>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="showcase__visuals">
-            <figure class="showcase__frame">
-              <img
-                src="assets/mini1_1.png"
-                alt="CVS Event Comparator 메인보드 — 핫딜 추천과 빠른 메뉴"
-                width="960"
-                height="1744"
-                loading="eager"
-              />
-            </figure>
-            <figure class="showcase__frame">
-              <img
-                src="assets/mini1_2.png"
-                alt="CVS Event Comparator 브랜드 비교 — 레이더·트리맵·가격 분포"
-                width="960"
-                height="2819"
-                loading="eager"
-              />
-            </figure>
           </div>
         </section>
       </main>
