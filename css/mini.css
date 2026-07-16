@@ -183,6 +183,8 @@
   gap: 0.65rem;
   min-width: 0;
   flex: 0 0 auto;
+  padding-top: clamp(0.55rem, 1.4vh, 0.85rem);
+  border-top: 1px solid rgba(212, 137, 74, 0.45);
 }
 
 .showcase__kicker {
@@ -263,8 +265,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  padding-top: 0;
+  padding-top: clamp(0.55rem, 1.4vh, 0.85rem);
   flex: 0 0 auto;
+  border-top: 1px solid rgba(212, 137, 74, 0.45);
 }
 
 .showcase__env-label {
