@@ -80,7 +80,8 @@ site-footer {
 site-nav {
   position: relative;
   z-index: 40;
-  margin-bottom: clamp(1.15rem, 3vh, 2rem);
+  /* room for Works 2-line submenu without pushing it down via padding */
+  margin-bottom: clamp(2.6rem, 5.5vh, 3.4rem);
 }
 
 .topbar {
@@ -136,21 +137,22 @@ site-nav {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .nav-cluster__sub {
-  display: none;
+  position: absolute;
+  top: calc(100% + 0.2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 0.28rem;
-  margin-top: 0.35rem;
+  align-items: center;
+  gap: 0.22rem;
   white-space: nowrap;
   pointer-events: auto;
-}
-
-.nav-cluster.is-open .nav-cluster__sub {
-  display: flex;
+  padding: 0.05rem 0.25rem 0.1rem;
 }
 
 .nav-cluster__row {
