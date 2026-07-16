@@ -93,7 +93,8 @@
   flex-direction: column;
   justify-content: center;
   gap: clamp(0.85rem, 2vh, 1.25rem);
-  padding-left: clamp(0.15rem, 0.8vw, 0.45rem);
+  padding-left: clamp(1rem, 2vw, 1.55rem);
+  border-left: 1px solid rgba(212, 137, 74, 0.4);
 }
 
 .showcase__specs {
