@@ -355,7 +355,7 @@
   border-bottom-color: rgba(212, 137, 74, 0.7);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1100px), (max-height: 820px) {
   body { overflow: auto; }
   .stage { height: auto; min-height: 100dvh; overflow: visible; }
   .frame { height: auto; min-height: 100dvh; }
@@ -366,57 +366,212 @@
     inset: auto;
     display: block;
     padding: 1.25rem 0 0;
-    min-height: 52vw;
+    min-height: 0;
   }
   .shot__frame {
     height: auto;
-    min-height: 16rem;
+    min-height: 14rem;
   }
   .shot__frame img {
     height: auto;
-    object-fit: cover;
+    width: 100%;
+    object-fit: contain;
   }
+}
+
+@media (max-width: 1100px) {
+  .identity .name {
+    font-size: clamp(1.55rem, 5.5vw, 2.2rem);
+  }
+
   .showcase {
     position: relative;
     inset: auto;
     display: flex;
     flex-direction: column;
-    gap: 1.35rem;
+    align-items: stretch;
+    gap: 1.5rem;
     margin-top: 0;
-    padding: 1.25rem 0 0;
+    padding: 1.1rem 0 0.5rem;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
+
   .showcase__visuals {
     order: 1;
     height: auto;
     max-height: none;
+    max-width: none;
+    width: 100%;
     justify-content: center;
+    align-items: flex-start;
+    gap: 0.65rem;
+    overflow: visible;
   }
+
   .showcase__frame {
-    height: min(70vw, 30rem);
+    height: auto;
+    max-height: none;
     flex: 1 1 0;
+    min-width: 0;
+    max-width: calc(50% - 0.35rem);
   }
+
   .showcase__frame img {
-    height: 100%;
-    width: auto;
-    margin: 0 auto;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: top center;
   }
+
   .showcase__copy {
     order: 2;
     position: static;
+    height: auto;
+    max-height: none;
     padding-left: 0;
+    border-left: none;
+    border-top: 2px solid rgba(212, 137, 74, 0.5);
+    padding-top: 1.15rem;
+    gap: 1.15rem;
+    overflow: visible;
   }
+
+  .showcase__specs,
+  .showcase__story,
+  .showcase__env {
+    flex: 0 0 auto;
+    min-height: 0;
+    justify-content: flex-start;
+  }
+
+  .showcase__specs {
+    gap: 0.55rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .showcase__specs > div {
+    grid-template-columns: 5.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .showcase__specs dt {
+    font-size: clamp(0.95rem, 2.8vw, 1.08rem);
+  }
+
+  .showcase__specs dd {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+  }
+
+  .role-list {
+    gap: 0.28rem;
+  }
+
+  .role-list li {
+    font-size: clamp(0.88rem, 2.6vw, 1rem);
+    line-height: 1.4;
+  }
+
+  .showcase__story {
+    gap: 0.55rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .showcase__kicker,
+  .showcase__env-label {
+    font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+  }
+
+  .showcase__lede {
+    font-size: clamp(0.92rem, 2.7vw, 1.05rem);
+    line-height: 1.55;
+  }
+
   .showcase__pipe {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
   }
+
   .showcase__pipe li:not(:last-child)::after {
     display: none;
   }
-  .env-row {
-    grid-template-columns: 4.75rem minmax(0, 1fr);
+
+  .showcase__env {
+    padding-top: 0.85rem;
+    gap: 0.55rem;
   }
+
+  .env-rows {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    gap: 0.4rem;
+  }
+
+  .env-row {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    align-items: start;
+  }
+
   .why--3 {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .frame {
+    padding: 1rem 1rem 1.25rem;
+  }
+
+  .identity__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
+
+  .showcase {
+    gap: 1.15rem;
+    padding-top: 0.85rem;
+  }
+
+  .showcase__visuals {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .showcase__frame {
+    max-width: calc(50% - 0.3rem);
+    width: auto;
+    flex: 1 1 0;
+  }
+
+  .showcase__frame img {
+    width: 100%;
+    height: auto;
+  }
+
+  .showcase__specs > div {
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+
+  .showcase__pipe {
+    grid-template-columns: 1fr;
+  }
+
+  .env-row {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+  }
+
+  .showcase .tech {
+    font-size: 0.58rem;
   }
 }
 
