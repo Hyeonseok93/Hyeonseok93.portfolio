@@ -162,14 +162,14 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.22rem;
+  gap: 0.08rem;
 }
 
 .role-list li {
   font-family: "Figtree", sans-serif;
   font-size: clamp(0.95rem, 1.28vw, 1.08rem);
   font-weight: 500;
-  line-height: 1.38;
+  line-height: 1.28;
   letter-spacing: -0.01em;
   color: var(--ink);
   word-break: keep-all;
