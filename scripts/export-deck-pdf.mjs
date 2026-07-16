@@ -99,6 +99,8 @@ async function capturePage(browser, base, file) {
     document.querySelectorAll("*").forEach((el) => {
       const s = getComputedStyle(el);
       if (Number(s.opacity) < 0.05) el.style.setProperty("opacity", "1", "important");
+      if (el.closest(".nav-cluster__sub")) return;
+      if (el.classList.contains("journey-viewport") || el.classList.contains("fit__inner")) return;
       if (s.transform && s.transform !== "none") el.style.setProperty("transform", "none", "important");
     });
   });
