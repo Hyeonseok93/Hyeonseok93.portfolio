@@ -1,5 +1,5 @@
 /**
- * Export every portfolio slide as one 1920x1080 page in a single PDF.
+ * Export every portfolio slide at the desktop web viewport ratio (1920x913).
  * Usage: npm run export:pdf
  */
 import { createServer } from "node:http";
@@ -13,9 +13,9 @@ import { PDFDocument } from "pdf-lib";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "export");
-const OUT_PDF = path.join(OUT_DIR, "portfolio-deck-1920x1080.pdf");
+const OUT_PDF = path.join(OUT_DIR, "portfolio-deck-1920x913.pdf");
 const WIDTH = 1920;
-const HEIGHT = 1080;
+const HEIGHT = 913;
 const SCALE = 2;
 
 const PAGES = [
