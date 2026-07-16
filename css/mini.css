@@ -535,30 +535,30 @@
   }
 }
 
-/* MINI1 desktop: JS supplies one continuous scale until tablet mode takes over */
+/* Fixed slide pages: shared slide-fit.js scales the canvas until reflow takes over */
 @media (min-width: 1101px) {
-  body.mini1-page.is-desktop-fit {
+  body.is-slide-fit-active {
     overflow: hidden;
   }
 
-  .mini1-page.is-desktop-fit .stage {
+  .is-slide-fit-active .stage {
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
   }
 
-  .mini1-page.is-desktop-fit .frame {
+  .is-slide-fit-active [data-slide-fit] {
     position: absolute;
     min-height: 0;
     transform-origin: top left;
   }
 
-  .mini1-page.is-desktop-fit .board {
+  .is-slide-fit-active [data-slide-fit] .board {
     height: 100%;
     position: relative;
   }
 
-  .mini1-page.is-desktop-fit .identity {
+  .is-slide-fit-active [data-slide-fit] .identity {
     position: absolute;
   }
 }

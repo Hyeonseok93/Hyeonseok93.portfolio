@@ -82,33 +82,34 @@ async function capturePage(browser, base, file) {
     viewport: { width: WIDTH, height: HEIGHT },
     deviceScaleFactor: SCALE,
   });
-  await page.emulateMedia({ media: "screen" });
+  await page.emulateMedia({ media: "screen", reducedMotion: "reduce" });
   await page.goto(`${base}/${file}`, { waitUntil: "load", timeout: 90000 });
-  await page.waitForFunction(() => document.fonts && document.fonts.status === "loaded").catch(() => {});
-  await page.addStyleTag({
-    content: `
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      html, body { width: ${WIDTH}px !important; height: ${HEIGHT}px !important; max-height: ${HEIGHT}px !important; overflow: hidden !important; }
-      .stage, .frame, .board, .topbar, .identity, .showcase, .shot, .paper-hero, .works, .why__item, .leaf, .work, site-nav, site-footer {
-        opacity: 1 !important; transform: none !important;
-      }
-      .stage, .frame, .board { width: 100% !important; height: 100% !important; max-height: 100% !important; overflow: hidden !important; }
-    `,
+  await page.evaluate(async () => {
+    document.documentElement.classList.add("is-exporting");
+    if (document.fonts?.ready) await document.fonts.ready;
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+    document.documentElement.dataset.exportReady = "true";
   });
-  await page.evaluate(() => {
-    document.querySelectorAll("*").forEach((el) => {
-      const s = getComputedStyle(el);
-      if (Number(s.opacity) < 0.05) el.style.setProperty("opacity", "1", "important");
-      if (el.closest(".nav-cluster__sub")) return;
-      if (el.classList.contains("journey-viewport") || el.classList.contains("fit__inner")) return;
-      if (s.transform && s.transform !== "none") el.style.setProperty("transform", "none", "important");
-    });
-  });
-  await new Promise((r) => setTimeout(r, 700));
+  await page.waitForFunction(() => document.documentElement.dataset.exportReady === "true");
   const png = await page.screenshot({ type: "png", fullPage: false, animations: "disabled" });
   await page.close();
   if (png.length < 30000) throw new Error(`Blank-looking capture for ${file} (${png.length} bytes)`);
   return png;
+}
+
+async function launchBrowser() {
+  try {
+    return await chromium.launch({ headless: true });
+  } catch (error) {
+    console.warn("Playwright Chromium is unavailable; falling back to Microsoft Edge.");
+    try {
+      return await chromium.launch({ headless: true, channel: "msedge" });
+    } catch {
+      throw error;
+    }
+  }
 }
 
 async function main() {
@@ -116,7 +117,7 @@ async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   const { server, base } = await startStaticServer();
   console.log("Serving", ROOT, "at", base);
-  const browser = await chromium.launch({ headless: true });
+  const browser = await launchBrowser();
   const pdf = await PDFDocument.create();
   try {
     for (let i = 0; i < PAGES.length; i++) {

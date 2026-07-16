@@ -128,16 +128,12 @@
     .fit {
       min-height: 0;
       height: 100%;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-    }
-
-    .fit__inner {
-      width: 100%;
-      transform-origin: top center;
-      will-change: transform;
+      scrollbar-gutter: stable;
     }
 
     .topbar {
@@ -448,14 +444,15 @@
 
     .journey-viewport {
       width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       margin-top: 0.25rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(212, 137, 74, 0.45) transparent;
     }
 
     .journey-stage {
       width: 100%;
-      transform-origin: left top;
-      will-change: transform;
     }
 
     .journey-board {
@@ -738,12 +735,10 @@
         min-width: 0;
       }
 
-      .fit,
-      .fit__inner {
+      .fit {
         height: auto;
         overflow: visible;
-        transform: none !important;
-        width: 100% !important;
+        width: 100%;
       }
 
       .main {
@@ -798,6 +793,11 @@
 
       .journey-board {
         height: 8.5rem;
+      }
+
+      .journey-stage {
+        width: 57.5rem;
+        min-width: 100%;
       }
     }
 
@@ -928,8 +928,7 @@
       <div class="panel">
         <site-nav class="profile-nav" back-href="index.html" back-label="← Cover"></site-nav>
 
-        <div class="fit" data-fit>
-          <div class="fit__inner" data-fit-inner>
+        <div class="fit">
         <div class="main">
           <header class="identity">
             <p class="eyebrow">Profile</p>
@@ -1001,8 +1000,8 @@
             <p class="journey__range">2012 — 2026</p>
           </div>
 
-          <div class="journey-viewport">
-            <div class="journey-stage" data-journey-stage>
+          <div class="journey-viewport" tabindex="0" aria-label="여정 타임라인, 가로로 스크롤하여 전체 내용을 확인할 수 있습니다">
+            <div class="journey-stage">
           <div class="journey-board">
             <div class="journey-line" aria-hidden="true"></div>
 
@@ -1083,94 +1082,11 @@
         </section>
 
           </div>
-        </div>
 
         <site-footer next-href="works.html" next-label="Works →" align="end"></site-footer>
       </div>
     </div>
   </div>
-
-  <script>
-    (function () {
-      const mq = window.matchMedia("(max-width: 1100px)");
-      const fit = document.querySelector("[data-fit]");
-      const inner = document.querySelector("[data-fit-inner]");
-      const stage = document.querySelector("[data-journey-stage]");
-      const viewport = document.querySelector(".journey-viewport");
-      const baseWidth = 920;
-      let ticking = false;
-
-      function resetFit() {
-        if (!inner || !fit) return;
-        inner.style.transform = "none";
-        inner.style.width = "100%";
-        inner.style.marginBottom = "0";
-        fit.style.height = "";
-      }
-
-      function fitPanel() {
-        if (!fit || !inner) return;
-        if (mq.matches) {
-          resetFit();
-          return;
-        }
-
-        // measure at natural size first
-        inner.style.transform = "none";
-        inner.style.width = "100%";
-        inner.style.marginBottom = "0";
-        fit.style.height = "100%";
-
-        const available = fit.clientHeight;
-        const needed = inner.scrollHeight;
-        if (!available || !needed) return;
-
-        const scale = Math.min(1, available / needed);
-        inner.style.transformOrigin = "top center";
-        inner.style.transform = "scale(" + scale + ")";
-        // keep visual width matched to container while scaled
-        inner.style.width = (scale < 1 ? (100 / scale) + "%" : "100%");
-        // transform doesn't shrink layout box — reclaim leftover height
-        inner.style.marginBottom = (scale < 1 ? (needed * (scale - 1)) + "px" : "0");
-      }
-
-      function fitJourney() {
-        if (!stage || !viewport) return;
-        if (!mq.matches) {
-          stage.style.width = "100%";
-          stage.style.transform = "none";
-          viewport.style.height = "auto";
-          return;
-        }
-        stage.style.width = baseWidth + "px";
-        const available = viewport.clientWidth;
-        const scale = Math.min(1, available / baseWidth);
-        stage.style.transform = "scale(" + scale + ")";
-        viewport.style.height = (stage.offsetHeight * scale) + "px";
-      }
-
-      function fitAll() {
-        fitJourney();
-        fitPanel();
-      }
-
-      function onResize() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () {
-          ticking = false;
-          fitAll();
-        });
-      }
-
-      fitAll();
-      window.addEventListener("resize", onResize);
-      mq.addEventListener("change", fitAll);
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(fitAll);
-      }
-    })();
-  </script>
 
 </body>
 </html>
