@@ -46,7 +46,9 @@ body { overflow: hidden; }
 }
 
 .identity .name,
-.identity .lede {
+.identity .lede,
+.identity .techs,
+.identity .out-links {
   pointer-events: auto;
 }
 
