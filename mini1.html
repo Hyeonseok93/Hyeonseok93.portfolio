@@ -33,18 +33,57 @@
             </div>
           </div>
           <div class="accent" aria-hidden="true"></div>
-          <div class="techs" aria-label="기술 스택">
-            <tech-badge icon="python" label="Python"></tech-badge>
-            <tech-badge icon="streamlit" label="Streamlit"></tech-badge>
-            <tech-badge icon="pandas" label="Pandas"></tech-badge>
-            <tech-badge icon="plotly" label="Plotly"></tech-badge>
-            <tech-badge icon="selenium" label="Selenium"></tech-badge>
-            <tech-badge icon="beautifulsoup" label="BeautifulSoup"></tech-badge>
-            <tech-badge icon="groq" label="Groq"></tech-badge>
-          </div>
         </header>
 
-        <section class="showcase" aria-label="MINI1 소개">
+        <section class="showcase showcase--brief" aria-label="MINI1 소개">
+          <div class="showcase__copy">
+            <dl class="showcase__specs">
+              <div>
+                <dt>개발 기간</dt>
+                <dd>5일</dd>
+              </div>
+              <div>
+                <dt>개발 인원</dt>
+                <dd>6명</dd>
+              </div>
+              <div>
+                <dt>플랫폼</dt>
+                <dd>Web</dd>
+              </div>
+            </dl>
+
+            <div class="showcase__story">
+              <p class="showcase__kicker">한곳에 모은 편의점 행사</p>
+              <p class="showcase__lede">
+                CU · GS25 · 7‑Eleven · emart24 행사가 채널마다 갈라져 있어,
+                혜택을 한곳에서 비교하기 어렵다.
+              </p>
+              <p class="showcase__lede showcase__lede--soft">
+                브랜드마다 크롤러를 두고 한 스키마로 모은 뒤,
+                Streamlit에서 비교·추천·지도·챗봇까지 이어 준다.
+              </p>
+              <p class="showcase__flow" aria-label="파이프라인">
+                <span>수집</span><span class="showcase__flow-sep" aria-hidden="true">→</span>
+                <span>정제</span><span class="showcase__flow-sep" aria-hidden="true">→</span>
+                <span>분류</span><span class="showcase__flow-sep" aria-hidden="true">→</span>
+                <span>대시보드</span>
+              </p>
+            </div>
+
+            <div class="showcase__env">
+              <p class="showcase__env-label">개발 환경</p>
+              <div class="techs techs--wrap" aria-label="기술 스택">
+                <tech-badge icon="python" label="Python"></tech-badge>
+                <tech-badge icon="streamlit" label="Streamlit"></tech-badge>
+                <tech-badge icon="pandas" label="Pandas"></tech-badge>
+                <tech-badge icon="plotly" label="Plotly"></tech-badge>
+                <tech-badge icon="selenium" label="Selenium"></tech-badge>
+                <tech-badge icon="beautifulsoup" label="BeautifulSoup"></tech-badge>
+                <tech-badge icon="groq" label="Groq"></tech-badge>
+              </div>
+            </div>
+          </div>
+
           <div class="showcase__visuals">
             <figure class="showcase__frame">
               <img
@@ -64,63 +103,6 @@
                 loading="eager"
               />
             </figure>
-          </div>
-
-          <div class="showcase__copy">
-            <div class="showcase__story">
-              <p class="showcase__kicker">한곳에 모은 편의점 행사</p>
-              <p class="showcase__lede">
-                CU · GS25 · 7‑Eleven · emart24 행사가 채널마다 갈라져 있어,<br />
-                혜택을 한곳에서 비교하기 어렵다.
-              </p>
-              <p class="showcase__lede showcase__lede--soft">
-                브랜드마다 크롤러를 두고 한 스키마로 모은 뒤,<br />
-                Streamlit에서 비교·추천·지도·챗봇까지 이어 준다.
-              </p>
-              <p class="showcase__flow" aria-label="파이프라인">
-                <span>수집</span><span class="showcase__flow-sep" aria-hidden="true">→</span>
-                <span>정제</span><span class="showcase__flow-sep" aria-hidden="true">→</span>
-                <span>분류</span><span class="showcase__flow-sep" aria-hidden="true">→</span>
-                <span>대시보드</span>
-              </p>
-              <ul class="showcase__points">
-                <li>4사 행사 상품을 공통 카탈로그로 통합</li>
-                <li>브랜드 비교 · 예산·테마 큐레이션</li>
-                <li>매일 배치로 카탈로그 자동 갱신</li>
-              </ul>
-            </div>
-
-            <aside class="showcase__aside" aria-label="프로젝트 요약">
-              <dl class="showcase__meta showcase__meta--stack">
-                <div>
-                  <dt>개발 인원</dt>
-                  <dd>6명</dd>
-                </div>
-                <div>
-                  <dt>개발 기간</dt>
-                  <dd>5일</dd>
-                </div>
-              </dl>
-
-              <div class="showcase__aside-block">
-                <p class="showcase__aside-label">커버 브랜드</p>
-                <ul class="showcase__brands">
-                  <li>CU</li>
-                  <li>GS25</li>
-                  <li>7‑Eleven</li>
-                  <li>emart24</li>
-                </ul>
-              </div>
-
-              <div class="showcase__aside-block">
-                <p class="showcase__aside-label">한눈에</p>
-                <ul class="showcase__facts">
-                  <li><span class="showcase__fact-n">04</span><span class="showcase__fact-t">브랜드 수집</span></li>
-                  <li><span class="showcase__fact-n">09</span><span class="showcase__fact-t">대시보드 메뉴</span></li>
-                  <li><span class="showcase__fact-n">06:00</span><span class="showcase__fact-t">매일 배치 갱신</span></li>
-                </ul>
-              </div>
-            </aside>
           </div>
         </section>
       </main>
