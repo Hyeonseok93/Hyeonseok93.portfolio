@@ -89,13 +89,31 @@
 }
 
 .showcase__copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(10.5rem, 0.85fr);
+  gap: clamp(1rem, 2.4vw, 1.85rem);
+  align-items: center;
+  min-height: 0;
+  padding: 0.15rem 0.1rem 0.15rem 0.35rem;
+  border-left: 1px solid rgba(236, 233, 227, 0.12);
+  padding-left: clamp(0.95rem, 2vw, 1.4rem);
+}
+
+.showcase__story {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: clamp(0.65rem, 1.5vh, 1rem);
-  padding: 0.15rem 0.1rem 0.15rem 0.35rem;
-  border-left: 1px solid rgba(236, 233, 227, 0.12);
-  padding-left: clamp(0.95rem, 2vw, 1.4rem);
+  min-width: 0;
+}
+
+.showcase__aside {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.4vh, 1.45rem);
+  min-width: 0;
+  padding-left: clamp(0.85rem, 1.8vw, 1.2rem);
+  border-left: 1px solid rgba(236, 233, 227, 0.1);
 }
 
 .showcase__kicker {
@@ -113,6 +131,11 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.55rem 0.85rem;
   margin: 0;
+}
+
+.showcase__meta--stack {
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
 
 .showcase__meta > div {
@@ -134,10 +157,75 @@
 
 .showcase__meta dd {
   margin: 0;
-  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   color: var(--ink);
+}
+
+.showcase__aside-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.showcase__aside-label {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 233, 227, 0.45);
+}
+
+.showcase__brands {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.showcase__brands li {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.92rem, 1.35vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(236, 233, 227, 0.82);
+}
+
+.showcase__facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.showcase__facts li {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: baseline;
+}
+
+.showcase__fact-n {
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--copper);
+}
+
+.showcase__fact-t {
+  font-size: clamp(0.84rem, 1.15vw, 0.95rem);
+  color: rgba(236, 233, 227, 0.72);
+  word-break: keep-all;
 }
 
 .showcase__lede {
@@ -277,9 +365,17 @@
   }
   .showcase__copy {
     position: static;
+    display: flex;
+    flex-direction: column;
     border-left: none;
     border-top: 1px solid rgba(236, 233, 227, 0.12);
     padding: 1.1rem 0 0;
+  }
+  .showcase__aside {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(236, 233, 227, 0.1);
+    padding-top: 1rem;
   }
   .why--3 {
     grid-template-columns: 1fr;
