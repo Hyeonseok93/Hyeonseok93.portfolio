@@ -1,12 +1,10 @@
 /**
  * Export every portfolio slide as one 1920x1080 page in a single PDF.
- * Deck order follows site-footer numbering (Cover -> ... -> Connect).
- *
  * Usage: npm run export:pdf
  */
 import { createServer } from "node:http";
 import { mkdir, writeFile } from "node:fs/promises";
-import { createReadStream, existsSync } from "node:fs";
+import { createReadStream, existsSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -16,7 +14,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "export");
 const OUT_PDF = path.join(OUT_DIR, "portfolio-deck-1920x1080.pdf");
-
 const WIDTH = 1920;
 const HEIGHT = 1080;
 const SCALE = 2;
@@ -64,7 +61,8 @@ function startStaticServer() {
       const urlPath = decodeURIComponent((req.url || "/").split("?")[0]);
       const rel = urlPath === "/" ? "/index.html" : urlPath;
       const filePath = path.resolve(ROOT, "." + rel.replace(/\\/g, "/"));
-      if (!filePath.startsWith(ROOT) || !existsSync(filePath)) {
+      const rootLower = ROOT.toLowerCase();
+      if (!filePath.toLowerCase().startsWith(rootLower) || !existsSync(filePath) || !statSync(filePath).isFile()) {
         res.writeHead(404);
         res.end("Not found");
         return;
@@ -74,8 +72,7 @@ function startStaticServer() {
       createReadStream(filePath).pipe(res);
     });
     server.listen(0, "127.0.0.1", () => {
-      const { port } = server.address();
-      resolve({ server, base: `http://127.0.0.1:${port}` });
+      resolve({ server, base: `http://127.0.0.1:${server.address().port}` });
     });
   });
 }
@@ -85,74 +82,61 @@ async function capturePage(browser, base, file) {
     viewport: { width: WIDTH, height: HEIGHT },
     deviceScaleFactor: SCALE,
   });
-
-  await page.goto(`${base}/${file}`, { waitUntil: "networkidle", timeout: 60000 });
+  await page.emulateMedia({ media: "screen" });
+  await page.goto(`${base}/${file}`, { waitUntil: "load", timeout: 90000 });
   await page.waitForFunction(() => document.fonts && document.fonts.status === "loaded").catch(() => {});
   await page.addStyleTag({
     content: `
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html, body { width: ${WIDTH}px !important; height: ${HEIGHT}px !important; max-height: ${HEIGHT}px !important; overflow: hidden !important; }
+      .stage, .frame, .board, .topbar, .identity, .showcase, .shot, .paper-hero, .works, .why__item, .leaf, .work, site-nav, site-footer {
+        opacity: 1 !important; transform: none !important;
       }
-      html, body {
-        width: ${WIDTH}px !important;
-        height: ${HEIGHT}px !important;
-        max-height: ${HEIGHT}px !important;
-        overflow: hidden !important;
-      }
-      .stage, .frame, .board {
-        width: 100% !important;
-        height: 100% !important;
-      }
-      [style*="opacity"], .topbar, .identity, .showcase, .shot,
-      .paper-hero, .works, .why__item, .leaf, .work {
-        opacity: 1 !important;
-        transform: none !important;
-      }
+      .stage, .frame, .board { width: 100% !important; height: 100% !important; max-height: 100% !important; overflow: hidden !important; }
     `,
   });
-  await page.waitForTimeout(300);
-
-  const png = await page.screenshot({ type: "png", fullPage: false });
+  await page.evaluate(() => {
+    document.querySelectorAll("*").forEach((el) => {
+      const s = getComputedStyle(el);
+      if (Number(s.opacity) < 0.05) el.style.setProperty("opacity", "1", "important");
+      if (s.transform && s.transform !== "none") el.style.setProperty("transform", "none", "important");
+    });
+  });
+  await new Promise((r) => setTimeout(r, 700));
+  const png = await page.screenshot({ type: "png", fullPage: false, animations: "disabled" });
   await page.close();
+  if (png.length < 30000) throw new Error(`Blank-looking capture for ${file} (${png.length} bytes)`);
   return png;
 }
 
 async function main() {
-  if (PAGES.length !== 19) {
-    throw new Error(`Expected 19 pages, got ${PAGES.length}`);
-  }
-
+  if (PAGES.length !== 19) throw new Error("Expected 19 pages");
   await mkdir(OUT_DIR, { recursive: true });
   const { server, base } = await startStaticServer();
-  console.log(`Serving ${ROOT} at ${base}`);
-
+  console.log("Serving", ROOT, "at", base);
   const browser = await chromium.launch({ headless: true });
   const pdf = await PDFDocument.create();
-
   try {
     for (let i = 0; i < PAGES.length; i++) {
       const file = PAGES[i];
       process.stdout.write(`[${String(i + 1).padStart(2, "0")}/19] ${file} ... `);
       const png = await capturePage(browser, base, file);
       const image = await pdf.embedPng(png);
-      const page = pdf.addPage([WIDTH, HEIGHT]);
-      page.drawImage(image, { x: 0, y: 0, width: WIDTH, height: HEIGHT });
-      console.log("ok");
+      const p = pdf.addPage([WIDTH, HEIGHT]);
+      p.drawImage(image, { x: 0, y: 0, width: WIDTH, height: HEIGHT });
+      console.log("ok", Math.round(png.length / 1024) + "KB");
     }
   } finally {
     await browser.close();
     server.close();
   }
-
   const bytes = await pdf.save();
   await writeFile(OUT_PDF, bytes);
-  console.log(`\nWrote ${OUT_PDF}`);
-  console.log(`Pages: ${pdf.getPageCount()} · ${WIDTH}x${HEIGHT} · ${(bytes.length / 1024 / 1024).toFixed(1)} MB`);
+  console.log("\nWrote", OUT_PDF);
+  console.log("Pages:", pdf.getPageCount(), "size:", (bytes.length / 1024 / 1024).toFixed(1) + "MB");
 }
 
-main().catch((err) => {
-  console.error(err);
+main().catch((e) => {
+  console.error(e);
   process.exit(1);
 });
