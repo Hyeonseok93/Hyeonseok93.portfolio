@@ -83,11 +83,6 @@ site-nav {
   margin-bottom: clamp(1.15rem, 3vh, 2rem);
 }
 
-site-nav:has(.nav-cluster.is-open) {
-  /* room for Works 2-line submenu without covering content */
-  margin-bottom: clamp(2.6rem, 5.5vh, 3.4rem);
-}
-
 .topbar {
   display: flex;
   align-items: flex-start;
@@ -141,22 +136,17 @@ site-nav:has(.nav-cluster.is-open) {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .nav-cluster__sub {
-  position: absolute;
-  top: calc(100% + 0.2rem);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
   display: none;
   flex-direction: column;
-  align-items: center;
-  gap: 0.22rem;
+  align-items: flex-end;
+  gap: 0.28rem;
+  margin-top: 0.35rem;
   white-space: nowrap;
   pointer-events: auto;
-  padding: 0.05rem 0.25rem 0.1rem;
 }
 
 .nav-cluster.is-open .nav-cluster__sub {
