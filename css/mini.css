@@ -64,34 +64,34 @@
 
 .showcase__visuals {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   align-self: stretch;
   overflow: hidden;
   gap: clamp(0.4rem, 0.9vw, 0.7rem);
   height: 100%;
   min-height: 0;
-  max-width: min(42vw, 34rem);
+  max-width: min(46vw, 38rem);
 }
 
 .showcase__frame {
   margin: 0;
-  height: 100%;
+  height: auto;
+  max-height: 100%;
   width: auto;
   max-width: 100%;
   border: 1px solid rgba(236, 233, 227, 0.1);
   background: transparent;
   overflow: hidden;
   line-height: 0;
-  flex: 1 1 0;
+  flex: 0 1 auto;
   min-width: 0;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
+  display: block;
 }
 
 .showcase__frame img {
   display: block;
-  height: 100%;
+  height: auto;
+  max-height: 100%;
   width: auto;
   max-width: 100%;
   object-fit: contain;
