@@ -41,7 +41,7 @@
   inset: 0;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.8fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.7fr);
   gap: clamp(1.1rem, 2.8vw, 2.4rem);
   align-items: stretch;
   min-height: 0;
@@ -71,14 +71,26 @@
   min-height: 0;
   border: 1px solid rgba(236, 233, 227, 0.1);
   background: #050607;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 137, 74, 0.45) transparent;
+}
+
+.showcase__frame::-webkit-scrollbar {
+  width: 4px;
+}
+
+.showcase__frame::-webkit-scrollbar-thumb {
+  background: rgba(212, 137, 74, 0.4);
+  border-radius: 999px;
 }
 
 .showcase__frame img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   object-position: top center;
 }
 
@@ -86,7 +98,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(0.7rem, 1.6vh, 1.05rem);
+  gap: clamp(0.65rem, 1.5vh, 1rem);
   padding: 0.15rem 0.1rem 0.15rem 0.35rem;
   border-left: 1px solid rgba(236, 233, 227, 0.12);
   padding-left: clamp(0.95rem, 2vw, 1.4rem);
@@ -100,6 +112,38 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--copper);
+}
+
+.showcase__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 0.85rem;
+  margin: 0;
+}
+
+.showcase__meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.showcase__meta dt {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 233, 227, 0.45);
+}
+
+.showcase__meta dd {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
 .showcase__lede {
@@ -224,10 +268,10 @@
   }
   .showcase__visuals {
     height: auto;
-    min-height: 58vw;
+    min-height: 0;
   }
   .showcase__frame {
-    height: min(68vw, 28rem);
+    height: min(78vw, 34rem);
   }
   .showcase__copy {
     border-left: none;
