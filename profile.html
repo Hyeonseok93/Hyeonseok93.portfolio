@@ -132,10 +132,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      gap: clamp(0.45rem, 1.4vh, 0.9rem);
     }
 
     .fit__inner {
       width: 100%;
+      min-height: 0;
+      flex: 1 1 auto;
       transform-origin: top center;
       will-change: transform;
     }
@@ -413,14 +416,14 @@
     
     /* Journey timeline 2012–2026 — single bar like sketch */
     .journey {
-      margin-top: clamp(0.45rem, 1.4vh, 0.9rem);
+      margin-top: 0;
       padding-top: 0.8rem;
       border-top: 1px solid var(--line);
       opacity: 0;
       transform: translateY(12px);
       animation: rise 0.9s var(--ease) 0.55s forwards;
       min-width: 0;
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
 
     .journey__head {
@@ -739,6 +742,21 @@
         overflow: visible;
         transform: none !important;
         width: 100% !important;
+        margin-bottom: 0 !important;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .journey {
+        flex: none;
+      }
+
+      .journey-viewport {
+        overflow: visible;
       }
 
       .main {
@@ -944,6 +962,7 @@
             </div>
           </div>
         </div>
+          </div>
 
         <section class="journey" aria-label="2012부터 2026까지의 여정">
           <div class="journey__head">
@@ -1031,8 +1050,6 @@
             </div>
           </div>
         </section>
-
-          </div>
         </div>
 
         <site-footer next-href="works.html" next-label="Works →" align="end"></site-footer>
@@ -1086,22 +1103,19 @@
 
       function fitJourney() {
         if (!stage || !viewport) return;
-        if (!mq.matches) {
-          stage.style.width = "100%";
-          stage.style.transform = "none";
-          viewport.style.height = "auto";
-          return;
-        }
-        stage.style.width = baseWidth + "px";
         const available = viewport.clientWidth;
+        if (!available) return;
+
+        stage.style.width = baseWidth + "px";
+        stage.style.transformOrigin = "left top";
         const scale = Math.min(1, available / baseWidth);
         stage.style.transform = "scale(" + scale + ")";
-        viewport.style.height = (stage.offsetHeight * scale) + "px";
+        viewport.style.height = Math.ceil(stage.offsetHeight * scale) + "px";
       }
 
       function fitAll() {
-        fitJourney();
         fitPanel();
+        fitJourney();
       }
 
       function onResize() {

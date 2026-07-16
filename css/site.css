@@ -80,7 +80,11 @@ site-footer {
 site-nav {
   position: relative;
   z-index: 40;
-  /* room for Works 2-line submenu without pushing it down via padding */
+  margin-bottom: clamp(1.15rem, 3vh, 2rem);
+}
+
+site-nav:has(.nav-cluster.is-open) {
+  /* room for Works 2-line submenu without covering content */
   margin-bottom: clamp(2.6rem, 5.5vh, 3.4rem);
 }
 
@@ -146,13 +150,17 @@ site-nav {
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   gap: 0.22rem;
   white-space: nowrap;
   pointer-events: auto;
   padding: 0.05rem 0.25rem 0.1rem;
+}
+
+.nav-cluster.is-open .nav-cluster__sub {
+  display: flex;
 }
 
 .nav-cluster__row {
