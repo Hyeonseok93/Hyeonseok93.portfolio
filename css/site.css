@@ -212,8 +212,22 @@ site-nav {
 }
 
 @media (max-width: 640px) {
+  .topbar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.65rem 0.75rem;
+  }
+
+  .back {
+    font-size: 0.78rem;
+    max-width: 100%;
+    line-height: 1.35;
+  }
+
   .nav-tabs {
     gap: 0.25rem 0.7rem;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .nav-tabs > a,
@@ -237,6 +251,16 @@ site-nav {
 
   .nav-cluster__row--group a {
     font-size: 0.64rem;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    gap: 0.55rem 0.75rem;
+  }
+
+  .meta {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
   }
 }
 
