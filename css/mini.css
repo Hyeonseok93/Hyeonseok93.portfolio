@@ -120,8 +120,12 @@
   min-height: 1.55rem;
 }
 
-.showcase__specs-row--role {
+.showcase__specs > div.showcase__specs-row--role {
   align-items: start;
+}
+
+.showcase__specs-row--role dt {
+  padding-top: 0.12em;
 }
 
 .showcase__specs dt {
