@@ -71,27 +71,18 @@
   min-height: 0;
   border: 1px solid rgba(236, 233, 227, 0.1);
   background: #050607;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(212, 137, 74, 0.45) transparent;
-}
-
-.showcase__frame::-webkit-scrollbar {
-  width: 4px;
-}
-
-.showcase__frame::-webkit-scrollbar-thumb {
-  background: rgba(212, 137, 74, 0.4);
-  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .showcase__frame img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  object-position: top center;
+  object-position: center top;
 }
 
 .showcase__copy {
@@ -271,7 +262,10 @@
     min-height: 0;
   }
   .showcase__frame {
-    height: min(78vw, 34rem);
+    height: min(72vw, 32rem);
+  }
+  .showcase__frame img {
+    object-position: center top;
   }
   .showcase__copy {
     border-left: none;
