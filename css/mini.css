@@ -37,24 +37,22 @@
 
 /* Mini cover: twin tall shots + intro copy */
 .showcase {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.7fr);
   gap: clamp(1.1rem, 2.8vw, 2.4rem);
-  align-items: stretch;
+  align-items: start;
   min-height: 0;
-  padding: clamp(5.75rem, 12.5vh, 7.75rem) 0 clamp(0.65rem, 1.8vh, 1.25rem);
+  margin-top: clamp(5.75rem, 12.5vh, 7.75rem);
+  padding: 0 0 clamp(0.65rem, 1.8vh, 1.25rem);
   opacity: 0;
   transform: translateY(14px);
   animation: rise 0.85s var(--ease) 0.3s forwards;
-  pointer-events: none;
 }
 
 .showcase__visuals,
 .showcase__copy {
-  pointer-events: auto;
   min-height: 0;
 }
 
@@ -62,37 +60,33 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(0.55rem, 1.2vw, 0.9rem);
-  height: 100%;
+  align-items: start;
 }
 
 .showcase__frame {
   margin: 0;
-  height: 100%;
-  min-height: 0;
   border: 1px solid rgba(236, 233, 227, 0.1);
-  background: #050607;
+  background: transparent;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 0;
 }
 
 .showcase__frame img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center top;
+  height: auto;
 }
 
 .showcase__copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: clamp(0.65rem, 1.5vh, 1rem);
   padding: 0.15rem 0.1rem 0.15rem 0.35rem;
   border-left: 1px solid rgba(236, 233, 227, 0.12);
   padding-left: clamp(0.95rem, 2vw, 1.4rem);
+  position: sticky;
+  top: 5.5rem;
 }
 
 .showcase__kicker {
@@ -255,19 +249,18 @@
     display: flex;
     flex-direction: column;
     gap: 1.35rem;
-    padding: 1.25rem 0 0;
+    margin-top: 1.25rem;
+    padding: 0;
   }
   .showcase__visuals {
     height: auto;
     min-height: 0;
   }
   .showcase__frame {
-    height: min(72vw, 32rem);
-  }
-  .showcase__frame img {
-    object-position: center top;
+    height: auto;
   }
   .showcase__copy {
+    position: static;
     border-left: none;
     border-top: 1px solid rgba(236, 233, 227, 0.12);
     padding: 1.1rem 0 0;
@@ -385,6 +378,32 @@
 
 .identity__row .techs {
   margin-top: 0;
+}
+
+/* Cover with natural-height shots: page scrolls */
+body.page-mini-cover {
+  overflow: auto;
+}
+
+body.page-mini-cover .stage {
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+}
+
+body.page-mini-cover .frame {
+  height: auto;
+  min-height: 100dvh;
+}
+
+body.page-mini-cover .board {
+  height: auto;
+  position: relative;
+}
+
+body.page-mini-cover .identity,
+body.page-mini-cover .identity--static {
+  position: relative;
 }
 
 /* Detail page: allow scroll when three columns get dense */
