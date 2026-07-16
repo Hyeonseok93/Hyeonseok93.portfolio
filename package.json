@@ -1,0 +1,12 @@
+{
+  "name": "hyeonseok93-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "export:pdf": "node scripts/export-deck-pdf.mjs"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.52.0"
+  }
+}
