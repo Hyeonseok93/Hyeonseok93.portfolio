@@ -222,11 +222,11 @@
 .showcase__env-label {
   margin: 0;
   font-family: "Outfit", sans-serif;
-  font-size: clamp(0.78rem, 1.15vw, 0.86rem);
+  font-size: clamp(1.05rem, 1.7vw, 1.28rem);
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(236, 233, 227, 0.52);
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--copper);
 }
 
 .env-rows {
