@@ -540,14 +540,16 @@
   }
 
   .showcase__visuals {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 
   .showcase__frame {
-    max-width: none;
-    width: 100%;
-    flex: 0 0 auto;
+    max-width: calc(50% - 0.3rem);
+    width: auto;
+    flex: 1 1 0;
   }
 
   .showcase__frame img {
