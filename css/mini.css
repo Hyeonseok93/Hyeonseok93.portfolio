@@ -327,6 +327,11 @@
   padding: 0.22rem 0.45rem 0.22rem 0.3rem;
 }
 
+.showcase--brief .tech {
+  font-size: 0.64rem;
+  padding: 0.25rem 0.5rem;
+}
+
 .why--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 3.5vw, 2.75rem);
