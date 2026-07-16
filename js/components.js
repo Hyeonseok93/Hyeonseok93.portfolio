@@ -39,9 +39,10 @@
         else section = "works";
       }
 
-      const link = (id, href, label) => {
+      const link = (id, href, label, extraClass = "") => {
         const active = id === section;
-        const cls = active ? ' class="is-active"' : "";
+        const classes = [extraClass, active ? "is-active" : ""].filter(Boolean).join(" ");
+        const cls = classes ? ` class="${classes}"` : "";
         const aria = active ? ' aria-current="page"' : "";
         return `<a href="${href}"${cls}${aria}>${label}</a>`;
       };
@@ -77,7 +78,108 @@
         link("connect", "connect.html", "Connect"),
       ].join("");
 
-      this.innerHTML = `<div class="topbar">${backHtml}<nav class="nav-tabs" aria-label="Sections">${tabs}</nav></div>`;
+      const drawerLinks = [
+        link("cover", "index.html", "Cover", "nav-drawer__link"),
+        link("profile", "profile.html", "Profile", "nav-drawer__link"),
+        link("works", "works.html", "Works", "nav-drawer__link"),
+        `<div class="nav-drawer__group">
+          <p class="nav-drawer__group-label">Research <span aria-hidden="true">—</span></p>
+          ${link("paper", "papers.html", "Papers", "nav-drawer__link nav-drawer__link--sub")}
+        </div>`,
+        `<div class="nav-drawer__group">
+          <p class="nav-drawer__group-label">Rookies 5 <span aria-hidden="true">—</span></p>
+          ${link("mini", "mini1.html", "Mini", "nav-drawer__link nav-drawer__link--sub")}
+          ${link("final", "final1.html", "Final", "nav-drawer__link nav-drawer__link--sub")}
+        </div>`,
+        link("connect", "connect.html", "Connect", "nav-drawer__link"),
+      ].join("");
+
+      const drawerId = "site-nav-drawer";
+      this.innerHTML = `
+        <div class="topbar">
+          ${backHtml}
+          <nav class="nav-tabs" aria-label="Sections">${tabs}</nav>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="${drawerId}" aria-label="메뉴 열기">
+            <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="nav-toggle__label">Menu</span>
+          </button>
+        </div>
+        <button class="nav-drawer__backdrop" type="button" tabindex="-1" aria-label="메뉴 닫기" aria-hidden="true"></button>
+        <aside class="nav-drawer" id="${drawerId}" aria-label="전체 메뉴" aria-hidden="true">
+          <div class="nav-drawer__head">
+            <p>Navigation</p>
+            <button class="nav-drawer__close" type="button" aria-label="메뉴 닫기">×</button>
+          </div>
+          <nav class="nav-drawer__nav" aria-label="모바일 섹션 메뉴">${drawerLinks}</nav>
+        </aside>`;
+
+      const toggle = this.querySelector(".nav-toggle");
+      const drawer = this.querySelector(".nav-drawer");
+      const backdrop = this.querySelector(".nav-drawer__backdrop");
+      const closeButton = this.querySelector(".nav-drawer__close");
+      const desktopMedia = window.matchMedia("(min-width: 1101px)");
+      let isOpen = false;
+
+      const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+      const closeDrawer = (restoreFocus = true) => {
+        if (!isOpen) return;
+        isOpen = false;
+        drawer.classList.remove("is-open");
+        backdrop.classList.remove("is-visible");
+        drawer.setAttribute("aria-hidden", "true");
+        backdrop.setAttribute("aria-hidden", "true");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "메뉴 열기");
+        document.documentElement.classList.remove("nav-drawer-open");
+        if (restoreFocus) toggle.focus();
+      };
+
+      const openDrawer = () => {
+        if (isOpen) return;
+        isOpen = true;
+        drawer.classList.add("is-open");
+        backdrop.classList.add("is-visible");
+        drawer.setAttribute("aria-hidden", "false");
+        backdrop.setAttribute("aria-hidden", "false");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "메뉴 닫기");
+        document.documentElement.classList.add("nav-drawer-open");
+        requestAnimationFrame(() => closeButton.focus());
+      };
+
+      toggle.addEventListener("click", () => (isOpen ? closeDrawer() : openDrawer()));
+      closeButton.addEventListener("click", () => closeDrawer());
+      backdrop.addEventListener("click", () => closeDrawer());
+      drawer.querySelectorAll("a").forEach((item) => {
+        item.addEventListener("click", () => closeDrawer(false));
+      });
+
+      this.addEventListener("keydown", (event) => {
+        if (!isOpen) return;
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeDrawer();
+          return;
+        }
+        if (event.key !== "Tab") return;
+
+        const focusable = [...drawer.querySelectorAll(focusableSelector)];
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      desktopMedia.addEventListener("change", (event) => {
+        if (event.matches) closeDrawer(false);
+      });
     }
   }
 

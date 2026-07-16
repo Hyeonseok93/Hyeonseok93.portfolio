@@ -731,6 +731,11 @@
         height: auto;
         overflow: visible;
         padding: clamp(1.25rem, 4vw, 2rem);
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .panel > * {
+        min-width: 0;
       }
 
       .fit,
@@ -796,21 +801,66 @@
       }
     }
 
+    /* Tablet: preserve the portrait/content split without desktop scaling */
+    @media (min-width: 641px) and (max-width: 1100px) {
+      .shell {
+        grid-template-columns: minmax(17rem, 36vw) minmax(0, 1fr);
+        align-items: start;
+      }
+
+      .portrait {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        aspect-ratio: 4 / 5;
+        align-self: start;
+      }
+
+      .portrait img {
+        object-fit: cover;
+        object-position: center 18%;
+      }
+
+      .panel {
+        min-width: 0;
+      }
+    }
+
     /* Mobile */
     @media (max-width: 640px) {
       .portrait {
-        max-height: none;
+        max-height: 26rem;
         aspect-ratio: auto;
-        height: auto;
-        width: min(100%, 420px);
-        margin: 0 auto;
+        height: clamp(20rem, 49vh, 26rem);
+        width: 100%;
+        margin: 0;
       }
 
       .portrait img {
         width: 100%;
-        height: auto;
-        object-fit: contain;
-        object-position: center top;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 16%;
+      }
+
+      .profile-nav {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        z-index: 100;
+        margin-bottom: 0;
+      }
+
+      .profile-nav .back {
+        padding: 0.65rem 0.75rem;
+        border: 1px solid rgba(236, 233, 227, 0.16);
+        border-radius: 0.2rem;
+        background: rgba(10, 11, 13, 0.72);
+        color: var(--ink);
+        backdrop-filter: blur(0.75rem);
       }
 
       .panel {
@@ -876,7 +926,7 @@
       </aside>
 
       <div class="panel">
-        <site-nav back-href="index.html" back-label="← Cover"></site-nav>
+        <site-nav class="profile-nav" back-href="index.html" back-label="← Cover"></site-nav>
 
         <div class="fit" data-fit>
           <div class="fit__inner" data-fit-inner>
