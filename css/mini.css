@@ -884,6 +884,10 @@
 /* Detail decks are content-tall; trim spacing so short desktop
    viewports (≈900px on 1080p) don't trigger a tiny scrollbar. */
 @media (min-width: 1101px) {
+  .page-mini-detail .identity .lede {
+    max-width: none;
+    white-space: nowrap;
+  }
   .page-mini-detail .deck { padding-top: 0.7rem; }
   .page-mini-detail .why__item { gap: 0.55rem; }
   .page-mini-detail .why__t { padding-bottom: 0.55rem; }
