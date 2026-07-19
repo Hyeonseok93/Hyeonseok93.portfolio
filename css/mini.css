@@ -872,13 +872,26 @@
   position: relative;
   inset: auto;
   display: block;
-  padding: 1.35rem 0 0.5rem;
+  padding: 0.85rem 0 0.4rem;
 }
 
 .page-mini-detail .why--dense .why__body p,
 .page-mini-detail .why__list li {
   font-size: clamp(0.9rem, 1.2vw, 1.02rem);
-  line-height: 1.62;
+  line-height: 1.58;
+}
+
+/* Detail decks are content-tall; trim spacing so short desktop
+   viewports (≈900px on 1080p) don't trigger a tiny scrollbar. */
+@media (min-width: 1101px) {
+  .page-mini-detail .deck { padding-top: 0.7rem; }
+  .page-mini-detail .why__item { gap: 0.55rem; }
+  .page-mini-detail .why__t { padding-bottom: 0.55rem; }
+  .page-mini-detail .why--dense .why__body { gap: 0.6rem; }
+  .page-mini-detail .why__table th,
+  .page-mini-detail .why__table td { padding: 0.36rem 0; }
+  .page-mini-detail .why__table tbody tr:first-child th,
+  .page-mini-detail .why__table tbody tr:first-child td { padding-top: 0.46rem; }
 }
 
 .why__table {

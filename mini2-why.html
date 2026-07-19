@@ -22,13 +22,127 @@
         <header class="identity">
           <h1 class="name">MINI2 - MATE</h1>
           <div class="accent" aria-hidden="true"></div>
+          <p class="lede">백엔드가 늦어도 UI 개발을 멈추지 않고, 세션 만료와 API 스펙 차이를 프론트 계층에서 흡수했다.</p>
         </header>
 
         <section class="deck" aria-label="MINI2 - MATE">
-          <div class="pending-card">
-            <p class="pending-card__tag">Coming soon</p>
-            <p class="pending-card__text">이 페이지는 작성 중입니다.</p>
-          </div>
+          <ol class="why why--3 why--dense">
+            <li class="why__item">
+              <p class="why__n">01</p>
+              <h2 class="why__t">MSW 병렬 개발</h2>
+              <div class="why__body">
+                <p>백엔드가 완성되기 전에도 화면과 사용자 흐름을 먼저 만들 수 있도록, 실제 서버와 똑같은 요청 주소·응답 형태를 흉내 내는 가짜 서버(MSW)를 브라우저 안에 두었다. 화면은 진짜든 가짜든 같은 방식으로 데이터를 요청하기 때문에, 실제 서버로 바꿀 때 연동 코드를 다시 짜지 않아도 된다.</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">전환</th>
+                      <td>개발 환경에서 모킹을 켰을 때만 가짜 서버가 동작한다. 미리 정의하지 않은 요청은 실제 서버로 그대로 흘려보내고, 운영 빌드에는 모킹 코드가 아예 포함되지 않는다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">범위</th>
+                      <td>로그인·아이디/전화번호 중복 확인·프로필 수정부터 모집글 작성·수정·삭제, 지원 수락/거절, 팀 게시판·댓글까지 핵심 흐름을 실제 API와 같은 주소 기준으로 구성했다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">재현</th>
+                      <td>성공뿐 아니라 빈 목록·권한 없음·중복·서버 오류 같은 예외 상황도 미리 흉내 내, 로딩·에러 화면과 사용자 안내 문구를 실제 연동 전에 검증했다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>프론트와 백엔드가 서로를 기다리지 않고 동시에 개발했고, 연동 단계에서는 설정값 하나만 바꿔 화면 수정 없이 실제 서버로 전환했다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="why__item">
+              <p class="why__n">02</p>
+              <h2 class="why__t">Silent JWT 갱신</h2>
+              <div class="why__body">
+                <p>로그인 토큰이 만료돼도 사용자를 바로 로그아웃시키지 않고, 보안 쿠키에 담긴 재발급 토큰으로 조용히 새 토큰을 받은 뒤 실패했던 요청을 자동으로 다시 보낸다. 동시에 몰린 요청과 탈취된 토큰 재사용까지 함께 처리한다.</p>
+                <p class="why__flow">로그인 토큰 만료 → 자동 갱신 → 대기 요청 재개 → 끊겼던 요청 재전송</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">분리</th>
+                      <td>로그인 확인용 토큰은 요청마다 실어 보내고, 재발급용 토큰은 자바스크립트가 읽지 못하는 보안 쿠키에만 담아 노출과 탈취 위험을 줄인다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">동시성</th>
+                      <td>여러 요청이 동시에 만료를 만나도 재발급은 한 번만 요청한다. 나머지 요청은 잠시 줄 세워 두었다가 새 토큰이 나오면 순서대로 다시 보낸다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">회전</th>
+                      <td>서버는 재발급 토큰을 원문 그대로 저장하지 않고 알아볼 수 없게 변환해 보관한다. 갱신할 때마다 토큰을 새것으로 바꾸고, 이미 쓴 토큰이 다시 들어오면 탈취로 보고 관련 토큰을 모두 무효화한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">실패</th>
+                      <td>갱신이 안 되거나 토큰이 유효하지 않으면 로그인 상태를 지우고 로그인 화면으로 보내, 끝없이 재시도하지 않게 한다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="why__item">
+              <p class="why__n">03</p>
+              <h2 class="why__t">API 응답 표준화</h2>
+              <div class="why__body">
+                <p>API마다 데이터 이름과 목록 형식이 달라도 화면이 이를 직접 구분하지 않도록, 화면과 API 사이에 변환 계층을 두어 하나의 내부 규격으로 맞췄다. 화면은 API 형식이 아닌 공통 데이터 구조만 사용하므로, 응답이 바뀌어도 변환 로직 한곳만 고치면 된다.</p>
+                <p class="why__flow">API 응답 → 변환 계층에서 표준화 → 화면 공통 규격</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">이름</th>
+                      <td>같은 정보를 백엔드마다 다른 이름으로 줘도(사용자 번호, 프로필 이미지 주소 등) 화면에서는 하나의 이름으로 통일해 쓴다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">목록</th>
+                      <td>목록을 담아 주는 형식이 응답마다 달라도 같은 목록으로 읽어 들이고, 전체 페이지 수 같은 정보도 형식에 상관없이 인식한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">검색</th>
+                      <td>화면의 한글 분류(프로젝트·스터디)를 서버가 이해하는 값으로 바꿔 보내고, 검색어·분류·정렬이 바뀌면 첫 페이지부터 다시 불러와 엉뚱한 빈 결과를 막는다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">상태</th>
+                      <td>서버 마감, 정원 충족, 마감일 경과는 마감으로 처리한다. 한 자리만 남거나 마감 3일 이내면 마감임박, 나머지는 모집중으로 계산한다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+          </ol>
         </section>
       </main>
 
