@@ -337,11 +337,11 @@
 
 /* MINI2: service capabilities, not MINI1's data pipeline */
 .showcase--mate .showcase__specs {
-  flex: 1.12 1 0;
+  flex: 0.98 1 0;
 }
 
 .showcase--mate .showcase__story {
-  flex: 0.72 1 0;
+  flex: 0.86 1 0;
 }
 
 .showcase--mate .env-row {
@@ -549,6 +549,41 @@
   .role-list li {
     font-size: clamp(0.88rem, 2.6vw, 1rem);
     line-height: 1.4;
+  }
+
+  .role-list li {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  .role-entry {
+    display: flex;
+    flex: 1 1 0;
+    align-items: baseline;
+    min-width: 0;
+  }
+
+  .role-desc {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .role-pct,
+  .role-separator {
+    flex: 0 0 auto;
+  }
+
+  .role-pct {
+    margin-left: 0.24em;
+  }
+
+  .role-separator {
+    margin-right: 0.35em;
   }
 
   .showcase__story {
