@@ -9,32 +9,178 @@
   <link rel="stylesheet" href="css/papers.css" />
   <link rel="stylesheet" href="css/mini.css" />
   <script src="js/components.js" defer></script>
+  <script src="js/slide-fit.js" defer></script>
 </head>
-<body>
+<body class="mini2-page">
   <div class="stage">
     <div class="stage__bg" aria-hidden="true"></div>
     <div class="stage__grain" aria-hidden="true"></div>
-    <div class="frame">
+    <div
+      class="frame"
+      data-slide-fit
+      data-fit-width="1920"
+      data-fit-height="913"
+      data-fit-min-width="1101"
+      data-fit-min-height="821"
+    >
       <site-nav back-href="mini1-why.html" back-label="← MINI1 - CVS Event Comparator"></site-nav>
 
       <main class="board">
         <header class="identity">
-          <h1 class="name">MINI2 - MATE</h1>
-          <div class="accent" aria-hidden="true"></div>
-          <div class="techs" aria-label="기술 스택">
-            <tech-badge icon="spring" label="Spring Boot"></tech-badge>
-            <tech-badge icon="java" label="Java"></tech-badge>
-            <tech-badge icon="react" label="React"></tech-badge>
-            <tech-badge icon="javascript" label="JavaScript"></tech-badge>
-            <tech-badge icon="mariadb" label="MariaDB"></tech-badge>
+          <div class="identity__row">
+            <h1 class="name">MINI2 - MATE</h1>
+            <div class="out-links" aria-label="외부 링크">
+              <a class="out-link" href="https://github.com/Hyeonseok93/SK-Rookies5-MINI2_MATE" target="_blank" rel="noopener noreferrer">
+                <svg class="out-link__ico" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                GitHub
+              </a>
+              <a class="out-link" href="https://bulldog93.tistory.com/46" target="_blank" rel="noopener noreferrer">
+                <svg class="out-link__ico" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 2.5A1.5 1.5 0 0 1 3.5 1h9A1.5 1.5 0 0 1 14 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-11zm2 1v1h8v-1H4zm0 3v1h8V6.5H4zm0 3V11h5V9.5H4z"/></svg>
+                Blog
+              </a>
+            </div>
           </div>
+          <div class="accent" aria-hidden="true"></div>
         </header>
 
-        <figure class="shot">
-          <div class="shot__frame shot__frame--pending">
-            <p class="shot__pending">작성 중</p>
+        <section class="showcase showcase--brief showcase--mate" aria-label="MINI2 소개">
+          <div class="showcase__visuals">
+            <figure class="showcase__frame">
+              <img
+                src="assets/mini2.png"
+                alt="MATE 메인 화면 — 팀 매칭 모집글 탐색"
+                width="1440"
+                height="2102"
+                loading="eager"
+              />
+            </figure>
           </div>
-        </figure>
+
+          <div class="showcase__copy">
+            <dl class="showcase__specs">
+              <div>
+                <dt>플랫폼</dt>
+                <dd>Web</dd>
+              </div>
+              <div>
+                <dt>개발기간</dt>
+                <dd>8일</dd>
+              </div>
+              <div>
+                <dt>개발인원</dt>
+                <dd>6명</dd>
+              </div>
+              <div class="showcase__specs-row--role">
+                <dt>담당역할</dt>
+                <dd>
+                  <ul class="role-list">
+                    <li>
+                      회원가입·로그인·계정 찾기·회원정보 중복 확인 기능 구현
+                      <span class="role-pct">(기여도 100%)</span>
+                    </li>
+                    <li>
+                      모집글 CRUD·재모집 및 모집중·마감임박·마감 상태 로직
+                      <span class="role-pct">(기여도 90%)</span>
+                    </li>
+                    <li>
+                      팀 전용 게시판·댓글, 지원서, 마이페이지(내 모집·신청)
+                      <span class="role-pct">(기여도 80%)</span>
+                    </li>
+                    <li>
+                      MSW 목업 서버·API 연동(Axios 인터셉터)·Zustand 상태관리·MUI 테마
+                      <span class="role-pct">(기여도 90%)</span>
+                    </li>
+                    <li>
+                      백엔드 모집글·게시판 페이징·필터링 일부
+                      <span class="role-pct">(기여도 20%)</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+
+            <div class="showcase__story">
+              <p class="showcase__kicker">한곳에서 잇는 팀 매칭</p>
+              <p class="showcase__lede">
+                프로젝트·스터디 팀원 모집이 오픈채팅·에브리타임에 흩어져
+                지원자와 합류 현황을 따로 관리해야 했다.<br />
+                그래서 모집부터 지원·팀 확정까지 한곳에서 관리하고,
+                매칭된 팀에는 전용 게시판을 제공하는 플랫폼을 만들었다.
+              </p>
+              <ul class="mate-features" aria-label="MATE 핵심 기능">
+                <li>
+                  <strong>모집 관리</strong>
+                  <span>작성·마감·재모집</span>
+                </li>
+                <li>
+                  <strong>지원·매칭</strong>
+                  <span>지원서·수락·거절</span>
+                </li>
+                <li>
+                  <strong>팀 공간</strong>
+                  <span>멤버 전용 게시판·댓글</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="showcase__env">
+              <p class="showcase__env-label">개발 환경</p>
+              <div class="env-rows" aria-label="기술 스택 분류">
+                <div class="env-row">
+                  <span class="env-row__k">언어</span>
+                  <div class="techs">
+                    <tech-badge label="JavaScript"></tech-badge>
+                    <tech-badge label="Java"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">프레임워크</span>
+                  <div class="techs">
+                    <tech-badge label="React"></tech-badge>
+                    <tech-badge label="Spring Boot"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">데이터베이스</span>
+                  <div class="techs">
+                    <tech-badge label="MariaDB"></tech-badge>
+                    <tech-badge label="H2"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">빌드</span>
+                  <div class="techs">
+                    <tech-badge label="Vite"></tech-badge>
+                    <tech-badge label="Maven"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">IDE</span>
+                  <div class="techs">
+                    <tech-badge label="Cursor"></tech-badge>
+                    <tech-badge label="IntelliJ IDEA"></tech-badge>
+                    <tech-badge label="VS Code"></tech-badge>
+                  </div>
+                </div>
+                <div class="env-row">
+                  <span class="env-row__k">라이브러리</span>
+                  <div class="techs techs--wrap">
+                    <tech-badge label="MUI"></tech-badge>
+                    <tech-badge label="Zustand"></tech-badge>
+                    <tech-badge label="Axios"></tech-badge>
+                    <tech-badge label="React Router"></tech-badge>
+                    <tech-badge label="MSW"></tech-badge>
+                    <tech-badge label="Spring Security"></tech-badge>
+                    <tech-badge label="JPA"></tech-badge>
+                    <tech-badge label="JJWT"></tech-badge>
+                    <tech-badge label="Flyway"></tech-badge>
+                    <tech-badge label="Cloudinary"></tech-badge>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <site-footer left="Mini · 11" next-href="mini2-why.html" next-label="MINI2 - MATE →"></site-footer>

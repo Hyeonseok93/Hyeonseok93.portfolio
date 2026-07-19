@@ -335,6 +335,59 @@
   padding: 0.25rem 0.5rem;
 }
 
+/* MINI2: service capabilities, not MINI1's data pipeline */
+.showcase--mate .showcase__specs {
+  flex: 1.12 1 0;
+}
+
+.showcase--mate .showcase__story {
+  flex: 0.72 1 0;
+}
+
+.showcase--mate .env-row {
+  grid-template-columns: 7rem minmax(0, 1fr);
+}
+
+.showcase--mate .env-row__k {
+  white-space: nowrap;
+}
+
+.mate-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.mate-features li {
+  min-width: 0;
+  padding: 0.48rem 0.62rem;
+  border-top: 2px solid rgba(212, 137, 74, 0.65);
+  background: linear-gradient(180deg, rgba(212, 137, 74, 0.08), rgba(236, 233, 227, 0.025));
+}
+
+.mate-features strong,
+.mate-features span {
+  display: block;
+  word-break: keep-all;
+}
+
+.mate-features strong {
+  margin-bottom: 0.16rem;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.mate-features span {
+  font-size: clamp(0.74rem, 1vw, 0.84rem);
+  line-height: 1.35;
+  color: rgba(236, 233, 227, 0.62);
+}
+
 .why--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 3.5vw, 2.75rem);
@@ -423,6 +476,11 @@
     overflow: visible;
   }
 
+  .showcase--mate .showcase__visuals {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100%, 42rem);
+  }
+
   .showcase__frame {
     height: auto;
     width: 100%;
@@ -459,6 +517,11 @@
     flex: 0 0 auto;
     min-height: 0;
     justify-content: flex-start;
+  }
+
+  .showcase--mate .showcase__specs,
+  .showcase--mate .showcase__story {
+    flex: 0 0 auto;
   }
 
   .showcase__specs {
@@ -507,6 +570,14 @@
   .showcase__pipe {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.55rem;
+  }
+
+  .showcase--mate .env-row {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+  }
+
+  .mate-features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .showcase__pipe li:not(:last-child)::after {
@@ -586,6 +657,10 @@
     flex-wrap: nowrap;
   }
 
+  .showcase--mate .showcase__visuals {
+    width: 100%;
+  }
+
   .showcase__frame {
     max-width: none;
     width: 100%;
@@ -604,6 +679,15 @@
 
   .showcase__pipe {
     grid-template-columns: 1fr;
+  }
+
+  .mate-features {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .showcase--mate .env-row {
+    grid-template-columns: 6rem minmax(0, 1fr);
   }
 
   .env-row {
