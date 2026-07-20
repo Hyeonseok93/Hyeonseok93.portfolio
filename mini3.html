@@ -64,7 +64,7 @@
               </div>
               <div>
                 <dt>개발기간</dt>
-                <dd>2주</dd>
+                <dd>8일</dd>
               </div>
               <div>
                 <dt>개발인원</dt>
@@ -76,24 +76,24 @@
                   <ul class="role-list">
                     <li>
                       <span class="role-entry">
-                        <span class="role-desc">AWS 인프라(Terraform · VPC · EKS · ALB · WAF)</span>
-                        <span class="role-pct">(기여도 80%)</span>
+                        <span class="role-desc">프론트엔드 스캐폴드·레이아웃·공통 UI 및 Axios API 연동</span>
+                        <span class="role-pct">(기여도 90%)</span>
                       </span>
                       <span class="role-separator">,</span>
                       <span class="role-entry">
-                        <span class="role-desc">Kubernetes Manifest · Argo CD GitOps</span>
+                        <span class="role-desc">경매 상세·입찰·등록·결제·알림·마이페이지 화면</span>
                         <span class="role-pct">(기여도 80%)</span>
                       </span>
                     </li>
                     <li>
                       <span class="role-entry">
-                        <span class="role-desc">GitHub Actions CI/CD · ECR 이미지 배포 연동</span>
-                        <span class="role-pct">(기여도 70%)</span>
+                        <span class="role-desc">Zustand 인증·서버 시간 동기화·라이브 입찰 폴링 UX</span>
+                        <span class="role-pct">(기여도 90%)</span>
                       </span>
                       <span class="role-separator">,</span>
                       <span class="role-entry">
-                        <span class="role-desc">README · Built With 문서화</span>
-                        <span class="role-pct">(기여도 90%)</span>
+                        <span class="role-desc">백엔드 경매 API·입찰 응답·마이페이지 상태·알림</span>
+                        <span class="role-pct">(기여도 30%)</span>
                       </span>
                     </li>
                   </ul>
@@ -102,25 +102,26 @@
             </dl>
 
             <div class="showcase__story">
-              <p class="showcase__kicker">마감 직전에도 흔들리지 않는 실시간 경매</p>
+              <p class="showcase__kicker">마감 직전에도 따라잡는 실시간 경매</p>
               <p class="showcase__lede">
-                경매 마감이 다가올수록 입찰이 한꺼번에 몰리고,
-                동시성 문제와 비정상 트래픽에 그대로 노출되기 쉽다.<br />
-                그래서 낙관적 락·WAF·Kubernetes 운영을 묶어,
-                트래픽이 몰려도 안정적으로 동작하는 실시간 경매 플랫폼을 만들었다.
+                마감이 다가올수록 입찰이 한꺼번에 몰리고,
+                최고가가 덮어씌워지거나 내 입찰·낙찰 현황을 놓치기 쉽다.<br />
+                그래서 낙관적 락으로 동시 입찰을 맞추고,
+                실시간 최고가와 상회 알림부터 결제·배송까지 한곳에서 이어가는
+                경매 플랫폼을 만들었다.
               </p>
               <ul class="mate-features" aria-label="MACTA 핵심 기능">
                 <li>
-                  <strong>동시성 제어</strong>
-                  <span>낙관적 락 입찰</span>
+                  <strong>실시간 입찰</strong>
+                  <span>낙관적 락·최고가 동기화</span>
                 </li>
                 <li>
-                  <strong>보안</strong>
-                  <span>ALB + WAF 차단</span>
+                  <strong>상회 알림</strong>
+                  <span>입찰·낙찰 이벤트</span>
                 </li>
                 <li>
-                  <strong>운영</strong>
-                  <span>EKS · Rolling Update</span>
+                  <strong>낙찰 거래</strong>
+                  <span>결제·배송 이어가기</span>
                 </li>
               </ul>
             </div>
