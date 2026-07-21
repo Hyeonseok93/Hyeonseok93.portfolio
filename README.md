@@ -35,10 +35,6 @@
     <img src="assets/badges/light/javascript.png" alt="JavaScript" height="28" />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/webcomponents.png" />
-    <img src="assets/badges/light/webcomponents.png" alt="Web Components" height="28" />
-  </picture>
-  <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/badges/dark/vercel.png" />
     <img src="assets/badges/light/vercel.png" alt="Vercel" height="28" />
   </picture>
