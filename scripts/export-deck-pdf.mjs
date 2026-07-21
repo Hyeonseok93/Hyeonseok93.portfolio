@@ -13,7 +13,7 @@ import { PDFDocument } from "pdf-lib";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "export");
-const OUT_PDF = path.join(OUT_DIR, "portfolio-deck-1920x913.pdf");
+const OUT_PDF = path.join(OUT_DIR, "hyeonseok-portfolio.pdf");
 const WIDTH = 1920;
 const HEIGHT = 913;
 const SCALE = 2;
