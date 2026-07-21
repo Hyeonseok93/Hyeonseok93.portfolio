@@ -4,7 +4,7 @@
     const custom =
       root.style.getPropertyValue("--stack-base").trim() ||
       getComputedStyle(root).getPropertyValue("--stack-base").trim();
-    return (custom || "assets/stacks").replace(/\/$/, "");
+    return (custom || "/assets/stacks").replace(/\/$/, "");
   };
 
   class SiteNav extends HTMLElement {
@@ -13,7 +13,7 @@
       this.dataset.ready = "1";
 
       const hasBack = this.hasAttribute("back-href");
-      const href = this.getAttribute("back-href") || "index.html";
+      const href = this.getAttribute("back-href") || "/index.html";
       const label = this.getAttribute("back-label") || "\u2190 Back";
       const backHtml = hasBack
         ? `<a class="back" href="${href}">${label}</a>`
@@ -57,41 +57,41 @@
           : ' class="nav-cluster__row nav-cluster__row--group"';
 
       const tabs = [
-        link("cover", "index.html", "Cover"),
-        link("profile", "profile.html", "Profile"),
+        link("cover", "/index.html", "Cover"),
+        link("profile", "/pages/profile.html", "Profile"),
         `<div class="nav-cluster${worksOpen ? " is-open" : ""}">
-          <a href="works.html"${worksHeadCls}>Works</a>
+          <a href="/pages/works.html"${worksHeadCls}>Works</a>
           <div class="nav-cluster__sub" aria-label="Works sections">
             <div${groupRow(researchOpen)}>
               <span class="nav-cluster__group-label">Research</span>
               <span class="nav-cluster__sep" aria-hidden="true">—</span>
-              ${link("paper", "papers.html", "Papers")}
+              ${link("paper", "/pages/papers.html", "Papers")}
             </div>
             <div${groupRow(rookiesOpen)}>
               <span class="nav-cluster__group-label">Rookies 5</span>
               <span class="nav-cluster__sep" aria-hidden="true">—</span>
-              ${link("mini", "mini1.html", "Mini")}
-              ${link("final", "final1.html", "Final")}
+              ${link("mini", "/pages/mini1.html", "Mini")}
+              ${link("final", "/pages/final1.html", "Final")}
             </div>
           </div>
         </div>`,
-        link("connect", "connect.html", "Connect"),
+        link("connect", "/pages/connect.html", "Connect"),
       ].join("");
 
       const drawerLinks = [
-        link("cover", "index.html", "Cover", "nav-drawer__link"),
-        link("profile", "profile.html", "Profile", "nav-drawer__link"),
-        link("works", "works.html", "Works", "nav-drawer__link"),
+        link("cover", "/index.html", "Cover", "nav-drawer__link"),
+        link("profile", "/pages/profile.html", "Profile", "nav-drawer__link"),
+        link("works", "/pages/works.html", "Works", "nav-drawer__link"),
         `<div class="nav-drawer__group">
           <p class="nav-drawer__group-label">Research <span aria-hidden="true">—</span></p>
-          ${link("paper", "papers.html", "Papers", "nav-drawer__link nav-drawer__link--sub")}
+          ${link("paper", "/pages/papers.html", "Papers", "nav-drawer__link nav-drawer__link--sub")}
         </div>`,
         `<div class="nav-drawer__group">
           <p class="nav-drawer__group-label">Rookies 5 <span aria-hidden="true">—</span></p>
-          ${link("mini", "mini1.html", "Mini", "nav-drawer__link nav-drawer__link--sub")}
-          ${link("final", "final1.html", "Final", "nav-drawer__link nav-drawer__link--sub")}
+          ${link("mini", "/pages/mini1.html", "Mini", "nav-drawer__link nav-drawer__link--sub")}
+          ${link("final", "/pages/final1.html", "Final", "nav-drawer__link nav-drawer__link--sub")}
         </div>`,
-        link("connect", "connect.html", "Connect", "nav-drawer__link"),
+        link("connect", "/pages/connect.html", "Connect", "nav-drawer__link"),
       ].join("");
 
       const drawerId = "site-nav-drawer";

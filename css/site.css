@@ -43,7 +43,7 @@
   --copper-soft: #c4925a;
   --line: rgba(236, 233, 227, 0.12);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --stack-base: assets/stacks;
+  --stack-base: /assets/stacks;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

@@ -1,0 +1,94 @@
+{
+  "redirects": [
+    {
+      "source": "/profile.html",
+      "destination": "/pages/profile.html",
+      "permanent": true
+    },
+    {
+      "source": "/works.html",
+      "destination": "/pages/works.html",
+      "permanent": true
+    },
+    {
+      "source": "/papers.html",
+      "destination": "/pages/papers.html",
+      "permanent": true
+    },
+    {
+      "source": "/connect.html",
+      "destination": "/pages/connect.html",
+      "permanent": true
+    },
+    {
+      "source": "/detect.html",
+      "destination": "/pages/detect.html",
+      "permanent": true
+    },
+    {
+      "source": "/detect-why.html",
+      "destination": "/pages/detect-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/fuzz.html",
+      "destination": "/pages/fuzz.html",
+      "permanent": true
+    },
+    {
+      "source": "/fuzz-why.html",
+      "destination": "/pages/fuzz-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/mini1.html",
+      "destination": "/pages/mini1.html",
+      "permanent": true
+    },
+    {
+      "source": "/mini1-why.html",
+      "destination": "/pages/mini1-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/mini2.html",
+      "destination": "/pages/mini2.html",
+      "permanent": true
+    },
+    {
+      "source": "/mini2-why.html",
+      "destination": "/pages/mini2-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/mini3.html",
+      "destination": "/pages/mini3.html",
+      "permanent": true
+    },
+    {
+      "source": "/mini3-why.html",
+      "destination": "/pages/mini3-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/final1.html",
+      "destination": "/pages/final1.html",
+      "permanent": true
+    },
+    {
+      "source": "/final1-why.html",
+      "destination": "/pages/final1-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/final2.html",
+      "destination": "/pages/final2.html",
+      "permanent": true
+    },
+    {
+      "source": "/final2-why.html",
+      "destination": "/pages/final2-why.html",
+      "permanent": true
+    }
+  ]
+}
