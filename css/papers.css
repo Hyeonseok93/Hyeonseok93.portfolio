@@ -34,7 +34,7 @@ body { overflow: hidden; }
   transform: translateY(18px);
   animation: rise 0.9s var(--ease) 0.25s forwards;
   /* absolute identity(name+accent+lede)가 덮는 높이 */
-  --identity-clearance: clamp(6.5rem, 12vh, 8rem);
+  --identity-clearance: clamp(5.5rem, 9.5vh, 6.75rem);
 }
 
 /* Title overlays the board; deck centers in the band below it */
