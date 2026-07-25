@@ -309,6 +309,9 @@ body { overflow: hidden; }
     display: block;
     padding-top: 1.5rem;
   }
+  .final-page .deck {
+    padding-top: 1.5rem;
+  }
   .beats {
     grid-template-columns: 1fr;
     gap: 1.35rem;
@@ -339,6 +342,12 @@ a.leaf {
 }
 
 /* Final hub: larger leaf cards to fill leftover slide space */
+.final-page .deck {
+  /* Papers와 같이 identity(lede) 아래로 호흡 공간 확보 */
+  padding-top: clamp(5.75rem, 14vh, 8rem);
+  box-sizing: border-box;
+}
+
 .final-page .fork {
   gap: clamp(1.25rem, 3vw, 2.25rem);
   margin-top: clamp(0.35rem, 1.2vh, 0.85rem);
