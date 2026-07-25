@@ -138,7 +138,7 @@
 
 .showcase__specs dt {
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.12rem, 1.65vw, 1.32rem);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -148,7 +148,7 @@
 
 .showcase__specs dd {
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.2rem, 1.75vw, 1.4rem);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -166,7 +166,7 @@
 }
 
 .role-list li {
-  font-family: "Figtree", sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(0.95rem, 1.28vw, 1.08rem);
   font-weight: 500;
   line-height: 1.35;
@@ -195,7 +195,7 @@
 
 .showcase__kicker {
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.28rem, 2.1vw, 1.55rem);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -245,7 +245,7 @@
   top: 50%;
   right: -0.375rem;
   transform: translate(50%, -50%);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 1;
@@ -256,7 +256,7 @@
 }
 
 .showcase__pipe strong {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(0.88rem, 1.2vw, 0.98rem);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -282,7 +282,7 @@
 
 .showcase__env-label {
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.2rem, 1.95vw, 1.45rem);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -308,7 +308,7 @@
 }
 
 .env-row__k {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(0.82rem, 1.12vw, 0.94rem);
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -375,7 +375,7 @@
   top: 50%;
   right: -0.275rem;
   transform: translate(50%, -50%);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 1;
@@ -393,7 +393,7 @@
 
 .mate-features strong {
   margin-bottom: 0.16rem;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(0.88rem, 1.2vw, 0.98rem);
   font-weight: 600;
   color: var(--ink);
@@ -775,14 +775,14 @@
 }
 
 .why--dense .why__body code {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.86em;
   letter-spacing: 0.02em;
   color: rgba(212, 137, 74, 0.95);
 }
 
 .why__flow {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(0.88rem, 1.2vw, 1rem) !important;
   letter-spacing: 0.02em;
@@ -943,7 +943,7 @@
 }
 
 .why__table thead th {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -993,7 +993,7 @@
   background: rgba(236, 233, 227, 0.04);
   color: var(--muted);
   text-decoration: none;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -1030,7 +1030,7 @@
 }
 
 .shot__pending {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.5vw, 1.85rem);
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -1048,7 +1048,7 @@
 }
 
 .pending-card__tag {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.14em;

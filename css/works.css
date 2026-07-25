@@ -50,7 +50,7 @@ body { overflow: hidden; }
 }
 
 .identity .name {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(2.6rem, 5.8vw, 4.25rem);
   line-height: 1;
@@ -92,7 +92,7 @@ body { overflow: hidden; }
 .band__eyebrow {
   flex-shrink: 0;
   margin: 0 0 0.75rem;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -139,7 +139,7 @@ body { overflow: hidden; }
 }
 
 .col__label span {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
@@ -275,7 +275,7 @@ body { overflow: hidden; }
 }
 
 .work__title {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.08rem, 1.7vw, 1.28rem);
   line-height: 1.35;

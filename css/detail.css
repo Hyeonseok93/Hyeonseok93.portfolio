@@ -39,7 +39,7 @@ body { overflow: hidden; }
 .identity { flex-shrink: 0; max-width: min(72rem, 100%); }
 
 .identity .name {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.45rem, 3.2vw, 2.2rem);
   line-height: 1.15;
@@ -76,7 +76,7 @@ body { overflow: hidden; }
   background: rgba(236, 233, 227, 0.04);
   color: var(--muted);
   text-decoration: none;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -161,7 +161,7 @@ body { overflow: hidden; }
 }
 
 .cell__n {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -169,7 +169,7 @@ body { overflow: hidden; }
 }
 
 .cell__t {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(0.9rem, 1.3vw, 1.1rem);
   line-height: 1.25;
@@ -214,7 +214,7 @@ body { overflow: hidden; }
 }
 
 .tag {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -250,7 +250,7 @@ body { overflow: hidden; }
 
 .byte-row span,
 .score-row span {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(0.56rem, 0.9vw, 0.68rem);
   font-weight: 600;
   text-align: center;
@@ -287,7 +287,7 @@ body { overflow: hidden; }
 
 .mlm-mini__mid {
   text-align: center;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -339,7 +339,7 @@ body { overflow: hidden; }
 
 .pair__tag {
   align-self: flex-start;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -371,7 +371,7 @@ body { overflow: hidden; }
 }
 
 .unit-score__kind {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -379,13 +379,13 @@ body { overflow: hidden; }
 }
 
 .unit-score__arrow {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.8rem;
   color: var(--copper);
 }
 
 .unit-score__num {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--ink);
@@ -467,7 +467,7 @@ body { overflow: hidden; }
 }
 
 .qmap__h strong {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -525,7 +525,7 @@ body { overflow: hidden; }
 
 .temp__box strong {
   display: block;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.82rem;
   letter-spacing: 0.04em;
   color: var(--copper);
@@ -554,7 +554,7 @@ body { overflow: hidden; }
   grid-template-columns: 1.7rem 1fr 2.4rem;
   align-items: center;
   gap: 0.35rem;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.78rem;
 }
 
@@ -589,7 +589,7 @@ body { overflow: hidden; }
 
 .pill {
   width: fit-content;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -845,7 +845,7 @@ body { overflow: hidden; }
 }
 .fill-steps__mid {
   text-align: center;
-  font-family: Outfit, sans-serif;
+  font-family: var(--font-display);
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.12em;

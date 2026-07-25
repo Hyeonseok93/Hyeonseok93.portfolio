@@ -55,7 +55,7 @@ body { overflow: hidden; }
 }
 
 .identity .name {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(2.6rem, 5.8vw, 4.25rem);
   line-height: 1;
@@ -149,7 +149,7 @@ body { overflow: hidden; }
 }
 
 .beat__n {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -157,7 +157,7 @@ body { overflow: hidden; }
 }
 
 .beat__label {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.3vw, 1.65rem);
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -165,7 +165,7 @@ body { overflow: hidden; }
 }
 
 .beat__line {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   line-height: 1.25;
@@ -222,7 +222,7 @@ body { overflow: hidden; }
 }
 
 .split__text {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.15rem, 2vw, 1.45rem);
   line-height: 1.4;
@@ -275,7 +275,7 @@ body { overflow: hidden; }
 }
 
 .leaf__title {
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.05rem, 1.7vw, 1.28rem);
   line-height: 1.3;
