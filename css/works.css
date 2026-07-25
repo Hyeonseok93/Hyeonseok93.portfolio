@@ -91,11 +91,11 @@ body { overflow: hidden; }
 
 .band__eyebrow {
   flex-shrink: 0;
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.75rem;
   font-family: "Outfit", sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -141,7 +141,7 @@ body { overflow: hidden; }
 .col__label span {
   font-family: "Outfit", sans-serif;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
@@ -156,7 +156,7 @@ body { overflow: hidden; }
 }
 
 .col__count {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   color: var(--muted);
   letter-spacing: 0.06em;
 }
