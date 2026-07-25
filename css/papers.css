@@ -33,9 +33,11 @@ body { overflow: hidden; }
   opacity: 0;
   transform: translateY(18px);
   animation: rise 0.9s var(--ease) 0.25s forwards;
+  /* absolute identity(name+accent+lede)가 덮는 높이 */
+  --identity-clearance: clamp(6.5rem, 12vh, 8rem);
 }
 
-/* Title stays top; does not steal vertical space from centering */
+/* Title overlays the board; deck centers in the band below it */
 .identity {
   position: absolute;
   top: 0;
@@ -74,7 +76,7 @@ body { overflow: hidden; }
   max-width: 42ch;
 }
 
-/* Center body in the FULL board (nav→footer), not leftover under title */
+/* Safe zone under absolute identity → then vertical center */
 .deck {
   position: absolute;
   inset: 0;
@@ -83,6 +85,8 @@ body { overflow: hidden; }
   align-items: center;
   justify-content: center;
   min-height: 0;
+  padding-top: var(--identity-clearance);
+  box-sizing: border-box;
 }
 
 .deck__body {
@@ -309,9 +313,6 @@ body { overflow: hidden; }
     display: block;
     padding-top: 1.5rem;
   }
-  .final-page .deck {
-    padding-top: 1.5rem;
-  }
   .beats {
     grid-template-columns: 1fr;
     gap: 1.35rem;
@@ -341,13 +342,7 @@ a.leaf {
   cursor: pointer;
 }
 
-/* Final hub: larger leaf cards to fill leftover slide space */
-.final-page .deck {
-  /* identity만 살짝 피하고, Papers처럼 화면 중앙에 가깝게 */
-  padding-top: clamp(4.25rem, 7.5vh, 5.25rem);
-  box-sizing: border-box;
-}
-
+/* Final hub: larger leaf cards only (clearance is shared via --identity-clearance) */
 .final-page .fork {
   gap: clamp(1.1rem, 2.4vw, 1.85rem);
   margin-top: clamp(0.25rem, 0.9vh, 0.65rem);
