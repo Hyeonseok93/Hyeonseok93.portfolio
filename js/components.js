@@ -71,7 +71,7 @@
               <span class="nav-cluster__group-label">Rookies 5</span>
               <span class="nav-cluster__sep" aria-hidden="true">—</span>
               ${link("mini", "/pages/mini1.html", "Mini")}
-              ${link("final", "/pages/final1.html", "Final")}
+              ${link("final", "/pages/final.html", "Final")}
             </div>
           </div>
         </div>`,
@@ -89,7 +89,7 @@
         `<div class="nav-drawer__group">
           <p class="nav-drawer__group-label">Rookies 5 <span aria-hidden="true">—</span></p>
           ${link("mini", "/pages/mini1.html", "Mini", "nav-drawer__link nav-drawer__link--sub")}
-          ${link("final", "/pages/final1.html", "Final", "nav-drawer__link nav-drawer__link--sub")}
+          ${link("final", "/pages/final.html", "Final", "nav-drawer__link nav-drawer__link--sub")}
         </div>`,
         link("connect", "/pages/connect.html", "Connect", "nav-drawer__link"),
       ].join("");
