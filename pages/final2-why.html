@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FINAL ARGUS</title>
+  <title>ARGUS</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
   <link rel="stylesheet" href="/css/site.css" />
   <link rel="stylesheet" href="/css/papers.css" />
@@ -16,20 +16,134 @@
     <div class="stage__bg" aria-hidden="true"></div>
     <div class="stage__grain" aria-hidden="true"></div>
     <div class="frame">
-      <site-nav back-href="/pages/final2.html" back-label="← FINAL ARGUS"></site-nav>
+      <site-nav back-href="/pages/final2.html" back-label="← ARGUS"></site-nav>
 
       <main class="board">
         <header class="identity">
-          <h1 class="name">FINAL ARGUS</h1>
+          <h1 class="name">ARGUS</h1>
           <div class="accent" aria-hidden="true"></div>
-          <p class="lede">Argus — 작성 중</p>
+          <p class="lede">대상 API를 모으고 응답으로 걸러 낸 뒤, 항목별 모듈이 자동 판정하고 증적·결과서까지 이어지게 했다.</p>
         </header>
 
-        <section class="deck" aria-label="FINAL ARGUS">
-          <div class="pending-card">
-            <p class="pending-card__tag">Coming soon</p>
-            <p class="pending-card__text">이 페이지는 작성 중입니다.</p>
-          </div>
+        <section class="deck" aria-label="ARGUS">
+          <ol class="why why--3 why--dense">
+            <li class="why__item">
+              <p class="why__n">01</p>
+              <h2 class="why__t">대상 API·엔드포인트 수집·응답 검증</h2>
+              <div class="why__body">
+                <p>진단은 대상이 틀리면 결과가 무의미하다. 그래서 URL·API·Swagger 목록으로 API·화면 경로를 먼저 모은 뒤, 실제로 요청을 보내 응답이 확인된 것만 남겼다. 이후 진단 모듈은 이 목록만 읽도록 맞춰 두었다.</p>
+                <p class="why__flow">기준 URL → 목록 수집 → 응답 검증 → 확정 목록 저장</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">수집</th>
+                      <td>URL·API·Swagger 목록을 합쳐 대상 서비스의 API·화면 경로를 한 목록으로 만든다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">검증</th>
+                      <td>모아 둔 경로에 실제 HTTP 요청을 보낸다. 연결 실패·404처럼 쓸 수 없는 경로는 빼고, 응답이 확인된 것만 남긴다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">저장</th>
+                      <td>수집 직후 목록과 검증 후 목록을 파일로 나눠 둔다. 진단은 검증을 통과한 목록을 우선해 읽는다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>추측으로 잡은 주소가 아니라, 응답이 확인된 대상만 이후 진단에 넘긴다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="why__item">
+              <p class="why__n">02</p>
+              <h2 class="why__t">항목별 진단 모듈·자동 판정</h2>
+              <div class="why__body">
+                <p>사람이 엔드포인트를 하나씩 눌러 보던 검사를, 항목별 진단 모듈이 같은 대상 목록 위에서 반복하도록 만들었다. 모듈마다 입력·검사·판정 규칙을 두고, 결과는 통과·주의·실패로 자동 정리한다. 긴 검사는 백그라운드에서 돌리고 진행률을 화면에서 따라가게 했다.</p>
+                <p class="why__flow">확정 목록 → 모듈 실행 → 자동 판정 → 결과 저장</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">입력</th>
+                      <td>응답 검증을 거친 API 목록과 기준 URL, 필요하면 로그인·다운로드 경로를 모듈 입력으로 쓴다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">검사</th>
+                      <td>항목별 모듈이 대상에 요청을 보내고, 응답·헤더·규칙에 맞춰 취약 여부를 본다. 사람이 하던 반복 검사를 수만 건 규모로 돌릴 수 있게 했다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">판정</th>
+                      <td>심각도·신뢰도에 따라 통과·주의·실패를 자동으로 매기고, 섹션별 결과 파일에 남긴다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>같은 대상 목록 위에서 항목마다 같은 방식으로 재실행할 수 있고, 수동으로 누르던 검사를 모듈 실행으로 대체한다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="why__item">
+              <p class="why__n">03</p>
+              <h2 class="why__t">증적 스크린샷·결과서 PDF</h2>
+              <div class="why__body">
+                <p>판정만 있으면 재현·보고가 어렵다. 그래서 진단이 끝난 뒤 Playwright로 관련 화면을 찍어 증적으로 붙이고, 결과와 증적을 묶어 PDF 결과서로 만들었다. 화면에서는 섹션별로 바로 내려받을 수 있게 연동했다.</p>
+                <p class="why__flow">진단 결과 → 화면 캡처 → PDF 생성 → 다운로드</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">증적</th>
+                      <td>진단 직후 Playwright로 재현에 필요한 화면을 캡처해, 해당 진단 결과 폴더 아래 증적 경로에 저장한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">결과서</th>
+                      <td>진단 결과와 증적을 HTML·PDF로 묶는다. 섹션에 따라 Playwright PDF 또는 ReportLab을 쓰고, 필요하면 PDF를 합친다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">다운로드</th>
+                      <td>진단 화면에서 섹션별 PDF·문서를 API로 받아 바로 저장할 수 있게 붙였다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>판정 숫자만 남기지 않고, 보고·재현에 쓸 화면 증거와 결과서를 같은 파이프라인에서 만든다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+          </ol>
         </section>
       </main>
 
