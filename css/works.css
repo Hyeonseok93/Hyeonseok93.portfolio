@@ -41,14 +41,6 @@ body { overflow: hidden; }
   flex-shrink: 0;
 }
 
-.identity .eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--copper);
-  margin-bottom: 0.55rem;
-}
-
 .identity .name {
   font-family: var(--font-display);
   font-weight: 600;

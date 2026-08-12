@@ -85,7 +85,6 @@ async function capturePage(browser, base, file) {
   await page.emulateMedia({ media: "screen", reducedMotion: "reduce" });
   await page.goto(`${base}/${file}`, { waitUntil: "load", timeout: 90000 });
   await page.evaluate(async () => {
-    document.documentElement.classList.add("is-exporting");
     if (document.fonts?.ready) await document.fonts.ready;
     await new Promise((resolve) =>
       requestAnimationFrame(() => requestAnimationFrame(resolve)),
