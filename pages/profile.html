@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hyeonseok's Profile</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
-  <link rel="stylesheet" href="/css/site.css" />
-  <script src="/js/components.js" defer></script>
+  <link rel="stylesheet" href="/css/site.css?v=nav5" />
+  <script src="/js/components.js?v=nav8" defer></script>
   <style>
     :root {
       --bg: #0a0b0d;
@@ -101,17 +101,6 @@
         linear-gradient(90deg, transparent 55%, rgba(10, 11, 13, 0.55) 100%),
         linear-gradient(0deg, rgba(10, 11, 13, 0.45) 0%, transparent 35%);
       pointer-events: none;
-    }
-
-    .portrait__caption {
-      position: absolute;
-      left: clamp(1.1rem, 2.5vw, 1.8rem);
-      bottom: clamp(1.1rem, 2.5vw, 1.8rem);
-      z-index: 2;
-      font-size: 0.82rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(236, 233, 227, 0.72);
     }
 
     .panel {
@@ -664,7 +653,7 @@
 .footer {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       padding-top: 0.9rem;
       border-top: 1px solid var(--line);
       opacity: 0;
@@ -922,7 +911,6 @@
       <aside class="portrait">
         <img src="/assets/profile.png" alt="김현석 프로필 사진" width="900" height="1125" />
         <div class="portrait__veil" aria-hidden="true"></div>
-        <p class="portrait__caption">Profile · 02</p>
       </aside>
 
       <div class="panel">
@@ -1083,7 +1071,7 @@
 
           </div>
 
-        <site-footer next-href="/pages/works.html" next-label="Works →" align="end"></site-footer>
+        <site-footer left="Profile · 02" next-href="/pages/works.html" next-label="Works →"></site-footer>
       </div>
     </div>
   </div>

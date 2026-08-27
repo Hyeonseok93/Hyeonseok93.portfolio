@@ -216,7 +216,8 @@ site-nav {
 .nav-cluster__row--group a {
   font-size: 0.74rem;
   display: block;
-  width: 100%;
+  width: max-content;
+  max-width: 100%;
   text-align: left;
 }
 

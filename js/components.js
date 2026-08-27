@@ -52,7 +52,7 @@
       };
 
       const worksOpen = ["works", "paper", "rookies", "personal"].includes(section);
-      const researchOpen = section === "paper";
+      const papersOpen = section === "paper";
       const rookiesOpen = section === "rookies";
       const personalOpen = section === "personal";
       const worksHeadCls = worksOpen ? ' class="nav-cluster__head is-active"' : ' class="nav-cluster__head"';
@@ -67,7 +67,7 @@
         `<div class="nav-cluster${worksOpen ? " is-open" : ""}">
           <a href="/pages/works.html"${worksHeadCls}>Works</a>
           <div class="nav-cluster__sub" aria-label="Works sections">
-            <div${groupRow(researchOpen)}>
+            <div${groupRow(papersOpen)}>
               ${link("paper", "/pages/papers.html", "Papers")}
             </div>
             <div${groupRow(rookiesOpen)}>
