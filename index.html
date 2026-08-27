@@ -207,6 +207,23 @@
       animation: rise 1s var(--ease) 0.55s forwards;
     }
 
+    .nav-hint {
+      margin-top: 1rem;
+      font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise 1s var(--ease) 0.65s forwards;
+    }
+
+    @media (min-width: 641px) {
+      .nav-hint {
+        white-space: nowrap;
+      }
+    }
+
     .cta {
       display: flex;
       flex-direction: column;
@@ -367,7 +384,7 @@
         animation: none !important;
         transition: none !important;
       }
-      .brand, .lede, .cta, footer, .watermark, .rule {
+      .brand, .lede, .nav-hint, .cta, footer, .watermark, .rule {
         opacity: 1;
         transform: none;
       }
@@ -392,6 +409,7 @@
           <h1 class="brand">Hyeon<em>seok</em><span class="brand__suffix">'s Portfolio</span></h1>
           <div class="rule" aria-hidden="true"></div>
           <p class="lede">Growing Developer | Aspiring Security Specialist</p>
+          <p class="nav-hint">왼쪽 위 ← · 오른쪽 아래 → 로 페이지를 넘기고, 상단 메뉴로 섹션을 바로 이동할 수 있습니다.</p>
         </div>
         <div class="cta">
           <a class="btn btn--copper" href="/pages/profile.html">Profile</a>

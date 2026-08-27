@@ -68,7 +68,7 @@
           <a href="/pages/works.html"${worksHeadCls}>Works</a>
           <div class="nav-cluster__sub" aria-label="Works sections">
             <div${groupRow(researchOpen)}>
-              ${link("paper", "/pages/papers.html", "Research")}
+              ${link("paper", "/pages/papers.html", "Papers")}
             </div>
             <div${groupRow(rookiesOpen)}>
               ${link("rookies", "/pages/rookies.html", "Rookies 5")}
@@ -85,7 +85,7 @@
         link("cover", "/index.html", "Cover", "nav-drawer__link"),
         link("profile", "/pages/profile.html", "Profile", "nav-drawer__link"),
         link("works", "/pages/works.html", "Works", "nav-drawer__link"),
-        link("paper", "/pages/papers.html", "Research", "nav-drawer__link nav-drawer__link--sub"),
+        link("paper", "/pages/papers.html", "Papers", "nav-drawer__link nav-drawer__link--sub"),
         link("rookies", "/pages/rookies.html", "Rookies 5", "nav-drawer__link nav-drawer__link--sub"),
         link("personal", "/pages/personal.html", "Personal", "nav-drawer__link nav-drawer__link--sub"),
         link("connect", "/pages/connect.html", "Connect", "nav-drawer__link"),
