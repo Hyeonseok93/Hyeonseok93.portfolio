@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Canary</title>
+  <link rel="icon" href="/assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="stylesheet" href="/css/papers.css" />
+  <link rel="stylesheet" href="/css/detect-why.css" />
+  <link rel="stylesheet" href="/css/mini.css" />
+  <script src="/js/components.js?v=nav5" defer></script>
+</head>
+<body class="page-mini-detail">
+  <div class="stage">
+    <div class="stage__bg" aria-hidden="true"></div>
+    <div class="stage__grain" aria-hidden="true"></div>
+    <div class="frame">
+      <site-nav back-href="/pages/canary.html" back-label="← Code Canary"></site-nav>
+
+      <main class="board">
+        <header class="identity">
+          <h1 class="name">Code Canary</h1>
+          <div class="accent" aria-hidden="true"></div>
+          <p class="lede">두 출처 취약점을 모아 단계별로 정제하고, 공개 검색과 관리자 운영을 한 서비스 안에서 갈랐다.</p>
+        </header>
+
+        <section class="deck" aria-label="Code Canary">
+          <ol class="why why--3 why--dense">
+            <li class="why__item">
+              <p class="why__n">01</p>
+              <h2 class="why__t">NVD·OSV를 한곳에서 모은다</h2>
+              <div class="why__body">
+                <p>공식 CVE(NVD)와 오픈소스 쪽 취약점(OSV)은 출처·ID·표현이 달라, 사이트를 나눠 보면 같은 이슈가 어떻게 이어지는지 잘 안 보인다. 그래서 Worker가 두 피드를 받아 한 저장소에 쌓고, 이후 검색·차트는 그 결과만 읽도록 맞췄다.</p>
+                <p class="why__flow">NVD·OSV 피드 → 수집 → 원본 보관 → 정규화 → 검색·차트</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">수집</th>
+                      <td>NVD API와 OSV 전체 피드를 받아 스테이징에 쌓는다. 전체·증분 모드를 두고 동기화 시각을 남긴다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">원본</th>
+                      <td>받은 JSON을 원본 테이블에 보관한다. 내용이 같으면 건너뛰고, 바뀐 행만 다시 정제 대상으로 표시한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">정규화</th>
+                      <td>원본을 CVE·OSV용 표와 설명·심각도·패키지 영향 같은 하위 테이블로 풀어, 화면이 바로 조인할 수 있게 맞춘다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>출처를 오가지 않고, 같은 목록·상세·차트에서 두 피드를 비교·검색할 수 있다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="why__item">
+              <p class="why__n">02</p>
+              <h2 class="why__t">원본·표·화면용 집계를 단계로 나눈다</h2>
+              <div class="why__body">
+                <p>백만 건에 가까운 카탈로그를 한 테이블에 섞으면 “다시 받기 / 다시 풀기 / 화면만 갱신”이 한꺼번에 꼬인다. 그래서 원본 보관, 검색용 표, 대시보드용 집계를 단계로 갈라 두고, 공개 화면은 마지막 집계만 읽게 했다.</p>
+                <p class="why__flow">원본 보관 → 검색용 표 → 집계 스냅샷 → 대시보드·검색</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">원본</th>
+                      <td>피드 그대로를 남겨, 나중에 재수집·재정제해도 근거를 잃지 않게 한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">표</th>
+                      <td>정규화된 행으로 목록·상세·필터 검색을 돌린다. 전수 스캔을 화면 요청마다 반복하지 않도록 맞춘다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">집계</th>
+                      <td>소스 비중·성장 차트·요약 카드용 숫자를 따로 뽑아 두고, 대시보드는 그 스냅샷만 읽는다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>수집 파이프와 화면 조회가 서로를 막지 않고, 규모가 커져도 검색·차트를 바로 볼 수 있다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+
+            <li class="why__item">
+              <p class="why__n">03</p>
+              <h2 class="why__t">공개 검색과 관리자 운영을 가른다</h2>
+              <div class="why__body">
+                <p>취약점 목록은 공개해도, 수집 잡을 돌리고 파이프라인을 만지는 손은 열어 두면 안 된다. 그래서 누구나 쓰는 대시보드·검색과, 로그인 뒤에만 쓰는 관리자 콘솔을 경로·권한으로 나눴다.</p>
+                <p class="why__flow">공개 화면 → 검색·차트 ·|· 관리자 로그인 → 수집 잡·진행 모니터</p>
+                <table class="why__table">
+                  <colgroup>
+                    <col class="why__col-brand" />
+                    <col class="why__col-method" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">항목</th>
+                      <th scope="col">내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">공개</th>
+                      <td>대시보드 요약·취약점 검색·상세는 로그인 없이 집계·정규화 결과만 읽는다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">관리자</th>
+                      <td>수집·적재·정규화·집계 단계를 큐에 넣고, 성공·실패·로그를 모니터한다. JWT(HttpOnly)로 세션을 유지한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">보호</th>
+                      <td>로그인 실패 잠금·운영 API 한도는 Redis로 막고, 캐시가 죽으면 한도를 건너뛰지 않고 요청을 거절한다.</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">효과</th>
+                      <td>카탈로그는 열어 두되, 파이프라인을 돌리는 표면은 관리자만 만지게 한다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </main>
+
+      <site-footer left="Personal · 23" next-href="/pages/patience.html" next-label="Patience Flashcard →"></site-footer>
+    </div>
+  </div>
+</body>
+</html>

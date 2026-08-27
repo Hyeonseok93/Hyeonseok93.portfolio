@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONDE</title>
+  <title>Code Canary</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
   <link rel="stylesheet" href="/css/site.css" />
   <link rel="stylesheet" href="/css/papers.css" />
   <link rel="stylesheet" href="/css/mini.css" />
-  <script src="/js/components.js" defer></script>
+  <script src="/js/components.js?v=nav5" defer></script>
   <script src="/js/slide-fit.js" defer></script>
 </head>
 <body>
@@ -23,18 +23,18 @@
       data-fit-min-width="1101"
       data-fit-min-height="821"
     >
-      <site-nav back-href="/pages/final.html" back-label="← Final"></site-nav>
+      <site-nav back-href="/pages/personal.html" back-label="← Personal"></site-nav>
 
       <main class="board">
         <header class="identity">
           <div class="identity__row">
-            <h1 class="name">ONDE</h1>
+            <h1 class="name">Code Canary</h1>
             <div class="out-links" aria-label="외부 링크">
-              <a class="out-link" href="https://github.com/Hyeonseok93/SK-Rookies5-FINAL_ONDE" target="_blank" rel="noopener noreferrer">
+              <a class="out-link" href="https://github.com/Hyeonseok93/WEB_Code-Canary" target="_blank" rel="noopener noreferrer">
                 <svg class="out-link__ico" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
                 GitHub
               </a>
-              <a class="out-link" href="https://bulldog93.tistory.com/48" target="_blank" rel="noopener noreferrer">
+              <a class="out-link" href="https://bulldog93.tistory.com/58" target="_blank" rel="noopener noreferrer">
                 <svg class="out-link__ico" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 2.5A1.5 1.5 0 0 1 3.5 1h9A1.5 1.5 0 0 1 14 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-11zm2 1v1h8v-1H4zm0 3v1h8V6.5H4zm0 3V11h5V9.5H4z"/></svg>
                 Blog
               </a>
@@ -43,14 +43,14 @@
           <div class="accent" aria-hidden="true"></div>
         </header>
 
-        <section class="showcase showcase--brief showcase--mate" aria-label="ONDE 소개">
+        <section class="showcase showcase--brief showcase--mate" aria-label="Code Canary 소개">
           <div class="showcase__visuals">
             <figure class="showcase__frame">
               <img
-                src="/assets/onde.png"
-                alt="ONDE 메인 화면 — 숙소 검색과 추천 목록"
-                width="1280"
-                height="1858"
+                src="/assets/canary.png"
+                alt="Code Canary 대시보드 — NVD/OSV 동기화 · 메트릭 · 소스 프로필 · KEV"
+                width="2880"
+                height="5616"
                 loading="eager"
               />
             </figure>
@@ -64,11 +64,11 @@
               </div>
               <div>
                 <dt>개발기간</dt>
-                <dd>35일 (개발 28일 + 취약점 진단 후 이행점검 및 개선 7일)</dd>
+                <dd>52일</dd>
               </div>
               <div>
                 <dt>개발인원</dt>
-                <dd>7명</dd>
+                <dd>1명</dd>
               </div>
               <div class="showcase__specs-row--role">
                 <dt>담당역할</dt>
@@ -76,24 +76,25 @@
                   <ul class="role-list">
                     <li>
                       <span class="role-entry">
-                        <span class="role-desc">프론트엔드 숙소·항공·렌터카·지도·피드·결제·셀러/어드민 UI</span>
-                        <span class="role-pct">(기여도 80%)</span>
+                        <span class="role-desc">취약점 대시보드·검색 화면</span>
                       </span>
                       <span class="role-separator">,</span>
                       <span class="role-entry">
-                        <span class="role-desc">프론트–백엔드 연동</span>
-                        <span class="role-pct">(기여도 75%)</span>
+                        <span class="role-desc">API·로그인·관리자 콘솔</span>
                       </span>
                     </li>
                     <li>
                       <span class="role-entry">
-                        <span class="role-desc">백엔드 Flyway 스키마·시드/테스트 데이터 프로비저닝</span>
-                        <span class="role-pct">(기여도 60%)</span>
+                        <span class="role-desc">취약점 수집 Worker·데이터 파이프라인</span>
                       </span>
                       <span class="role-separator">,</span>
                       <span class="role-entry">
-                        <span class="role-desc">로컬 MinIO·S3·인증 데이터 및 인벤토리 캘린더 API</span>
-                        <span class="role-pct">(기여도 55%)</span>
+                        <span class="role-desc">PostgreSQL·Redis 스키마·집계</span>
+                      </span>
+                    </li>
+                    <li>
+                      <span class="role-entry">
+                        <span class="role-desc">Docker Compose · Terraform · ECS 배포</span>
                       </span>
                     </li>
                   </ul>
@@ -102,27 +103,32 @@
             </dl>
 
             <div class="showcase__story">
-              <p class="showcase__kicker">바이브 코딩으로 만든 여행 플랫폼, 진단의 타깃</p>
+              <p class="showcase__kicker">NVD·OSV 취약점을 한곳에서 모아 보는 웹</p>
               <p class="showcase__lede">
-                숙소부터 항공·렌터카·보험까지 한 흐름으로 이어지는 여행 플랫폼을
-                바이브 코딩으로 만들었다.<br />
-                그렇게 올린 코드에서 취약점이 실제로 얼마나 드러나는지 보기 위해,
-                이 서비스를 진단 대상으로 삼았다.
+                출처마다 사이트를 오가던 CVE와 오픈소스 취약점(OSV) 정보를 한곳에 모아
+                정제하고, 누구나 검색·분석할 수 있는 공개 화면과 관리자용 운영 콘솔까지
+                한 서비스로 만들었다.<br />
+                공개 대시보드와 운영 콘솔을 권한으로 가르고, 백만 건 규모 목록을
+                검색과 차트로 한눈에 볼 수 있게 정리했다.
               </p>
-              <ul class="mate-features" aria-label="ONDE 핵심 기능">
+              <ol class="showcase__pipe" aria-label="Code Canary 서비스 흐름">
                 <li>
-                  <strong>통합 예약</strong>
-                  <span>검색부터 결제까지</span>
+                  <strong>수집</strong>
+                  <span>NVD·OSV 피드 받기</span>
                 </li>
                 <li>
-                  <strong>여행자 보험</strong>
-                  <span>견적·가입까지</span>
+                  <strong>원본 적재</strong>
+                  <span>받은 데이터 보관</span>
                 </li>
                 <li>
-                  <strong>운영 콘솔</strong>
-                  <span>셀러·관리자 백오피스</span>
+                  <strong>정규화</strong>
+                  <span>검색·상세용 표로 맞춤</span>
                 </li>
-              </ul>
+                <li>
+                  <strong>탐색·운영</strong>
+                  <span>공개 검색 · 관리자 콘솔</span>
+                </li>
+              </ol>
             </div>
 
             <div class="showcase__env">
@@ -133,6 +139,7 @@
                   <div class="techs">
                     <tech-badge label="TypeScript"></tech-badge>
                     <tech-badge label="Java"></tech-badge>
+                    <tech-badge label="Python"></tech-badge>
                   </div>
                 </div>
                 <div class="env-row">
@@ -143,9 +150,9 @@
                   </div>
                 </div>
                 <div class="env-row">
-                  <span class="env-row__k">데이터베이스</span>
+                  <span class="env-row__k">저장소</span>
                   <div class="techs">
-                    <tech-badge label="MariaDB"></tech-badge>
+                    <tech-badge label="PostgreSQL"></tech-badge>
                     <tech-badge label="Redis"></tech-badge>
                   </div>
                 </div>
@@ -153,31 +160,22 @@
                   <span class="env-row__k">인프라</span>
                   <div class="techs techs--wrap">
                     <tech-badge label="Docker"></tech-badge>
-                    <tech-badge label="Nginx"></tech-badge>
                     <tech-badge label="Terraform"></tech-badge>
                     <tech-badge label="AWS"></tech-badge>
-                    <tech-badge label="MinIO"></tech-badge>
                   </div>
                 </div>
                 <div class="env-row">
                   <span class="env-row__k">빌드</span>
                   <div class="techs">
                     <tech-badge label="Vite"></tech-badge>
-                    <tech-badge label="Gradle"></tech-badge>
                     <tech-badge label="GitHub Actions"></tech-badge>
                   </div>
                 </div>
                 <div class="env-row">
-                  <span class="env-row__k">라이브러리</span>
+                  <span class="env-row__k">데이터</span>
                   <div class="techs techs--wrap">
-                    <tech-badge label="Tailwind CSS"></tech-badge>
-                    <tech-badge label="Zustand"></tech-badge>
-                    <tech-badge label="Axios"></tech-badge>
-                    <tech-badge label="Leaflet"></tech-badge>
-                    <tech-badge label="Spring Security"></tech-badge>
-                    <tech-badge label="JWT"></tech-badge>
-                    <tech-badge label="Flyway"></tech-badge>
-                    <tech-badge label="Hibernate"></tech-badge>
+                    <tech-badge label="NVD API"></tech-badge>
+                    <tech-badge label="OSV"></tech-badge>
                   </div>
                 </div>
               </div>
@@ -186,7 +184,7 @@
         </section>
       </main>
 
-      <site-footer left="Final · 17" next-href="/pages/final1-why.html" next-label="ONDE →"></site-footer>
+      <site-footer left="Personal · 22" next-href="/pages/canary-why.html" next-label="Code Canary →"></site-footer>
     </div>
   </div>
 </body>

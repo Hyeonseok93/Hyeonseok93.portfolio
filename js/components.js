@@ -24,8 +24,16 @@
       let section = "cover";
       if (file.startsWith("profile")) section = "profile";
       else if (file.startsWith("connect")) section = "connect";
-      else if (file.startsWith("mini")) section = "mini";
-      else if (file.startsWith("final")) section = "final";
+      else if (
+        file.startsWith("personal") ||
+        file.startsWith("canary") ||
+        file.startsWith("patience")
+      ) {
+        section = "personal";
+      }
+      else if (file.startsWith("rookies") || file.startsWith("mini") || file.startsWith("final")) {
+        section = "rookies";
+      }
       else if (
         file.startsWith("papers") ||
         file.startsWith("detect") ||
@@ -33,9 +41,10 @@
       ) {
         section = "paper";
       } else if (file.startsWith("works")) {
-        if (hash.startsWith("#mini")) section = "mini";
-        else if (hash.startsWith("#final")) section = "final";
-        else if (hash.startsWith("#paper")) section = "paper";
+        if (hash.startsWith("#mini") || hash.startsWith("#final") || hash.startsWith("#rookies")) {
+          section = "rookies";
+        } else if (hash.startsWith("#paper")) section = "paper";
+        else if (hash.startsWith("#personal")) section = "personal";
         else section = "works";
       }
 
@@ -47,9 +56,10 @@
         return `<a href="${href}"${cls}${aria}>${label}</a>`;
       };
 
-      const worksOpen = ["works", "paper", "mini", "final"].includes(section);
+      const worksOpen = ["works", "paper", "rookies", "personal"].includes(section);
       const researchOpen = section === "paper";
-      const rookiesOpen = section === "mini" || section === "final";
+      const rookiesOpen = section === "rookies";
+      const personalOpen = section === "personal";
       const worksHeadCls = worksOpen ? ' class="nav-cluster__head is-active"' : ' class="nav-cluster__head"';
       const groupRow = (open) =>
         open
@@ -63,15 +73,13 @@
           <a href="/pages/works.html"${worksHeadCls}>Works</a>
           <div class="nav-cluster__sub" aria-label="Works sections">
             <div${groupRow(researchOpen)}>
-              <span class="nav-cluster__group-label">Research</span>
-              <span class="nav-cluster__sep" aria-hidden="true">—</span>
-              ${link("paper", "/pages/papers.html", "Papers")}
+              ${link("paper", "/pages/papers.html", "Research")}
             </div>
             <div${groupRow(rookiesOpen)}>
-              <span class="nav-cluster__group-label">Rookies 5</span>
-              <span class="nav-cluster__sep" aria-hidden="true">—</span>
-              ${link("mini", "/pages/mini1.html", "Mini")}
-              ${link("final", "/pages/final.html", "Final")}
+              ${link("rookies", "/pages/rookies.html", "Rookies 5")}
+            </div>
+            <div${groupRow(personalOpen)}>
+              ${link("personal", "/pages/personal.html", "Personal")}
             </div>
           </div>
         </div>`,
@@ -82,15 +90,9 @@
         link("cover", "/index.html", "Cover", "nav-drawer__link"),
         link("profile", "/pages/profile.html", "Profile", "nav-drawer__link"),
         link("works", "/pages/works.html", "Works", "nav-drawer__link"),
-        `<div class="nav-drawer__group">
-          <p class="nav-drawer__group-label">Research <span aria-hidden="true">—</span></p>
-          ${link("paper", "/pages/papers.html", "Papers", "nav-drawer__link nav-drawer__link--sub")}
-        </div>`,
-        `<div class="nav-drawer__group">
-          <p class="nav-drawer__group-label">Rookies 5 <span aria-hidden="true">—</span></p>
-          ${link("mini", "/pages/mini1.html", "Mini", "nav-drawer__link nav-drawer__link--sub")}
-          ${link("final", "/pages/final.html", "Final", "nav-drawer__link nav-drawer__link--sub")}
-        </div>`,
+        link("paper", "/pages/papers.html", "Research", "nav-drawer__link nav-drawer__link--sub"),
+        link("rookies", "/pages/rookies.html", "Rookies 5", "nav-drawer__link nav-drawer__link--sub"),
+        link("personal", "/pages/personal.html", "Personal", "nav-drawer__link nav-drawer__link--sub"),
         link("connect", "/pages/connect.html", "Connect", "nav-drawer__link"),
       ].join("");
 

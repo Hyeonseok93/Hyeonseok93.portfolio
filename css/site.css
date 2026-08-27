@@ -197,18 +197,27 @@ site-nav {
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 0.22rem;
   white-space: nowrap;
   pointer-events: auto;
   padding: 0.05rem 0.25rem 0.1rem;
+  min-width: max-content;
 }
 
 .nav-cluster__row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.4rem;
+  width: 100%;
+}
+
+.nav-cluster__row--group a {
+  font-size: 0.74rem;
+  display: block;
+  width: 100%;
+  text-align: left;
 }
 
 .nav-cluster__sub a {
@@ -254,10 +263,6 @@ site-nav {
   color: var(--muted);
   opacity: 0.75;
   line-height: 1;
-}
-
-.nav-cluster__row--group a {
-  font-size: 0.74rem;
 }
 
 .nav-toggle,

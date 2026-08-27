@@ -246,6 +246,10 @@ body { overflow: hidden; }
   animation: rise 0.75s var(--ease) 0.88s forwards;
 }
 
+.fork--triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .leaf {
   display: flex;
   flex-direction: column;
@@ -288,6 +292,11 @@ body { overflow: hidden; }
   color: var(--muted);
 }
 
+.leaf .techs {
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
 .leaf__meta {
   margin-top: auto;
   padding-top: 0.55rem;
@@ -322,6 +331,7 @@ body { overflow: hidden; }
   }
   .beat__sub { max-width: 40ch; }
   .fork { grid-template-columns: 1fr; }
+  .fork--triple { grid-template-columns: 1fr; }
   .split__text { white-space: normal; }
 }
 
