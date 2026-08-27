@@ -27,16 +27,23 @@ const PAGES = [
   "pages/detect-why.html",
   "pages/fuzz.html",
   "pages/fuzz-why.html",
+  "pages/rookies.html",
   "pages/mini1.html",
   "pages/mini1-why.html",
   "pages/mini2.html",
   "pages/mini2-why.html",
   "pages/mini3.html",
   "pages/mini3-why.html",
+  "pages/final.html",
   "pages/final1.html",
   "pages/final1-why.html",
   "pages/final2.html",
   "pages/final2-why.html",
+  "pages/personal.html",
+  "pages/canary.html",
+  "pages/canary-why.html",
+  "pages/patience.html",
+  "pages/patience-why.html",
   "pages/connect.html",
 ];
 
@@ -112,7 +119,7 @@ async function launchBrowser() {
 }
 
 async function main() {
-  if (PAGES.length !== 19) throw new Error("Expected 19 pages");
+  if (PAGES.length !== 26) throw new Error("Expected 26 pages");
   await mkdir(OUT_DIR, { recursive: true });
   const { server, base } = await startStaticServer();
   console.log("Serving", ROOT, "at", base);
@@ -121,7 +128,7 @@ async function main() {
   try {
     for (let i = 0; i < PAGES.length; i++) {
       const file = PAGES[i];
-      process.stdout.write(`[${String(i + 1).padStart(2, "0")}/19] ${file} ... `);
+      process.stdout.write(`[${String(i + 1).padStart(2, "0")}/26] ${file} ... `);
       const png = await capturePage(browser, base, file);
       const image = await pdf.embedPng(png);
       const p = pdf.addPage([WIDTH, HEIGHT]);

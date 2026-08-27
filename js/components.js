@@ -20,7 +20,6 @@
         : `<span class="topbar__spacer" aria-hidden="true"></span>`;
 
       const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-      const hash = (location.hash || "").toLowerCase();
       let section = "cover";
       if (file.startsWith("profile")) section = "profile";
       else if (file.startsWith("connect")) section = "connect";
@@ -41,11 +40,7 @@
       ) {
         section = "paper";
       } else if (file.startsWith("works")) {
-        if (hash.startsWith("#mini") || hash.startsWith("#final") || hash.startsWith("#rookies")) {
-          section = "rookies";
-        } else if (hash.startsWith("#paper")) section = "paper";
-        else if (hash.startsWith("#personal")) section = "personal";
-        else section = "works";
+        section = "works";
       }
 
       const link = (id, href, label, extraClass = "") => {

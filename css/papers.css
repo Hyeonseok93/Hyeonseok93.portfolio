@@ -49,7 +49,6 @@ body { overflow: hidden; }
 
 .identity .name,
 .identity .lede,
-.identity .techs,
 .identity .out-links {
   pointer-events: auto;
 }
@@ -246,10 +245,6 @@ body { overflow: hidden; }
   animation: rise 0.75s var(--ease) 0.88s forwards;
 }
 
-.fork--triple {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .leaf {
   display: flex;
   flex-direction: column;
@@ -297,15 +292,6 @@ body { overflow: hidden; }
   padding-top: 0.85rem;
 }
 
-.leaf__meta {
-  margin-top: auto;
-  padding-top: 0.55rem;
-  border-top: 1px solid rgba(236, 233, 227, 0.08);
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
-  color: var(--muted);
-}
-
 @keyframes draw {
   to { width: 6.5rem; }
 }
@@ -331,7 +317,6 @@ body { overflow: hidden; }
   }
   .beat__sub { max-width: 40ch; }
   .fork { grid-template-columns: 1fr; }
-  .fork--triple { grid-template-columns: 1fr; }
   .split__text { white-space: normal; }
 }
 

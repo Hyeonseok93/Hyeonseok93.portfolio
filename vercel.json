@@ -16,6 +16,16 @@
       "permanent": true
     },
     {
+      "source": "/rookies.html",
+      "destination": "/pages/rookies.html",
+      "permanent": true
+    },
+    {
+      "source": "/personal.html",
+      "destination": "/pages/personal.html",
+      "permanent": true
+    },
+    {
       "source": "/connect.html",
       "destination": "/pages/connect.html",
       "permanent": true
@@ -71,6 +81,11 @@
       "permanent": true
     },
     {
+      "source": "/final.html",
+      "destination": "/pages/final.html",
+      "permanent": true
+    },
+    {
       "source": "/final1.html",
       "destination": "/pages/final1.html",
       "permanent": true
@@ -88,6 +103,26 @@
     {
       "source": "/final2-why.html",
       "destination": "/pages/final2-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/canary.html",
+      "destination": "/pages/canary.html",
+      "permanent": true
+    },
+    {
+      "source": "/canary-why.html",
+      "destination": "/pages/canary-why.html",
+      "permanent": true
+    },
+    {
+      "source": "/patience.html",
+      "destination": "/pages/patience.html",
+      "permanent": true
+    },
+    {
+      "source": "/patience-why.html",
+      "destination": "/pages/patience-why.html",
       "permanent": true
     }
   ]

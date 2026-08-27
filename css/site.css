@@ -242,29 +242,6 @@ site-nav {
   border-bottom-color: var(--copper);
 }
 
-.nav-cluster__group-label {
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  line-height: 1.2;
-}
-
-.nav-cluster__row--group.is-active .nav-cluster__group-label,
-.nav-cluster__row--group.is-active .nav-cluster__sep {
-  color: var(--ink);
-}
-
-.nav-cluster__sep {
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  color: var(--muted);
-  opacity: 0.75;
-  line-height: 1;
-}
-
 .nav-toggle,
 .nav-drawer,
 .nav-drawer__backdrop,
@@ -526,11 +503,6 @@ site-nav {
 
   .nav-cluster__sub a {
     font-size: 0.62rem;
-  }
-
-  .nav-cluster__group-label,
-  .nav-cluster__sep {
-    font-size: 0.56rem;
   }
 
   .nav-cluster__row--group a {
