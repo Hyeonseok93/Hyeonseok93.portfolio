@@ -7,7 +7,17 @@
     },
     {
       "source": "/works.html",
-      "destination": "/pages/works.html",
+      "destination": "/pages/builds.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/works.html",
+      "destination": "/pages/builds.html",
+      "permanent": true
+    },
+    {
+      "source": "/builds.html",
+      "destination": "/pages/builds.html",
       "permanent": true
     },
     {

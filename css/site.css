@@ -152,7 +152,7 @@ site-footer {
 site-nav {
   position: relative;
   z-index: 40;
-  /* room for Works 2-line submenu without pushing it down via padding */
+  /* room for Builds 2-line submenu without pushing it down via padding */
   margin-bottom: clamp(2.6rem, 5.5vh, 3.4rem);
 }
 

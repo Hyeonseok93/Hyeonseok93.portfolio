@@ -21,7 +21,7 @@ const SCALE = 2;
 const PAGES = [
   "index.html",
   "pages/profile.html",
-  "pages/works.html",
+  "pages/builds.html",
   "pages/papers.html",
   "pages/detect.html",
   "pages/detect-why.html",

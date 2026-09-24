@@ -39,8 +39,8 @@
         file.startsWith("fuzz")
       ) {
         section = "paper";
-      } else if (file.startsWith("works")) {
-        section = "works";
+      } else if (file.startsWith("builds") || file.startsWith("works")) {
+        section = "builds";
       }
 
       const link = (id, href, label, extraClass = "") => {
@@ -51,11 +51,11 @@
         return `<a href="${href}"${cls}${aria}>${label}</a>`;
       };
 
-      const worksOpen = ["works", "paper", "rookies", "personal"].includes(section);
+      const buildsOpen = ["builds", "paper", "rookies", "personal"].includes(section);
       const papersOpen = section === "paper";
       const rookiesOpen = section === "rookies";
       const personalOpen = section === "personal";
-      const worksHeadCls = worksOpen ? ' class="nav-cluster__head is-active"' : ' class="nav-cluster__head"';
+      const buildsHeadCls = buildsOpen ? ' class="nav-cluster__head is-active"' : ' class="nav-cluster__head"';
       const groupRow = (open) =>
         open
           ? ' class="nav-cluster__row nav-cluster__row--group is-active"'
@@ -64,9 +64,9 @@
       const tabs = [
         link("cover", "/index.html", "Cover"),
         link("profile", "/pages/profile.html", "Profile"),
-        `<div class="nav-cluster${worksOpen ? " is-open" : ""}">
-          <a href="/pages/works.html"${worksHeadCls}>Works</a>
-          <div class="nav-cluster__sub" aria-label="Works sections">
+        `<div class="nav-cluster${buildsOpen ? " is-open" : ""}">
+          <a href="/pages/builds.html"${buildsHeadCls}>Builds</a>
+          <div class="nav-cluster__sub" aria-label="Builds sections">
             <div${groupRow(papersOpen)}>
               ${link("paper", "/pages/papers.html", "Papers")}
             </div>
@@ -84,7 +84,7 @@
       const drawerLinks = [
         link("cover", "/index.html", "Cover", "nav-drawer__link"),
         link("profile", "/pages/profile.html", "Profile", "nav-drawer__link"),
-        link("works", "/pages/works.html", "Works", "nav-drawer__link"),
+        link("builds", "/pages/builds.html", "Builds", "nav-drawer__link"),
         link("paper", "/pages/papers.html", "Papers", "nav-drawer__link nav-drawer__link--sub"),
         link("rookies", "/pages/rookies.html", "Rookies 5", "nav-drawer__link nav-drawer__link--sub"),
         link("personal", "/pages/personal.html", "Personal", "nav-drawer__link nav-drawer__link--sub"),
