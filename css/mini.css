@@ -83,6 +83,7 @@
   margin: 0;
   flex: 1 1 0;
   min-height: 0;
+  overflow: auto;
   padding-bottom: clamp(0.5rem, 1.2vh, 0.8rem);
   border-bottom: 1px solid rgba(212, 137, 74, 0.45);
 }
@@ -153,8 +154,9 @@
   justify-content: flex-start;
   gap: 0.7rem;
   min-width: 0;
-  flex: 0.85 1 0;
-  min-height: 0;
+  /* Content-sized: do not flex-shrink or border-bottom cuts through the pipe */
+  flex: 0 0 auto;
+  min-height: auto;
   padding-top: clamp(0.5rem, 1.2vh, 0.8rem);
   padding-bottom: clamp(0.55rem, 1.4vh, 0.9rem);
   border-bottom: 1px solid rgba(212, 137, 74, 0.45);
@@ -234,11 +236,11 @@
 .showcase__env {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.45rem;
   padding-top: clamp(0.5rem, 1.2vh, 0.8rem);
-  flex: 1 1 0;
-  min-height: 0;
+  flex: 0 0 auto;
+  min-height: auto;
 }
 
 .showcase__env-label {
@@ -298,11 +300,11 @@
 
 /* MINI2: service capabilities, not MINI1's data pipeline */
 .showcase--mate .showcase__specs {
-  flex: 0.98 1 0;
+  flex: 1 1 0;
 }
 
 .showcase--mate .showcase__story {
-  flex: 0.86 1 0;
+  flex: 0 0 auto;
 }
 
 .showcase--mate .env-row {
