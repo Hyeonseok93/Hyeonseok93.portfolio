@@ -93,9 +93,32 @@
   --stack-base: /assets/stacks;
   --font-body: "Figtree", "Noto Sans KR", sans-serif;
   --font-display: "Outfit", "Noto Sans KR", sans-serif;
+  /* Design canvas (desktop slide). --ui-scale drives rem before tablet. */
+  --design-w: 1920;
+  --design-h: 913;
+  --ui-scale: 1;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/*
+  Fluid rem (not transform:scale): rem / padding / type shrink together.
+  Active only above the tablet/nav breakpoint (1100). Below that, layout
+  stacks and html stays 16px so mobile text stays readable.
+*/
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 1101px) {
+  :root {
+    --ui-scale: min(1, 100vw / 1920, 100dvh / 913);
+  }
+
+  html {
+    font-size: calc(16px * var(--ui-scale));
+  }
+}
 
 html, body { min-height: 100%; }
 

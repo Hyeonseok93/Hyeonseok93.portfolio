@@ -1,5 +1,5 @@
 /* Mini project pages */
-.identity .name { font-size: clamp(1.75rem, 3.6vw, 2.65rem); }
+.identity .name { font-size: 2.2rem; }
 .identity .lede { max-width: 48ch; }
 
 /* Mini cover: PPT-fixed height — shots left, brief + env right */
@@ -106,7 +106,7 @@
 .showcase__specs dt {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.12rem, 1.65vw, 1.32rem);
+  font-size: 1.22rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1.3;
@@ -116,7 +116,7 @@
 .showcase__specs dd {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 1.75vw, 1.4rem);
+  font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -373,7 +373,7 @@
 
 .why--3 .why__item:nth-child(3) { animation-delay: 0.55s; }
 
-@media (max-width: 1100px), (max-height: 820px) {
+@media (max-width: 1100px) {
   body { overflow: auto; }
   .stage { height: auto; min-height: 100dvh; overflow: visible; }
   .frame { height: auto; min-height: 100dvh; }
@@ -583,31 +583,22 @@
   }
 }
 
-/* Fixed slide pages: shared slide-fit.js scales the canvas until reflow takes over */
+/* Desktop shrink uses site.css fluid rem (--ui-scale). slide-fit.js is a no-op. */
 @media (min-width: 1101px) {
-  body.is-slide-fit-active {
-    overflow: hidden;
-  }
-
-  .is-slide-fit-active .stage {
+  .stage {
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
   }
 
-  .is-slide-fit-active [data-slide-fit] {
-    position: absolute;
+  .frame {
+    height: 100%;
     min-height: 0;
-    transform-origin: top left;
   }
 
-  .is-slide-fit-active [data-slide-fit] .board {
+  .board {
     height: 100%;
     position: relative;
-  }
-
-  .is-slide-fit-active [data-slide-fit] .identity {
-    position: absolute;
   }
 }
 

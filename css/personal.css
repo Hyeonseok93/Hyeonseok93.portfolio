@@ -113,7 +113,7 @@
 }
 
 /* Mobile / tablet: stacked tag · title · Korean · pill links */
-@media (max-width: 980px) {
+@media (max-width: 1100px) {
   #personal-mini .stack {
     height: auto;
     overflow: visible;
