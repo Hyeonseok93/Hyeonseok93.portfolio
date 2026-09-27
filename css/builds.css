@@ -213,6 +213,19 @@ body { overflow: hidden; }
   .gate__arrow { grid-area: arrow; }
 }
 
+/* Short desktop: page scrolls; gates keep natural height */
+@media (min-width: 1101px) and (max-height: 900px) {
+  .gates {
+    flex: none;
+    height: auto;
+    align-content: start;
+  }
+  .gate {
+    height: auto;
+    min-height: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .board, .accent {
     opacity: 1;

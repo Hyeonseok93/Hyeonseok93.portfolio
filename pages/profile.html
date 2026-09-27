@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hyeonseok's Profile</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
-  <link rel="stylesheet" href="/css/site.css?v=fluid1" />
+  <link rel="stylesheet" href="/css/site.css?v=short1" />
   <script src="/js/components.js?v=builds1" defer></script>
   <style>
     :root {
@@ -787,6 +787,60 @@
       .journey-stage {
         width: 57.5rem;
         min-width: 100%;
+      }
+    }
+
+    /* Short desktop: unlock shell/panel crush; whole page scrolls */
+    @media (min-width: 1101px) and (max-height: 900px) {
+      body { overflow: auto !important; }
+      html, body { height: auto; }
+
+      .stage {
+        height: auto !important;
+        min-height: 100dvh;
+        overflow: visible !important;
+      }
+
+      .shell {
+        height: auto;
+        min-height: 100dvh;
+        overflow: visible;
+        align-items: start;
+      }
+
+      .portrait {
+        height: auto;
+        max-height: min(100dvh, 52rem);
+        align-self: start;
+        position: sticky;
+        top: 0;
+      }
+
+      .panel {
+        height: auto;
+        overflow: visible;
+        min-height: 100dvh;
+      }
+
+      .fit,
+      .main {
+        height: auto;
+        overflow: visible;
+      }
+
+      .grid > section,
+      .grid > .side-stack,
+      .side-stack > section,
+      .side-stack .career {
+        height: auto;
+        flex: none;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .journey-board {
+        height: auto;
+        min-height: 8.5rem;
       }
     }
 

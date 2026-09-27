@@ -156,3 +156,14 @@
     margin-top: 0.15rem;
   }
 }
+
+@media (min-width: 1101px) and (max-height: 900px) {
+  #personal-mini .stack {
+    height: auto;
+    overflow: visible;
+  }
+  #personal-mini .work {
+    flex: 0 0 auto;
+    min-height: auto;
+  }
+}

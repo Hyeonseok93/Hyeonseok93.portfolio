@@ -311,3 +311,21 @@ body { overflow: hidden; }
   }
   .accent { width: 6.5rem; }
 }
+
+/* Short desktop: keep columns, but let cards size naturally + page scroll */
+@media (min-width: 1101px) and (max-height: 900px) {
+  .band {
+    height: auto;
+    flex: none;
+  }
+  .col,
+  .stack {
+    height: auto;
+    overflow: visible;
+  }
+  .work {
+    flex: 0 0 auto;
+    overflow: visible;
+    min-height: auto;
+  }
+}
