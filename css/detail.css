@@ -743,22 +743,6 @@ body { overflow: hidden; }
   }
 }
 
-/* Short desktop: flow cells size to content; page scrolls */
-@media (min-width: 1101px) and (max-height: 900px) {
-  .flow,
-  .flow__row,
-  .cell {
-    flex: none;
-    min-height: auto;
-    height: auto;
-    overflow: visible;
-  }
-  .cell__viz {
-    overflow: visible;
-    min-height: auto;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .board, .cell, .flow__arrow, .accent {
     opacity: 1;

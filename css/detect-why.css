@@ -32,24 +32,6 @@
   .why__body p { font-size: 1.02rem; }
 }
 
-@media (min-width: 1101px) and (max-height: 900px) {
-  .deck {
-    position: relative;
-    inset: auto;
-    display: block;
-    height: auto;
-    padding-top: 1.5rem;
-    align-items: flex-start;
-  }
-  .why {
-    flex: none;
-    min-height: auto;
-  }
-  .why__item {
-    height: auto;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .why__item { opacity: 1; transform: none; animation: none; }
 }

@@ -137,16 +137,6 @@
   }
 }
 
-@media (min-width: 1101px) and (max-height: 900px) {
-  .connect {
-    position: relative;
-    inset: auto;
-    height: auto;
-    min-height: 0;
-    padding-top: clamp(4rem, 8vh, 5.5rem);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .connect {
     opacity: 1;

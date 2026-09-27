@@ -320,28 +320,6 @@ body { overflow: hidden; }
   .split__text { white-space: normal; }
 }
 
-/* Short desktop: unlock absolute deck; page scrolls (columns stay) */
-@media (min-width: 1101px) and (max-height: 900px) {
-  .board { position: relative; }
-  .identity { position: relative; }
-  .deck {
-    position: relative;
-    inset: auto;
-    display: block;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-    padding-top: 1.25rem;
-  }
-  .beats,
-  .beat,
-  .fork,
-  .leaf {
-    min-height: auto;
-    height: auto;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .board, .beat, .split, .fork, .accent, .split__core {
     opacity: 1;
