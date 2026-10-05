@@ -295,11 +295,20 @@
     ${project('mini1')}${project('mini2')}${project('mini3')}
     <section class="rkf" id="rk-final">
       <header class="rkf__hd"><span class="rkp__no">04</span><div><span class="rkp__tag">FINAL<em>2개 프로젝트</em></span>
-        <h3>진단 대상과 진단 도구를 함께 만든 최종 프로젝트</h3>
-        <p>바이브 코딩으로 만든 ONDE를 사람이 직접 진단하고, 같은 대상을 ARGUS로 자동 진단해 결과를 비교했습니다.</p></div></header>
-      <div class="rkf__pair"><span class="o">ONDE<small>진단 대상</small></span>
-        <div class="rkf__arrow"><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M196 10 H6" /><path class="tip" d="M14 3 L4 10 L14 17" /></svg><small>수동 진단 · 자동 진단 → 결과 비교</small></div>
-        <span class="a">ARGUS<small>진단 도구</small></span></div>
+        <h3>클라우드 구축을 통한 취약점 진단 및 모의해킹</h3>
+        <p>바이브 코딩 과정에서 드러난 취약점과, 그것을 가려내는 플랫폼.</p></div></header>
+      <ol class="rkf__why">${[
+        ['01', '속도', '바이브 코딩', '개발 속도를 극적으로 끌어올리는 강력한 코딩 방법입니다.', '#e3b341'],
+        ['02', '착각', '편하지만 안전하지 않다', '컴파일을 통과하고 정상 동작한다고 취약점이 없는 것은 아닙니다.', '#f78166'],
+        ['03', '필수', '취약점 진단', '그래서 진단은 선택이 아니라 필수입니다.', '#f85149'],
+        ['04', '실증', '타겟 플랫폼 × 진단 플랫폼', '바이브 코딩으로 타깃을 만들고, 사람이 직접 확인한 수동 진단과 만든 플랫폼으로 돌린 자동 진단을 비교했습니다.', '#4493f8'],
+      ].map(([n, k, t, d, c]) => `<li style="--c:${c}"><span><em>${n}</em>${k}</span><b>${t}</b><p>${d}</p></li>`).join('')}</ol>
+      <div class="rkf__pair">
+        <a class="o" href="#rk-onde"><small>TARGET</small><b>ONDE</b><span>바이브 코딩으로 만든 여행 플랫폼 · 취약점 진단의 대상</span></a>
+        <div class="rkf__arrow"><small>수동 진단 · 사람이 직접 확인</small>
+          <svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M196 10 H6" /><path class="tip" d="M14 3 L4 10 L14 17" /></svg>
+          <small>자동 진단 · ARGUS 모듈 → 두 결과 비교</small></div>
+        <a class="a" href="#rk-argus"><small>DIAGNOSTICS</small><b>ARGUS</b><span>URL·API 명세로 돌리는 통합 진단 플랫폼 · 취약점 진단기</span></a></div>
       ${project('onde')}${project('argus')}
     </section>`;
 
@@ -310,7 +319,7 @@
   addEventListener('load', () => setTimeout(load, 1500));
   if (!root.closest('.panel').hidden) load();
 
-  root.querySelectorAll('.rk-line a').forEach(a => a.addEventListener('click', e => {
+  root.querySelectorAll('.rk-line a, .rkf__pair a').forEach(a => a.addEventListener('click', e => {
     e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }));
 })();
