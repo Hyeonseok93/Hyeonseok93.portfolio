@@ -170,65 +170,81 @@
   if (!root) return;
   const GH = 'https://github.com/Hyeonseok93/', BLOG = 'https://hyeonseok93.github.io/posts/';
 
-  // role: [what, contribution %] · points: [title, sentence, flow]
+  // v1 copy: kicker, lede, flow (pipe = arrows between steps), role [what, %], env [category, stack]; points: [title, sentence, flow]
   const P = {
     mini1: { no: '01', tag: 'MINI 1', name: 'CVS Event Comparator', sub: '4사 편의점 행사 비교 대시보드', days: 5, team: 6, c: '#e3b341',
-      desc: 'CU · GS25 · 7-Eleven · emart24 행사 상품을 하나의 형식으로 모아 비교·추천하고, 행사 상품을 기준으로 답하는 챗봇을 붙였습니다.',
-      role: [['크롤러 공통 구조 · 데이터 파이프라인 설계', 100], ['핫딜 단가 계산', 90], ['AI 챗봇 · Groq 연동 · 검색 로직', 70]],
+      kicker: "한곳에 모은 편의점 행사", pipe: true,
+      lede: ["CU · GS25 · 7-Eleven · emart24 행사가 각 브랜드 앱과 웹사이트에 흩어져 있어, 혜택을 한곳에서 비교하기 어렵습니다.", "그래서 네 브랜드 행사 상품을 모아 한곳에서 비교·추천할 수 있는 통합 대시보드를 만들었습니다."],
+      flow: [["수집", "4사 웹·API 크롤"], ["정제", "공통 스키마로 맞춤"], ["분류", "카테고리·행사 라벨"], ["대시보드", "비교·추천·챗봇"]],
+      role: [["럭키박스 페이지", 100], ["크롤러 공통 구조·데이터 파이프라인 통합 설계", 100], ["핫딜 단가 계산", 90], ["브랜드 비교 UI", 80], ["AI 챗봇 – Groq 연동·검색 로직", 70], ["편의점 4사 크롤링 · emart24 담당", 25]],
       points: [
         ['브랜드별 수집', '응답 방식이 다른 네 사이트에 맞춰 크롤러를 나누고, 결과를 하나의 스키마로 통일했습니다.', 'Ajax HTML · JSON API · 페이지네이션 → brand · name · price · event'],
         ['정제 · 분류 배치', '매일 정제·분류를 돌리고, 한 곳이라도 수집에 실패하면 기존 카탈로그를 덮어쓰지 않습니다.', '4사 수집 → 정제 → 카테고리 분류 → 카탈로그'],
         ['행사 상품 챗봇', '질문 키워드로 관련 상품만 골라 LLM에 넣고, 목록에 없는 가격·행사는 답하지 않도록 제한했습니다.', '질문 → 상품 필터 → Groq Llama 3.3 → 스트리밍 응답'],
       ],
-      stack: ['Python', 'Streamlit', 'Selenium', 'BeautifulSoup', 'Pandas', 'Groq'],
+      env: [["언어", ["Python"]], ["프레임워크", ["Streamlit"]], ["저장소", ["CSV (파일 기반)"]], ["IDE", ["Cursor", "VS Code"]], ["API", ["Groq", "Requests"]], ["라이브러리", ["Pandas", "Plotly", "Folium", "BeautifulSoup", "Selenium", "APScheduler", "Loguru"]]],
       repo: 'SK-Rookies5-MINI1_CVS-EVENT-COMPARATOR', post: 'rookies-showcase-mini1' },
     mini2: { no: '02', tag: 'MINI 2', name: 'MATE', sub: '스터디 · 프로젝트 팀 매칭 플랫폼', days: 8, team: 6, c: '#d2a8ff',
-      desc: '모집글 작성부터 지원 · 수락 · 팀 전용 게시판까지 한 흐름으로 관리하는 팀 매칭 플랫폼입니다.',
-      role: [['회원가입 · 로그인 · 계정 찾기', 100], ['모집글 CRUD · 모집 상태 로직', 90], ['MSW 목업 서버 · API 연동 · 상태 관리', 90]],
+      kicker: "모집부터 팀 소통까지, 한 플랫폼에서", pipe: false,
+      lede: ["프로젝트·스터디 팀원 모집이 오픈채팅·에브리타임에 흩어져 지원자와 합류 현황을 따로 관리해야 했습니다.", "그래서 모집부터 지원·팀 확정까지 한곳에서 관리하고, 매칭된 팀에는 전용 게시판을 제공하는 플랫폼을 만들었습니다."],
+      flow: [["모집 관리", "작성·마감·재모집"], ["지원·매칭", "지원서·수락·거절"], ["팀 공간", "멤버 전용 게시판·댓글"]],
+      role: [["회원가입·로그인·계정 찾기·회원정보 중복 확인 기능 구현", 100], ["모집글 CRUD·재모집 및 모집중·마감임박·마감 상태 로직", 90], ["MSW 목업 서버·API 연동(Axios 인터셉터)·Zustand 상태관리·MUI 테마", 90], ["팀 전용 게시판·댓글, 지원서, 마이페이지(내 모집·신청)", 80], ["백엔드 모집글·게시판 페이징·필터링 일부", 20]],
       points: [
         ['MSW 병렬 개발', '실제 API와 같은 주소·응답을 흉내 내는 목업 서버로 화면을 먼저 만들고, 설정값 하나로 실서버에 연결했습니다.', '목업 서버 → 화면 개발 → 설정 전환 → 실서버'],
         ['Silent JWT 갱신', '토큰이 만료되면 보안 쿠키의 재발급 토큰으로 새 토큰을 받고, 실패한 요청을 다시 보냅니다. 동시 만료 시 재발급은 한 번만 합니다.', '토큰 만료 → 재발급 → 대기 요청 재개 → 재전송'],
         ['API 응답 표준화', 'API마다 다른 필드 이름과 목록 형식을 변환 계층에서 하나의 내부 규격으로 맞췄습니다.', 'API 응답 → 변환 계층 → 화면 공통 규격'],
       ],
-      stack: ['React', 'Spring Boot', 'MariaDB', 'Zustand', 'MSW', 'Spring Security'],
+      env: [["언어", ["JavaScript", "Java"]], ["프레임워크", ["React", "Spring Boot"]], ["데이터베이스", ["MariaDB", "H2"]], ["빌드", ["Vite", "Maven"]], ["IDE", ["Cursor", "IntelliJ IDEA", "VS Code"]], ["라이브러리", ["MUI", "Zustand", "Axios", "React Router", "MSW", "Spring Security", "JPA", "JJWT", "Flyway", "Cloudinary"]]],
       repo: 'SK-Rookies5-MINI2_MATE', post: 'rookies-showcase-mini2' },
     mini3: { no: '03', tag: 'MINI 3', name: 'MACTA', sub: '실시간 경매 플랫폼', days: 8, team: 6, c: '#3fb950',
-      desc: '마감 직전 몰리는 입찰에도 최고가가 어긋나지 않도록 동시성을 제어하고, 낙찰 후 결제까지 이어지는 경매 플랫폼입니다.',
-      role: [['프론트엔드 스캐폴드 · 공통 UI · API 연동', 90], ['인증 · 서버 시간 동기화 · 라이브 입찰 UX', 90], ['경매 상세 · 입찰 · 결제 · 알림 화면', 80]],
+      kicker: "마감 직전에도 따라잡는 실시간 경매", pipe: false,
+      lede: ["마감이 다가올수록 입찰이 한꺼번에 몰리고, 최고가가 덮어씌워지거나 내 입찰·낙찰 현황을 놓치기 쉽습니다.", "그래서 낙관적 락으로 동시 입찰을 맞추고, 실시간 최고가와 상회 알림부터 결제·배송까지 한곳에서 이어가는 경매 플랫폼을 만들었습니다."],
+      flow: [["실시간 입찰", "낙관적 락·최고가 동기화"], ["상회 알림", "입찰·낙찰 이벤트"], ["낙찰 거래", "결제·배송 이어가기"]],
+      role: [["프론트엔드 스캐폴드·레이아웃·공통 UI 및 Axios API 연동", 90], ["Zustand 인증·서버 시간 동기화·라이브 입찰 폴링 UX", 90], ["경매 상세·입찰·등록·결제·알림·마이페이지 화면", 80], ["백엔드 경매 API·입찰 응답·마이페이지 상태·알림", 30]],
       points: [
         ['서버 시간 동기화', '기기 시계 대신 서버 시각과의 차이를 기준으로 카운트다운과 입찰 가능 여부를 계산합니다.', '서버 시각 → RTT 보정 → 기준 시각 → 카운트다운'],
         ['낙관적 락 동시 입찰', '@Version으로 동시 입찰 충돌을 감지해, 먼저 커밋된 입찰만 최고가에 반영합니다.', '입찰 → 최고가 검증 → version 갱신 → 충돌 시 실패'],
         ['GitOps 무중단 배포', '이미지 태그만 갱신하면 Argo CD가 EKS를 맞추고, Rolling Update로 배포 중에도 요청이 끊기지 않습니다.', '빌드 → ECR → Manifest → Argo CD → Rolling Update'],
       ],
-      stack: ['React', 'TypeScript', 'Spring Boot', 'Redis', 'Kubernetes', 'Argo CD'],
+      env: [["언어", ["TypeScript", "Java"]], ["프레임워크", ["React", "Spring Boot"]], ["데이터베이스", ["MariaDB", "Redis"]], ["인프라", ["Docker", "Kubernetes", "Terraform", "AWS", "Argo CD"]], ["빌드", ["Vite", "Maven", "GitHub Actions"]], ["라이브러리", ["Tailwind CSS", "TanStack Query", "Zustand", "Axios", "Spring Security", "JWT", "Hibernate"]]],
       repo: 'SK-Rookies5-MINI3_MACTA', post: 'rookies-showcase-mini3' },
     onde: { no: 'F1', tag: 'FINAL · TARGET', name: 'ONDE', sub: '진단 대상으로 만든 여행 플랫폼', days: 35, team: 7, c: '#4493f8',
-      desc: '숙소 · 항공 · 렌터카 · 보험을 한 흐름으로 묶은 여행 플랫폼을 바이브 코딩으로 만들고, 취약점 진단의 대상으로 사용했습니다.',
-      role: [['프론트엔드 · 숙소 · 항공 · 렌터카 · 결제 · 어드민', 80], ['프론트–백엔드 연동', 75], ['Flyway 스키마 · 시드 데이터', 60]],
+      kicker: "바이브 코딩으로 만든 여행 플랫폼, 진단의 타깃", pipe: false,
+      lede: ["숙소부터 항공·렌터카·보험까지 한 흐름으로 이어지는 여행 플랫폼을 바이브 코딩으로 만들었습니다.", "그렇게 올린 코드에서 취약점이 실제로 얼마나 드러나는지 보기 위해, 이 서비스를 진단 대상으로 삼았습니다."],
+      flow: [["통합 예약", "검색부터 결제까지"], ["여행자 보험", "견적·가입까지"], ["운영 콘솔", "셀러·관리자 백오피스"]],
+      role: [["프론트엔드 숙소·항공·렌터카·지도·피드·결제·셀러/어드민 UI", 80], ["프론트–백엔드 연동", 75], ["백엔드 Flyway 스키마·시드/테스트 데이터 프로비저닝", 60], ["로컬 MinIO·S3·인증 데이터 및 인벤토리 캘린더 API", 55]],
       points: [
         ['항공 좌석 임시 선점', '같은 좌석 요청을 분산 잠금으로 하나씩 처리하고, 결제 전 10분 동안만 좌석을 잡아 둔 뒤 자동으로 풀어 줍니다.', '예약 → 직렬 처리 → 좌석 차감 → 결제 대기 → 만료 복구'],
         ['테스트 데이터 프로비저닝', '로컬에서는 MinIO로 S3와 같은 업로드 경로를 쓰고, 수집한 데이터를 스키마에 맞게 변환해 적재했습니다.', '수집 → 정리 → 스키마 변환 → DB 적재'],
         ['날짜별 재고 달력', '숙소와 렌터카가 같은 달력 규칙을 공유하고, 기록이 없는 날은 마감으로 처리합니다.', '월 선택 → 재고 조회 → 빈 날 마감 → 예약'],
       ],
-      stack: ['React', 'TypeScript', 'Spring Boot', 'MariaDB', 'Redis', 'Terraform', 'AWS'],
+      env: [["언어", ["TypeScript", "Java"]], ["프레임워크", ["React", "Spring Boot"]], ["데이터베이스", ["MariaDB", "Redis"]], ["인프라", ["Docker", "Nginx", "Terraform", "AWS", "MinIO"]], ["빌드", ["Vite", "Gradle", "GitHub Actions"]], ["라이브러리", ["Tailwind CSS", "Zustand", "Axios", "Leaflet", "Spring Security", "JWT", "Flyway", "Hibernate"]]],
       repo: 'SK-Rookies5-FINAL_ONDE', post: 'rookies-showcase-final1' },
     argus: { no: 'F2', tag: 'FINAL · DIAGNOSTICS', name: 'ARGUS', sub: '웹 · API 자동 취약점 진단 플랫폼', days: 22, team: 7, c: '#f78166',
-      desc: '사람이 엔드포인트를 하나씩 확인하던 진단을 항목별 모듈로 자동화하고, 증적 스크린샷과 PDF 결과서까지 생성합니다.',
-      role: [['대상 API · 엔드포인트 수집 · 응답 검증', 85], ['진단 결과 · 상세 화면 프론트엔드', 85], ['취약점 진단 모듈 · 판정 로직', 45]],
+      kicker: "수동 진단을 자동화하는 웹·API 진단 플랫폼", pipe: true,
+      lede: ["사람이 엔드포인트를 하나씩 눌러 보던 취약점 검사를, 항목별 진단 모듈로 수만 건까지 빠르게 돌릴 수 있게 만들었습니다.", "대상 API를 모은 뒤 모듈이 검사하고, 증적 스크린샷과 결과서 PDF까지 남깁니다."],
+      flow: [["데이터 수집", "API·엔드포인트 수집"], ["진단", "항목별 모듈 스캔"], ["스크린샷 캡쳐", "증적 이미지 저장"], ["결과서 작성", "PDF 생성·다운로드"]],
+      role: [["대상 서비스 API·엔드포인트 수집·응답 검증", 85], ["진단 결과·상세 화면 프론트엔드", 85], ["취약점 진단 모듈·판정 로직", 45], ["진단 증적 스크린샷 자동화", 20], ["진단 결과서 PDF 생성·다운로드", 15], ["인프라 CD·실배포 검증", 15]],
       points: [
         ['대상 수집 · 검증', 'URL · API · Swagger 목록으로 경로를 모으고, 실제 응답이 확인된 경로만 진단 대상으로 확정합니다.', '기준 URL → 경로 수집 → 응답 검증 → 확정 목록'],
         ['항목별 진단 모듈', '확정된 목록 위에서 항목별 모듈이 검사하고, 결과를 통과 · 주의 · 실패로 자동 판정합니다.', '확정 목록 → 모듈 실행 → 자동 판정 → 결과 저장'],
         ['증적 · 결과서', 'Playwright로 재현 화면을 캡처하고, 진단 결과와 묶어 PDF 결과서로 만듭니다.', '진단 결과 → 화면 캡처 → PDF → 다운로드'],
       ],
-      stack: ['React', 'TypeScript', 'FastAPI', 'Python', 'OWASP ZAP', 'Playwright', 'AWS'],
+      env: [["언어", ["TypeScript", "Python"]], ["프레임워크", ["React", "FastAPI"]], ["진단", ["OWASP ZAP", "Playwright", "httpx"]], ["인프라", ["Docker", "Nginx", "Terraform", "AWS"]], ["빌드", ["Vite", "GitHub Actions"]], ["라이브러리", ["Tailwind CSS", "Lucide", "Pydantic", "ReportLab", "PyYAML"]]],
       repo: 'SK-Rookies5-FINAL_ARGUS', post: 'rookies-showcase-final2' },
   };
 
   // stack badges reuse the v1 portfolio look (Groq, BeautifulSoup, Zustand icons are our own)
-  const ICON = { Python: 'python.png', Streamlit: 'streamlit.png', Selenium: 'selenium.png', Pandas: 'pandas.svg', BeautifulSoup: 'beautifulsoup.svg', Groq: 'groq.svg', Zustand: 'zustand.png', React: 'react.png',
-    'Spring Boot': 'spring.png', 'Spring Security': 'springsecurity.svg', MariaDB: 'mariadb.png', MSW: 'msw.svg', TypeScript: 'typescript.png',
-    Redis: 'redis.svg', Kubernetes: 'kubernetes.svg', 'Argo CD': 'argocd.svg', Terraform: 'terraform.svg', AWS: 'aws.png',
-    FastAPI: 'fastapi.png', 'OWASP ZAP': 'owasp.svg', Playwright: 'playwright.svg' };
+  const ICON = { Python: 'python.png', Streamlit: 'streamlit.png', Selenium: 'selenium.png', Pandas: 'pandas.svg', BeautifulSoup: 'beautifulsoup.svg',
+    Groq: 'groq.svg', Zustand: 'zustand.png', React: 'react.png', 'Spring Boot': 'spring.png', 'Spring Security': 'springsecurity.svg', MariaDB: 'mariadb.png',
+    MSW: 'msw.svg', TypeScript: 'typescript.png', JavaScript: 'javascript.png', Java: 'java.png', Redis: 'redis.svg', Kubernetes: 'kubernetes.svg',
+    'Argo CD': 'argocd.svg', Terraform: 'terraform.svg', AWS: 'aws.png', FastAPI: 'fastapi.png', 'OWASP ZAP': 'owasp.svg', Playwright: 'playwright.svg',
+    'CSV (파일 기반)': 'csv.svg', Cursor: 'cursor.svg', 'VS Code': 'vscode.svg', Requests: 'requests.svg', Plotly: 'plotly.svg', Folium: 'folium.svg',
+    APScheduler: 'apscheduler.svg', Loguru: 'loguru.svg', H2: 'h2.svg', Vite: 'vite.svg', Maven: 'maven.svg', 'IntelliJ IDEA': 'intellij.svg',
+    MUI: 'mui.svg', Axios: 'axios.svg', 'React Router': 'reactrouter.svg', JPA: 'jpa.svg', JJWT: 'jwt.svg', JWT: 'jwt.svg', Flyway: 'flyway.svg',
+    Cloudinary: 'cloudinary.svg', Docker: 'docker.svg', 'GitHub Actions': 'githubactions.svg', 'Tailwind CSS': 'tailwind.svg', 'TanStack Query': 'tanstack.svg',
+    Hibernate: 'hibernate.svg', Nginx: 'nginx.svg', MinIO: 'minio.svg', Gradle: 'gradle.svg', Leaflet: 'leaflet.svg', httpx: 'httpx.svg',
+    Lucide: 'lucide.svg', Pydantic: 'pydantic.svg', ReportLab: 'reportlab.svg', PyYAML: 'pyyaml.svg' };
   const badge = s => `<span class="tech">${ICON[s] ? `<img src="assets/icons/stack/${ICON[s]}" alt="">` : ''}${s}</span>`;
 
   // link icons: GitHub mark (Primer Octicons, MIT) and a note glyph for the blog
@@ -250,13 +266,17 @@
         <div><span class="rkp__tag">${p.tag}<em>${p.days}일 · ${p.team}명</em></span><h3>${p.name}</h3><p>${p.sub}</p></div>
         <nav class="rkp__links"><a href="${GH}${p.repo}" target="_blank" rel="noopener noreferrer">${IC_GH}GitHub</a><a href="${BLOG}${p.post}/" target="_blank" rel="noopener noreferrer">${IC_BLOG}Blog</a></nav></header>
       ${wall(id, p.name)}
-      <p class="rkp__desc">${p.desc}</p>
-      <div class="rkp__body">
-        <section><h4>담당</h4>${p.role.map(([t, v]) => `<div class="rkp__role"><span>${t}</span><i style="--w:${v}%"></i><b>${v}%</b></div>`).join('')}
-          <div class="rkp__stack">${p.stack.map(badge).join('')}</div></section>
-        <section><h4>핵심 구현</h4><ol class="rkp__pts">${p.points.map(([t, d, f], k) =>
-          `<li><b><em>0${k + 1}</em>${t}</b><p>${d}</p><code>${f}</code></li>`).join('')}</ol></section>
-      </div></article>`; };
+      <div class="rkp__story"><h4>${p.kicker}</h4><p>${p.lede.join('<br>')}</p>
+        <ol class="rkp__flow ${p.pipe ? 'rkp__flow--pipe' : ''}" style="--n:${p.flow.length}">${p.flow.map(([t, d]) => `<li><b>${t}</b><span>${d}</span></li>`).join('')}</ol></div>
+      <div class="rkp__grid">
+        <section><h4>담당</h4><ul class="rkp__roles">${p.role.map(([t, v]) =>
+          `<li><i style="--v:${v}"><b>${v}</b></i><span>${t}</span></li>`).join('')}</ul></section>
+        <section><h4>개발 환경</h4><dl class="rkp__env">${p.env.map(([k, list]) =>
+          `<div><dt>${k}</dt><dd>${list.map(badge).join('')}</dd></div>`).join('')}</dl></section>
+      </div>
+      <section class="rkp__key"><h4>핵심 구현</h4><ol class="rkp__pts">${p.points.map(([t, d, f], k) =>
+        `<li><b><em>0${k + 1}</em>${t}</b><p>${d}</p><code>${f}</code></li>`).join('')}</ol></section>
+      </article>`; };
 
   // table of contents: one card per project, showing the top of its main page
   const node = (id, tag) => { const p = P[id]; return `<a class="rk-card" href="#rk-${id}" style="--c:${p.c}">`
