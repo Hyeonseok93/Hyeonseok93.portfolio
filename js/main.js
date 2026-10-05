@@ -141,3 +141,132 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
   }));
   sync();
 })();
+
+/* ---------- Rookies tab: five projects on one page, each with a tilted wall of screens ---------- */
+(() => {
+  const root = document.querySelector('[data-rk]');
+  if (!root) return;
+  const GH = 'https://github.com/Hyeonseok93/', BLOG = 'https://hyeonseok93.github.io/posts/';
+
+  // role: [what, contribution %] · points: [title, sentence, flow]
+  const P = {
+    mini1: { no: '01', tag: 'MINI 1', name: 'CVS Event Comparator', sub: '4사 편의점 행사 비교 대시보드', days: 5, team: 6, c: '#e3b341',
+      desc: 'CU · GS25 · 7-Eleven · emart24 행사 상품을 하나의 형식으로 모아 비교·추천하고, 행사 상품을 기준으로 답하는 챗봇을 붙였습니다.',
+      role: [['크롤러 공통 구조 · 데이터 파이프라인 설계', 100], ['핫딜 단가 계산', 90], ['AI 챗봇 · Groq 연동 · 검색 로직', 70]],
+      points: [
+        ['브랜드별 수집', '응답 방식이 다른 네 사이트에 맞춰 크롤러를 나누고, 결과를 하나의 스키마로 통일했습니다.', 'Ajax HTML · JSON API · 페이지네이션 → brand · name · price · event'],
+        ['정제 · 분류 배치', '매일 정제·분류를 돌리고, 한 곳이라도 수집에 실패하면 기존 카탈로그를 덮어쓰지 않습니다.', '4사 수집 → 정제 → 카테고리 분류 → 카탈로그'],
+        ['행사 상품 챗봇', '질문 키워드로 관련 상품만 골라 LLM에 넣고, 목록에 없는 가격·행사는 답하지 않도록 제한했습니다.', '질문 → 상품 필터 → Groq Llama 3.3 → 스트리밍 응답'],
+      ],
+      stack: ['Python', 'Streamlit', 'Selenium', 'BeautifulSoup', 'Pandas', 'Groq'],
+      repo: 'SK-Rookies5-MINI1_CVS-EVENT-COMPARATOR', post: 'rookies-showcase-mini1' },
+    mini2: { no: '02', tag: 'MINI 2', name: 'MATE', sub: '스터디 · 프로젝트 팀 매칭 플랫폼', days: 8, team: 6, c: '#d2a8ff',
+      desc: '모집글 작성부터 지원 · 수락 · 팀 전용 게시판까지 한 흐름으로 관리하는 팀 매칭 플랫폼입니다.',
+      role: [['회원가입 · 로그인 · 계정 찾기', 100], ['모집글 CRUD · 모집 상태 로직', 90], ['MSW 목업 서버 · API 연동 · 상태 관리', 90]],
+      points: [
+        ['MSW 병렬 개발', '실제 API와 같은 주소·응답을 흉내 내는 목업 서버로 화면을 먼저 만들고, 설정값 하나로 실서버에 연결했습니다.', '목업 서버 → 화면 개발 → 설정 전환 → 실서버'],
+        ['Silent JWT 갱신', '토큰이 만료되면 보안 쿠키의 재발급 토큰으로 새 토큰을 받고, 실패한 요청을 다시 보냅니다. 동시 만료 시 재발급은 한 번만 합니다.', '토큰 만료 → 재발급 → 대기 요청 재개 → 재전송'],
+        ['API 응답 표준화', 'API마다 다른 필드 이름과 목록 형식을 변환 계층에서 하나의 내부 규격으로 맞췄습니다.', 'API 응답 → 변환 계층 → 화면 공통 규격'],
+      ],
+      stack: ['React', 'Spring Boot', 'MariaDB', 'Zustand', 'MSW', 'Spring Security'],
+      repo: 'SK-Rookies5-MINI2_MATE', post: 'rookies-showcase-mini2' },
+    mini3: { no: '03', tag: 'MINI 3', name: 'MACTA', sub: '실시간 경매 플랫폼', days: 8, team: 6, c: '#3fb950',
+      desc: '마감 직전 몰리는 입찰에도 최고가가 어긋나지 않도록 동시성을 제어하고, 낙찰 후 결제까지 이어지는 경매 플랫폼입니다.',
+      role: [['프론트엔드 스캐폴드 · 공통 UI · API 연동', 90], ['인증 · 서버 시간 동기화 · 라이브 입찰 UX', 90], ['경매 상세 · 입찰 · 결제 · 알림 화면', 80]],
+      points: [
+        ['서버 시간 동기화', '기기 시계 대신 서버 시각과의 차이를 기준으로 카운트다운과 입찰 가능 여부를 계산합니다.', '서버 시각 → RTT 보정 → 기준 시각 → 카운트다운'],
+        ['낙관적 락 동시 입찰', '@Version으로 동시 입찰 충돌을 감지해, 먼저 커밋된 입찰만 최고가에 반영합니다.', '입찰 → 최고가 검증 → version 갱신 → 충돌 시 실패'],
+        ['GitOps 무중단 배포', '이미지 태그만 갱신하면 Argo CD가 EKS를 맞추고, Rolling Update로 배포 중에도 요청이 끊기지 않습니다.', '빌드 → ECR → Manifest → Argo CD → Rolling Update'],
+      ],
+      stack: ['React', 'TypeScript', 'Spring Boot', 'Redis', 'Kubernetes', 'Argo CD'],
+      repo: 'SK-Rookies5-MINI3_MACTA', post: 'rookies-showcase-mini3' },
+    onde: { no: 'F1', tag: 'FINAL · TARGET', name: 'ONDE', sub: '진단 대상으로 만든 여행 플랫폼', days: 35, team: 7, c: '#4493f8',
+      desc: '숙소 · 항공 · 렌터카 · 보험을 한 흐름으로 묶은 여행 플랫폼을 바이브 코딩으로 만들고, 취약점 진단의 대상으로 사용했습니다.',
+      role: [['프론트엔드 · 숙소 · 항공 · 렌터카 · 결제 · 어드민', 80], ['프론트–백엔드 연동', 75], ['Flyway 스키마 · 시드 데이터', 60]],
+      points: [
+        ['항공 좌석 임시 선점', '같은 좌석 요청을 분산 잠금으로 하나씩 처리하고, 결제 전 10분 동안만 좌석을 잡아 둔 뒤 자동으로 풀어 줍니다.', '예약 → 직렬 처리 → 좌석 차감 → 결제 대기 → 만료 복구'],
+        ['테스트 데이터 프로비저닝', '로컬에서는 MinIO로 S3와 같은 업로드 경로를 쓰고, 수집한 데이터를 스키마에 맞게 변환해 적재했습니다.', '수집 → 정리 → 스키마 변환 → DB 적재'],
+        ['날짜별 재고 달력', '숙소와 렌터카가 같은 달력 규칙을 공유하고, 기록이 없는 날은 마감으로 처리합니다.', '월 선택 → 재고 조회 → 빈 날 마감 → 예약'],
+      ],
+      stack: ['React', 'TypeScript', 'Spring Boot', 'MariaDB', 'Redis', 'Terraform', 'AWS'],
+      repo: 'SK-Rookies5-FINAL_ONDE', post: 'rookies-showcase-final1' },
+    argus: { no: 'F2', tag: 'FINAL · DIAGNOSTICS', name: 'ARGUS', sub: '웹 · API 자동 취약점 진단 플랫폼', days: 22, team: 7, c: '#f78166',
+      desc: '사람이 엔드포인트를 하나씩 확인하던 진단을 항목별 모듈로 자동화하고, 증적 스크린샷과 PDF 결과서까지 생성합니다.',
+      role: [['대상 API · 엔드포인트 수집 · 응답 검증', 85], ['진단 결과 · 상세 화면 프론트엔드', 85], ['취약점 진단 모듈 · 판정 로직', 45]],
+      points: [
+        ['대상 수집 · 검증', 'URL · API · Swagger 목록으로 경로를 모으고, 실제 응답이 확인된 경로만 진단 대상으로 확정합니다.', '기준 URL → 경로 수집 → 응답 검증 → 확정 목록'],
+        ['항목별 진단 모듈', '확정된 목록 위에서 항목별 모듈이 검사하고, 결과를 통과 · 주의 · 실패로 자동 판정합니다.', '확정 목록 → 모듈 실행 → 자동 판정 → 결과 저장'],
+        ['증적 · 결과서', 'Playwright로 재현 화면을 캡처하고, 진단 결과와 묶어 PDF 결과서로 만듭니다.', '진단 결과 → 화면 캡처 → PDF → 다운로드'],
+      ],
+      stack: ['React', 'TypeScript', 'FastAPI', 'Python', 'OWASP ZAP', 'Playwright', 'AWS'],
+      repo: 'SK-Rookies5-FINAL_ARGUS', post: 'rookies-showcase-final2' },
+  };
+
+  // stack badges reuse the v1 portfolio look (Groq, BeautifulSoup, Zustand icons are our own)
+  const ICON = { Python: 'python.png', Streamlit: 'streamlit.png', Selenium: 'selenium.png', Pandas: 'pandas.svg', BeautifulSoup: 'beautifulsoup.svg', Groq: 'groq.svg', Zustand: 'zustand.png', React: 'react.png',
+    'Spring Boot': 'spring.png', 'Spring Security': 'springsecurity.svg', MariaDB: 'mariadb.png', MSW: 'msw.svg', TypeScript: 'typescript.png',
+    Redis: 'redis.svg', Kubernetes: 'kubernetes.svg', 'Argo CD': 'argocd.svg', Terraform: 'terraform.svg', AWS: 'aws.png',
+    FastAPI: 'fastapi.png', 'OWASP ZAP': 'owasp.svg', Playwright: 'playwright.svg' };
+  const badge = s => `<span class="tech">${ICON[s] ? `<img src="assets/icons/stack/${ICON[s]}" alt="">` : ''}${s}</span>`;
+
+  // link icons: GitHub mark (Primer Octicons, MIT) and a note glyph for the blog
+  const IC_GH = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>';
+  const IC_BLOG = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M3.75 1h8.5c.97 0 1.75.78 1.75 1.75v10.5c0 .97-.78 1.75-1.75 1.75h-8.5C2.78 15 2 14.22 2 13.25V2.75C2 1.78 2.78 1 3.75 1Zm1 3.25a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5Zm0 3a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5Zm0 3a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5Z"/></svg>';
+
+  // the full-page capture sits in the middle and scrolls inside its window; other screens
+  // (never the main page) drift past on both sides, each side its own set, doubled so it can loop
+  const SHOTS = { mini1: 8, mini2: 8, mini3: 7, onde: 8, argus: 6 };
+  const win = (src, cls = '') => `<div class="win ${cls}"><i></i><img data-src="assets/images/rookies/${src}.webp" alt=""></div>`;
+  const side = (id, col, dir) => `<div class="wall__col wall__col--${dir}">${[...col, ...col].map(n => win(`${id}-s${n}`)).join('')}</div>`;
+  const wall = (id, name) => { const all = Array.from({ length: SHOTS[id] }, (_, k) => k + 1), half = Math.ceil(all.length / 2);
+    return `<div class="wall" role="img" aria-label="${name} 화면"><div class="wall__plane">
+    ${side(id, all.slice(0, half), 'up')}<div class="wall__hero">${win(`${id}-full`, 'win--page')}</div>${side(id, all.slice(half), 'down')}</div></div>`; };
+
+  const project = id => { const p = P[id];
+    return `<article class="rkp" id="rk-${id}" style="--c:${p.c}">
+      <header class="rkp__hd"><span class="rkp__no">${p.no}</span>
+        <div><span class="rkp__tag">${p.tag}<em>${p.days}일 · ${p.team}명</em></span><h3>${p.name}</h3><p>${p.sub}</p></div>
+        <nav class="rkp__links"><a href="${GH}${p.repo}" target="_blank" rel="noopener noreferrer">${IC_GH}GitHub</a><a href="${BLOG}${p.post}/" target="_blank" rel="noopener noreferrer">${IC_BLOG}Blog</a></nav></header>
+      ${wall(id, p.name)}
+      <p class="rkp__desc">${p.desc}</p>
+      <div class="rkp__body">
+        <section><h4>담당</h4>${p.role.map(([t, v]) => `<div class="rkp__role"><span>${t}</span><i style="--w:${v}%"></i><b>${v}%</b></div>`).join('')}
+          <div class="rkp__stack">${p.stack.map(badge).join('')}</div></section>
+        <section><h4>핵심 구현</h4><ol class="rkp__pts">${p.points.map(([t, d, f], k) =>
+          `<li><b><em>0${k + 1}</em>${t}</b><p>${d}</p><code>${f}</code></li>`).join('')}</ol></section>
+      </div></article>`; };
+
+  // one project on the timeline: its own colour bar, no line joining it to the next
+  const node = (id, tag, d) => { const p = P[id]; return `<a class="rk-step" href="#rk-${id}" style="--c:${p.c};--d:${d}ms">`
+    + `<i></i><b><em>${p.no}</em>${tag}</b><span>${p.name}</span><small>${p.days}일 · ${p.team}명</small></a>`; };
+
+  root.innerHTML = `
+    <header class="rk-head">
+      <p class="rx-kicker">SK Shieldus Rookies 5기</p>
+      <h2>지능형 애플리케이션 개발자 양성과정</h2>
+      <p class="rk-head__meta">2026.02 – 2026.07 · 미니 프로젝트 3 · 최종 프로젝트 2</p>
+      <nav class="rk-line">${node('mini1', 'MINI 1', 0)}${node('mini2', 'MINI 2', 120)}${node('mini3', 'MINI 3', 240)}
+        <div class="rk-final"><span class="rk-final__lab">FINAL</span>${node('onde', 'TARGET', 360)}${node('argus', 'DIAGNOSTICS', 480)}</div></nav>
+    </header>
+    ${project('mini1')}${project('mini2')}${project('mini3')}
+    <section class="rkf" id="rk-final">
+      <header class="rkf__hd"><span class="rkp__no">04</span><div><span class="rkp__tag">FINAL<em>2개 프로젝트</em></span>
+        <h3>진단 대상과 진단 도구를 함께 만든 최종 프로젝트</h3>
+        <p>바이브 코딩으로 만든 ONDE를 사람이 직접 진단하고, 같은 대상을 ARGUS로 자동 진단해 결과를 비교했습니다.</p></div></header>
+      <div class="rkf__pair"><span class="o">ONDE<small>진단 대상</small></span>
+        <div class="rkf__arrow"><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M196 10 H6" /><path class="tip" d="M14 3 L4 10 L14 17" /></svg><small>수동 진단 · 자동 진단 → 결과 비교</small></div>
+        <span class="a">ARGUS<small>진단 도구</small></span></div>
+      ${project('onde')}${project('argus')}
+    </section>`;
+
+  // screens load all at once when the tab first opens (or quietly after the page settles),
+  // so the tilted walls never show half-empty windows the way lazy loading would
+  const load = () => root.querySelectorAll('img[data-src]').forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src'); });
+  document.querySelector('.tab[data-p=rk]')?.addEventListener('click', load);
+  addEventListener('load', () => setTimeout(load, 1500));
+  if (!root.closest('.panel').hidden) load();
+
+  root.querySelectorAll('.rk-line a').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+})();

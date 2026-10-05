@@ -45,11 +45,14 @@
 ## 📁 Structure
 
 ```text
-├── index.html        # 한 페이지 포트폴리오 (Overview · Research · Rookies 5 · Personal 탭)
-├── css/style.css     # 프로필 블록(학력 · 경력 · Journey) + 페이지 스타일
-├── js/main.js        # 탭 전환, Research 탭 애니메이션
-├── assets/           # 프로필 사진, 헤더 마크, Connect 아이콘, 소속 로고, 프로젝트 스크린샷
-└── vercel.json       # 예전 주소(/pages/...) → 첫 페이지로 리다이렉트
+├── index.html            # 한 페이지 포트폴리오 (Overview · Research · Rookies 5 · Personal 탭)
+├── css/style.css         # 프로필 블록(학력 · 경력 · Journey) + 페이지 스타일 + 폰트 등록
+├── js/main.js            # 탭 전환, Research 탭 애니메이션, Rookies 탭 렌더링
+├── assets/
+│   ├── fonts/            # Pretendard woff2 (자체 호스팅, SIL OFL)
+│   ├── icons/            # favicon · connect/(연락처 아이콘) · stack/(기술 배지 아이콘)
+│   └── images/           # profile · hsk-mark · orgs/(소속 로고) · projects/(Personal 썸네일) · rookies/(프로젝트 화면)
+└── vercel.json           # 예전 주소(/pages/...) → 첫 페이지로 리다이렉트
 ```
 
 <br />
