@@ -1,7 +1,29 @@
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));
-  document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==t.dataset.p);
-});
+/* ---------- tabs; on phones and tablets they live in a menu under a sticky header ---------- */
+(() => {
+  const tabs = [...document.querySelectorAll('.tab')];
+  const menuBtn = document.querySelector('.hd__menu'), cur = document.querySelector('.hd__cur');
+  const narrow = matchMedia('(max-width: 768px)');
+  const label = t => [...t.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join('').trim();
+  const setMenu = open => {
+    document.body.classList.toggle('nav-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  };
+  const select = t => {
+    tabs.forEach(x => x.setAttribute('aria-selected', x === t));
+    document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== t.dataset.p);
+    cur.textContent = label(t);
+  };
+  tabs.forEach(t => t.addEventListener('click', () => {
+    select(t);
+    if (narrow.matches) { setMenu(false); scrollTo({ top: 0 }); }
+  }));
+  menuBtn.addEventListener('click', () => setMenu(!document.body.classList.contains('nav-open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', e => { if (!e.target.closest('.hd, .tabs')) setMenu(false); });
+  narrow.addEventListener('change', () => setMenu(false));
+  select(tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0]);
+})();
 
 (() => {
   const rx = document.querySelector('.rx');
@@ -236,17 +258,19 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
           `<li><b><em>0${k + 1}</em>${t}</b><p>${d}</p><code>${f}</code></li>`).join('')}</ol></section>
       </div></article>`; };
 
-  // one project on the timeline: its own colour bar, no line joining it to the next
-  const node = (id, tag, d) => { const p = P[id]; return `<a class="rk-step" href="#rk-${id}" style="--c:${p.c};--d:${d}ms">`
-    + `<i></i><b><em>${p.no}</em>${tag}</b><span>${p.name}</span><small>${p.days}일 · ${p.team}명</small></a>`; };
+  // table of contents: one card per project, showing the top of its main page
+  const node = (id, tag) => { const p = P[id]; return `<a class="rk-card" href="#rk-${id}" style="--c:${p.c}">`
+    + `<span class="rk-card__img"><img data-src="assets/images/rookies/${id}-full.webp" alt=""></span>`
+    + `<span class="rk-card__body"><b><em>${p.no}</em>${tag}</b><strong>${p.name}</strong><small>${p.days}일 · ${p.team}명</small></span></a>`; };
 
   root.innerHTML = `
     <header class="rk-head">
       <p class="rx-kicker">SK Shieldus Rookies 5기</p>
       <h2>지능형 애플리케이션 개발자 양성과정</h2>
       <p class="rk-head__meta">2026.02 – 2026.07 · 미니 프로젝트 3 · 최종 프로젝트 2</p>
-      <nav class="rk-line">${node('mini1', 'MINI 1', 0)}${node('mini2', 'MINI 2', 120)}${node('mini3', 'MINI 3', 240)}
-        <div class="rk-final"><span class="rk-final__lab">FINAL</span>${node('onde', 'TARGET', 360)}${node('argus', 'DIAGNOSTICS', 480)}</div></nav>
+      <nav class="rk-line">
+        <div class="rk-group rk-group--3"><span class="rk-group__lab">MINI</span>${node('mini1', 'MINI 1')}${node('mini2', 'MINI 2')}${node('mini3', 'MINI 3')}</div>
+        <div class="rk-group rk-group--2"><span class="rk-group__lab">FINAL</span>${node('onde', 'TARGET')}${node('argus', 'DIAGNOSTICS')}</div></nav>
     </header>
     ${project('mini1')}${project('mini2')}${project('mini3')}
     <section class="rkf" id="rk-final">
