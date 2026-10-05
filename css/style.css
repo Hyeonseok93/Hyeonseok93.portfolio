@@ -547,7 +547,10 @@ img{display:block;max-width:100%}
 .rkp h4{font-size:12px;font-weight:600;color:var(--dim);margin-bottom:12px}
 .rkp__story{margin-top:22px}
 .rkp__story>h4{font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--c);margin-bottom:8px}
-.rkp__story>p{font-size:14.5px;line-height:1.7;color:#c9d1d9;max-width:70ch}
+.rkp__story>p{font-size:14.5px;line-height:1.7;color:#c9d1d9}
+.rkp__story>p span{display:block}
+/* each sentence on one line wherever it can fit: the longest is ~775px at 14.5px */
+@media(min-width:761px){.rkp__story{container-type:inline-size}.rkp__story>p{font-size:max(12px,min(14.5px,1.86cqi))}}
 .rkp__flow{list-style:none;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:12px;margin-top:16px}
 .rkp__flow--pipe{gap:26px}
 .rkp__flow li{position:relative;display:grid;gap:2px;padding:10px 12px;border:1px solid var(--line2);border-top:2px solid var(--c);border-radius:8px;background:var(--card)}

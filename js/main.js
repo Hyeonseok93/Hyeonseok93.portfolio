@@ -266,7 +266,7 @@
         <div><span class="rkp__tag">${p.tag}<em>${p.days}일 · ${p.team}명</em></span><h3>${p.name}</h3><p>${p.sub}</p></div>
         <nav class="rkp__links"><a href="${GH}${p.repo}" target="_blank" rel="noopener noreferrer">${IC_GH}GitHub</a><a href="${BLOG}${p.post}/" target="_blank" rel="noopener noreferrer">${IC_BLOG}Blog</a></nav></header>
       ${wall(id, p.name)}
-      <div class="rkp__story"><h4>${p.kicker}</h4><p>${p.lede.join('<br>')}</p>
+      <div class="rkp__story"><h4>${p.kicker}</h4><p>${p.lede.map(l => `<span>${l}</span>`).join('')}</p>
         <ol class="rkp__flow ${p.pipe ? 'rkp__flow--pipe' : ''}" style="--n:${p.flow.length}">${p.flow.map(([t, d]) => `<li><b>${t}</b><span>${d}</span></li>`).join('')}</ol></div>
       <div class="rkp__grid">
         <section><h4>담당</h4><ul class="rkp__roles">${p.role.map(([t, v]) =>
