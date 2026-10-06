@@ -320,7 +320,7 @@
         <div class="rkp__tabs" role="tablist">${p.points.map(([t, d], k) =>
           `<button class="rkp__tab" type="button" role="tab" aria-selected="${k === 0}" data-k="${k}"><b><em>0${k + 1}</em>${t}</b><p>${d}</p></button>`).join('')}</div>
         ${p.why.items.map((it, k) => `<div class="rkp__panel" role="tabpanel" data-k="${k}" ${k ? 'hidden' : ''}>
-          <h5>${it.title}</h5>${it.intro.map(x => `<p>${x}</p>`).join('')}<code>${it.flow || p.points[k][2]}</code>
+          <h5>${it.title}</h5>${it.intro.map(x => `<p>${x}</p>`).join('')}<p class="rkp__flowline">${(it.flow || p.points[k][2]).split(' → ').join('<i>→</i>')}</p>
           <table><thead><tr><th scope="col">${it.head[0]}</th><th scope="col">${it.head[1]}</th></tr></thead>
             <tbody>${it.rows.map(([a, b]) => `<tr><th scope="row">${a}</th><td>${b}</td></tr>`).join('')}</tbody></table></div>`).join('')}
       </section>
