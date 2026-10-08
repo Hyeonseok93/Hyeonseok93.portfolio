@@ -363,7 +363,7 @@
       ${project('onde')}${project('argus')}
     </section>`;
 
-  const MINIS = [["Shorts Alert", "숏폼 시청 시간 모니터 & 알림", "Chrome", "MINI_ShortsAlert", "mini-shorts-alert"], ["Repeat Music Player", "구간 반복 재생 · 오디오 병합", "Desktop", "MINI_RepeatMusicPlayer", "mini-repeat-music-player"], ["Image Zoomer", "픽셀 이미지 정밀 확대 뷰어", "Desktop", "MINI_ImageZoomer", "mini-image-zoomer"], ["Monitor Coordinate System", "모니터 좌표 · 거리 측정 유틸", "Desktop", "MINI_MonitorCoordinateSystem", "mini-monitor-coordinate-system"], ["Image Converter", "이미지 일괄 변환 · 최적화", "Desktop", "MINI_ImageConverter", "mini-image-converter"], ["Color Picker", "픽셀 돋보기 · 색상 피커", "Desktop", "MINI_ColorPicker", "mini-color-picker"], ["Web Score Board", "보드게임용 웹 스코어보드", "Web", "MINI_WebScoreBoard", "mini-web-score-board"]];
+  const MINIS = [["NetSentinel", "Windows 개인용 네트워크 모니터", "Desktop", "MINI_NetSentinel", "mini-net-sentinel"], ["Shorts Alert", "숏폼 시청 시간 모니터 & 알림", "Chrome", "MINI_ShortsAlert", "mini-shorts-alert"], ["Repeat Music Player", "구간 반복 재생 · 오디오 병합", "Desktop", "MINI_RepeatMusicPlayer", "mini-repeat-music-player"], ["Image Zoomer", "픽셀 이미지 정밀 확대 뷰어", "Desktop", "MINI_ImageZoomer", "mini-image-zoomer"], ["Monitor Coordinate System", "모니터 좌표 · 거리 측정 유틸", "Desktop", "MINI_MonitorCoordinateSystem", "mini-monitor-coordinate-system"], ["Image Converter", "이미지 일괄 변환 · 최적화", "Desktop", "MINI_ImageConverter", "mini-image-converter"], ["Color Picker", "픽셀 돋보기 · 색상 피커", "Desktop", "MINI_ColorPicker", "mini-color-picker"], ["Web Score Board", "보드게임용 웹 스코어보드", "Web", "MINI_WebScoreBoard", "mini-web-score-board"]];
   proot.innerHTML = `
     <header class="rk-head">
       <p class="rx-kicker">Personal</p>
