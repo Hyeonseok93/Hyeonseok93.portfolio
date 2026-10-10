@@ -580,3 +580,25 @@ img{display:block;max-width:100%}
 .pb-rail--work .pb-item__badge{background:rgba(124,131,255,.16);color:#a5abff;border-color:rgba(124,131,255,.45)}
 .pb-rail--work a.pb-item:hover .pb-item__org{color:#a5abff}
 .cr .rx-kicker{color:#a5abff}
+
+/* ===== Stack tab: v1 dark badges in groups; the chips filter which groups show ===== */
+.st{--rx-blue:#4493f8;padding:8px 0 24px}
+.st-filters{display:flex;flex-wrap:wrap;gap:8px;padding:20px 0 8px}
+.st-filter{font:inherit;font-size:13px;color:var(--dim);background:none;border:1px solid var(--line);border-radius:99px;padding:5px 8px 5px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:color .15s,border-color .15s,background-color .15s}
+.st-filter span{background:#30363d;color:var(--ink);border-radius:99px;padding:0 7px;font-size:12px}
+.st-filter:hover{color:var(--ink);border-color:#8b949e}
+.st-filter[aria-pressed=true]{color:var(--ink);font-weight:600;border-color:#f78166;background:rgba(247,129,102,.1)}
+.st-group{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line2)}
+.st-group[hidden]{display:none}
+.st-group h3{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding-top:7px}
+.st-badges{display:flex;flex-wrap:wrap;gap:8px}
+.st-badges img{height:28px;width:auto;max-width:none;border-radius:3px;user-select:none}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .st-badges img{transition:transform .15s ease}
+  .st-badges img:hover{transform:translateY(-2px)}
+}
+@media(max-width:600px){
+  .st-filters{gap:6px}
+  .st-group{grid-template-columns:1fr;gap:10px;padding:16px 0}
+  .st-group h3{padding-top:0}
+}

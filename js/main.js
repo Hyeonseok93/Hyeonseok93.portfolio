@@ -457,3 +457,45 @@
     document.querySelector('[data-career-range]').textContent = `${fmt(from)} - 현재`;
   }
 })();
+
+/* ---------- Stack: everything I've worked with, as the v1 dark badges, filtered by group ---------- */
+(() => {
+  const root = document.querySelector('[data-st]');
+  if (!root) return;
+  const GROUPS = [
+    ['languages', 'Languages', ['typescript:TypeScript', 'java:Java', 'python:Python', 'javascript:JavaScript', 'c:C', 'dart:Dart', 'html5:HTML5', 'css3:CSS3']],
+    ['frontend', 'Frontend', ['react:React', 'vite:Vite', 'tailwindcss:Tailwind CSS', 'mui:Material UI', 'tanstackquery:TanStack Query', 'zustand:Zustand', 'zod:Zod',
+      'reacthookform:React Hook Form', 'recharts:Recharts', 'axios:Axios', 'reactrouter:React Router', 'leaflet:Leaflet', 'flutter:Flutter']],
+    ['backend', 'Backend', ['springboot:Spring Boot', 'springsecurity:Spring Security', 'hibernate:Hibernate', 'thymeleaf:Thymeleaf', 'jwt:JWT', 'gradle:Gradle',
+      'maven:Maven', 'flyway:Flyway', 'sqlalchemy:SQLAlchemy', 'fastapi:FastAPI', 'openapi:OpenAPI']],
+    ['database', 'Database', ['postgresql:PostgreSQL', 'mariadb:MariaDB', 'redis:Redis']],
+    ['devops', 'DevOps', ['docker:Docker', 'nginx:Nginx', 'kubernetes:Kubernetes', 'terraform:Terraform', 'githubactions:GitHub Actions', 'vercel:Vercel',
+      'argocd:Argo CD', 'cloudinary:Cloudinary', 'minio:MinIO']],
+    ['os', 'OS', ['windows:Windows', 'ubuntu:Ubuntu']],
+    ['data', 'Data Science', ['pandas:Pandas', 'plotly:Plotly', 'jupyter:Jupyter']],
+    ['tools', 'Tools & Testing', ['streamlit:Streamlit', 'selenium:Selenium', 'playwright:Playwright', 'zap:ZAP', 'beautifulsoup:BeautifulSoup',
+      'msw:Mock Service Worker', 'vitest:Vitest', 'qt:Qt', 'pyside6:PySide6', 'electron:Electron', 'opencv:OpenCV', 'pyinstaller:PyInstaller']],
+    ['ai', 'AI', ['groq:Groq', 'gemini:Gemini', 'antigravity:Antigravity', 'cursor:Cursor AI', 'pytorch:PyTorch', 'roberta:RoBERTa', 'huggingface:Hugging Face']],
+  ];
+  const total = GROUPS.reduce((n, g) => n + g[2].length, 0);
+  const chip = (id, name, n, on) => `<button class="st-filter" type="button" aria-pressed="${on}" data-f="${id}">${name}<span>${n}</span></button>`;
+
+  root.innerHTML = `
+    <header class="rk-head">
+      <p class="rx-kicker">Stack</p>
+      <h2>다뤄 본 기술</h2>
+      <p class="rk-head__meta">${total}개 · ${GROUPS.length}개 분류</p>
+    </header>
+    <div class="st-filters" role="group" aria-label="분류">${chip('all', 'All', total, true)}${GROUPS.map(([id, name, list]) => chip(id, name, list.length, false)).join('')}</div>
+    <div class="st-groups">${GROUPS.map(([id, name, list]) => `<section class="st-group" data-g="${id}"><h3>${name}</h3><div class="st-badges">${list.map(s => {
+      const [file, label] = s.split(':');
+      return `<img src="assets/badges/${file}.png" alt="${label}" title="${label}" height="28" loading="lazy" decoding="async" draggable="false">`;
+    }).join('')}</div></section>`).join('')}</div>`;
+
+  document.querySelector('.tab[data-p=st] span').textContent = total;
+  root.addEventListener('click', e => {
+    const f = e.target.closest('.st-filter'); if (!f) return;
+    root.querySelectorAll('.st-filter').forEach(b => b.setAttribute('aria-pressed', b === f));
+    root.querySelectorAll('.st-group').forEach(g => g.hidden = f.dataset.f !== 'all' && g.dataset.g !== f.dataset.f);
+  });
+})();
