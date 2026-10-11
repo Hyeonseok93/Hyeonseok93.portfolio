@@ -475,7 +475,8 @@
     ['data', 'Data Science', ['pandas:Pandas', 'plotly:Plotly', 'jupyter:Jupyter']],
     ['tools', 'Tools & Testing', ['streamlit:Streamlit', 'selenium:Selenium', 'playwright:Playwright', 'zap:ZAP', 'beautifulsoup:BeautifulSoup',
       'msw:Mock Service Worker', 'vitest:Vitest', 'qt:Qt', 'pyside6:PySide6', 'electron:Electron', 'opencv:OpenCV', 'pyinstaller:PyInstaller']],
-    ['ai', 'AI', ['groq:Groq', 'gemini:Gemini', 'antigravity:Antigravity', 'cursor:Cursor AI', 'pytorch:PyTorch', 'roberta:RoBERTa', 'huggingface:Hugging Face']],
+    ['ai', 'AI', ['claude:Claude', 'chatgpt:ChatGPT', 'codex:Codex', 'groq:Groq', 'gemini:Gemini', 'antigravity:Antigravity', 'cursor:Cursor AI',
+      'pytorch:PyTorch', 'roberta:RoBERTa']],
   ];
   const total = GROUPS.reduce((n, g) => n + g[2].length, 0);
   const chip = (id, name, n, on) => `<button class="st-filter" type="button" aria-pressed="${on}" data-f="${id}">${name}<span>${n}</span></button>`;
