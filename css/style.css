@@ -535,12 +535,12 @@ img{display:block;max-width:100%}
 .rkp__panel tbody tr+tr th,.rkp__panel tbody tr+tr td{border-top:1px solid var(--line2)}
 @media(max-width:560px){.rkp__panel{padding:14px}.rkp__panel tbody th{width:auto;white-space:normal}}
 
-/* ===== Personal tab: PERSONAL cards | MINI list in the same dashed groups as Rookies ===== */
-.rk-line--ps{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
-.ps-minis{grid-template-columns:minmax(0,1fr);grid-template-rows:none;align-content:center;gap:0}
-/* one compact line per mini project so the list matches the height of the two cards */
+/* ===== Personal tab: PERSONAL cards on top, MINI list below, in the same dashed groups as Rookies ===== */
+.rk-line--ps{grid-template-columns:minmax(0,1fr)}
+/* two columns of compact lines, lined up under the two PERSONAL cards */
+.ps-minis{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;align-content:start;gap:0 12px}
 .ps-mini{display:flex;align-items:center;gap:10px;min-width:0;padding:2px 6px 2px 8px;border-radius:6px;transition:background .2s}
-.ps-mini+.ps-mini{border-top:1px solid var(--line2)}
+.ps-mini:nth-of-type(n+3){border-top:1px solid var(--line2)}
 .ps-mini:hover{background:#161b22}
 .ps-kind{flex:none;width:5.4em;padding:1px 0;text-align:center;border-radius:4px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--k);background:color-mix(in srgb,var(--k) 14%,transparent);border:1px solid color-mix(in srgb,var(--k) 45%,transparent)}
 .ps-mini{--k:#8b949e} .ps-mini[data-kind=chrome]{--k:#4493f8} .ps-mini[data-kind=desktop]{--k:#a371f7} .ps-mini[data-kind=web]{--k:#3fb950}
@@ -550,7 +550,7 @@ img{display:block;max-width:100%}
 .ps-mini nav a{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid rgba(240,246,252,.14);color:#c9d1d9;transition:border-color .2s,color .2s}
 .ps-mini nav a:hover{border-color:var(--k);color:var(--k)}
 .ps-mini nav svg{width:12px;height:12px;fill:currentColor}
-@media(max-width:900px){.rk-line--ps{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.ps-minis{grid-template-columns:minmax(0,1fr)}.ps-mini:nth-of-type(2){border-top:1px solid var(--line2)}}
 @media(max-width:520px){.ps-mini{flex-wrap:wrap;row-gap:2px}.ps-desc{order:3;flex-basis:100%;padding-left:calc(5.4em + 10px);white-space:normal}.ps-mini nav{margin-left:auto}}
 
 /* ===== Overview: Career (company + its own journey) above Background ===== */
